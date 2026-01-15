@@ -18,7 +18,7 @@ export function Hero() {
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="text-center lg:text-left mb-10 lg:mb-0"
                     >
-                        {/* Badge - monochrome */}
+                        {/* Badge - BLACK bg, WHITE text */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -31,7 +31,7 @@ export function Hero() {
                             Disponible sur iOS
                         </motion.div>
 
-                        {/* Title - simple black */}
+                        {/* Title */}
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export function Hero() {
                             Le coach IA qui crée vos programmes d'entraînement et suit votre nutrition.
                         </motion.p>
 
-                        {/* CTA Button - black */}
+                        {/* CTA Button - BLACK bg, WHITE text */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -112,7 +112,6 @@ export function Hero() {
                             whileHover={{ y: -5 }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
                         >
-                            {/* Phone Frame */}
                             <div className="relative bg-foreground rounded-[36px] sm:rounded-[44px] p-1.5 sm:p-2 shadow-2xl">
                                 <div className="relative aspect-[9/19.5] bg-card rounded-[32px] sm:rounded-[40px] overflow-hidden">
                                     <div className="absolute top-2 sm:top-3 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-6 sm:h-7 bg-foreground rounded-full z-10" />

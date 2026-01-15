@@ -14,7 +14,6 @@ export function ScanDemo() {
             <div ref={ref} className="max-w-4xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-                    {/* Phone */}
                     <motion.div
                         initial={{ opacity: 0, x: -40 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -38,13 +37,13 @@ export function ScanDemo() {
                         </motion.div>
                     </motion.div>
 
-                    {/* Text */}
                     <motion.div
                         initial={{ opacity: 0, x: 40 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.8 }}
                         className="text-center lg:text-left order-2"
                     >
+                        {/* Badge - BLACK bg, WHITE text */}
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-foreground text-background rounded-full text-xs font-semibold mb-4">
                             <Camera className="w-3 h-3" />
                             Food AI

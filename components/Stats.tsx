@@ -26,6 +26,7 @@ export function Stats() {
                             transition={{ delay: index * 0.1, duration: 0.6 }}
                             className="text-center py-3"
                         >
+                            {/* Icon - BLACK bg, WHITE icon */}
                             <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-foreground text-background flex items-center justify-center">
                                 <stat.icon className="w-5 h-5" />
                             </div>

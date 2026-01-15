@@ -34,12 +34,11 @@ export function HowItWorks() {
                             transition={{ delay: 0.2 + index * 0.15, duration: 0.6 }}
                             className="flex-shrink-0 w-[140px] sm:w-auto sm:flex-1 snap-center text-center"
                         >
-                            {/* Number - black */}
+                            {/* Number - BLACK bg, WHITE text */}
                             <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-foreground text-background font-black text-lg flex items-center justify-center">
                                 {step.num}
                             </div>
 
-                            {/* Phone */}
                             <motion.div
                                 className="relative mx-auto w-24 sm:w-28 mb-3"
                                 whileHover={{ y: -3 }}

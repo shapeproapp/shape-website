@@ -32,7 +32,7 @@ export function Comparison() {
                     transition={{ delay: 0.1 }}
                     className="bg-card rounded-2xl overflow-hidden border border-border"
                 >
-                    {/* Header - monochrome */}
+                    {/* Header - BLACK bg for SHAPE column */}
                     <div className="grid grid-cols-3 text-center text-xs font-bold">
                         <div className="p-3"></div>
                         <div className="p-3 bg-foreground text-background">SHAPE</div>
