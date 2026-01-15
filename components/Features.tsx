@@ -8,25 +8,25 @@ import { Dumbbell, Salad, Brain, Pencil } from "lucide-react";
 const features = [
     {
         title: "Entraînement IA",
-        description: "Programmes générés selon vos objectifs et équipement",
+        description: "Programmes selon vos objectifs",
         image: "/assets/app-screens/workout-detail-dark.png",
         icon: Dumbbell,
     },
     {
         title: "Food AI",
-        description: "Scannez vos repas pour un suivi nutritionnel instantané",
+        description: "Scannez vos repas facilement",
         image: "/assets/app-screens/food-detail-dark.png",
         icon: Salad,
     },
     {
         title: "Coach Personnel",
-        description: "Un assistant disponible 24/7 pour vous guider",
+        description: "Assistant disponible 24/7",
         image: "/assets/app-screens/home-light.png",
         icon: Brain,
     },
     {
         title: "Mode Créateur",
-        description: "Créez vos propres programmes sur mesure",
+        description: "Créez vos propres programmes",
         image: "/assets/app-screens/library-dark.png",
         icon: Pencil,
     },
@@ -34,55 +34,55 @@ const features = [
 
 export function Features() {
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: true });
 
     return (
-        <section id="features" className="py-16 sm:py-24">
-            <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6">
+        <section id="features" className="py-12 sm:py-16 px-4 sm:px-6">
+            <div ref={ref} className="max-w-5xl mx-auto">
                 {/* Header */}
-                <div className="text-center mb-12">
+                <div className="text-center mb-8">
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4"
+                        className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight mb-2"
                     >
-                        Tout ce dont vous avez besoin
+                        Tout ce qu'il vous faut
                     </motion.h2>
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.1 }}
-                        className="text-muted-foreground text-base sm:text-lg max-w-md mx-auto"
+                        className="text-muted-foreground text-sm sm:text-base"
                     >
-                        Une app complète pour transformer votre corps
+                        Une app complète pour votre transformation
                     </motion.p>
                 </div>
 
-                {/* Features Grid */}
-                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                {/* Grid */}
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     {features.map((feature, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 20 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
-                            className="group relative bg-secondary rounded-2xl sm:rounded-3xl p-4 sm:p-6 overflow-hidden"
+                            transition={{ delay: 0.1 + index * 0.05 }}
+                            className="bg-secondary rounded-xl sm:rounded-2xl p-3 sm:p-4"
                         >
                             {/* Icon & Title */}
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-                                    <feature.icon className="w-5 h-5 text-accent" />
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                                    <feature.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
                                 </div>
-                                <h3 className="text-lg sm:text-xl font-bold">{feature.title}</h3>
+                                <h3 className="text-xs sm:text-sm font-bold">{feature.title}</h3>
                             </div>
 
                             {/* Description */}
-                            <p className="text-sm sm:text-base text-muted-foreground mb-4">
+                            <p className="text-[10px] sm:text-xs text-muted-foreground mb-3">
                                 {feature.description}
                             </p>
 
-                            {/* Phone Preview */}
-                            <div className="relative h-40 sm:h-48 rounded-xl overflow-hidden bg-card">
+                            {/* Image */}
+                            <div className="relative h-24 sm:h-32 rounded-lg overflow-hidden bg-card">
                                 <Image
                                     src={feature.image}
                                     alt={feature.title}

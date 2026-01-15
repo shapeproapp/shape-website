@@ -12,23 +12,23 @@ const stats = [
 
 export function Stats() {
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: true });
 
     return (
-        <section ref={ref} className="py-12 sm:py-16 border-y border-border bg-secondary/30">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                <div className="grid grid-cols-3 gap-4 sm:gap-8">
+        <section ref={ref} className="py-8 sm:py-12 border-y border-border">
+            <div className="max-w-lg mx-auto px-4">
+                <div className="grid grid-cols-3 gap-2">
                     {stats.map((stat, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 10 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className="text-center"
+                            transition={{ delay: index * 0.1 }}
+                            className="text-center py-2"
                         >
-                            <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-accent" />
-                            <p className="text-2xl sm:text-3xl lg:text-4xl font-black">{stat.value}</p>
-                            <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
+                            <stat.icon className="w-4 h-4 mx-auto mb-1 text-accent" />
+                            <p className="text-xl sm:text-2xl font-black">{stat.value}</p>
+                            <p className="text-[10px] sm:text-xs text-muted-foreground">{stat.label}</p>
                         </motion.div>
                     ))}
                 </div>

@@ -5,65 +5,49 @@ import { Check, X } from "lucide-react";
 import { useRef } from "react";
 
 const features = [
-    { name: "Programmes IA personnalisés", shape: true, others: false },
-    { name: "Scanner nutrition IA", shape: true, others: false },
-    { name: "Suivi de progression", shape: true, others: true },
-    { name: "Bibliothèque d'exercices", shape: true, others: true },
-    { name: "Coach IA 24/7", shape: true, others: false },
-    { name: "Mode créateur", shape: true, others: false },
+    { name: "Programmes IA", shape: true, others: false },
+    { name: "Scanner food", shape: true, others: false },
+    { name: "Suivi progrès", shape: true, others: true },
+    { name: "Coach 24/7", shape: true, others: false },
 ];
 
 export function Comparison() {
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: true });
 
     return (
-        <section className="py-16 sm:py-24 bg-secondary/30">
-            <div ref={ref} className="max-w-3xl mx-auto px-4 sm:px-6">
-                {/* Header */}
-                <div className="text-center mb-10">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        className="text-3xl sm:text-4xl font-black tracking-tight mb-3"
-                    >
-                        Pourquoi SHAPE ?
-                    </motion.h2>
-                </div>
+        <section className="py-12 sm:py-16 bg-secondary/50 px-4 sm:px-6">
+            <div ref={ref} className="max-w-md mx-auto">
+                <motion.h2
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    className="text-2xl sm:text-3xl font-black tracking-tight text-center mb-6"
+                >
+                    Pourquoi SHAPE ?
+                </motion.h2>
 
-                {/* Comparison Table */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.1 }}
-                    className="bg-background rounded-2xl sm:rounded-3xl overflow-hidden border border-border"
+                    className="bg-background rounded-xl overflow-hidden border border-border"
                 >
-                    {/* Header Row */}
-                    <div className="grid grid-cols-3 text-center text-sm font-bold border-b border-border">
-                        <div className="p-3 sm:p-4"></div>
-                        <div className="p-3 sm:p-4 bg-accent text-white">SHAPE</div>
-                        <div className="p-3 sm:p-4 text-muted-foreground">Autres</div>
+                    {/* Header */}
+                    <div className="grid grid-cols-3 text-center text-xs font-bold border-b border-border">
+                        <div className="p-2"></div>
+                        <div className="p-2 bg-accent text-white">SHAPE</div>
+                        <div className="p-2 text-muted-foreground">Autres</div>
                     </div>
 
-                    {/* Feature Rows */}
-                    {features.map((feature, index) => (
-                        <div
-                            key={index}
-                            className={`grid grid-cols-3 text-center items-center ${index !== features.length - 1 ? "border-b border-border" : ""
-                                }`}
-                        >
-                            <div className="p-3 sm:p-4 text-left text-xs sm:text-sm font-medium">
-                                {feature.name}
+                    {/* Rows */}
+                    {features.map((f, i) => (
+                        <div key={i} className={`grid grid-cols-3 text-center items-center ${i !== features.length - 1 ? "border-b border-border" : ""}`}>
+                            <div className="p-2.5 text-left text-xs font-medium">{f.name}</div>
+                            <div className="p-2.5 bg-accent/5">
+                                <Check className="w-4 h-4 text-accent mx-auto" />
                             </div>
-                            <div className="p-3 sm:p-4 bg-accent/5">
-                                <Check className="w-5 h-5 text-accent mx-auto" />
-                            </div>
-                            <div className="p-3 sm:p-4">
-                                {feature.others ? (
-                                    <Check className="w-5 h-5 text-muted-foreground mx-auto" />
-                                ) : (
-                                    <X className="w-5 h-5 text-muted-foreground/50 mx-auto" />
-                                )}
+                            <div className="p-2.5">
+                                {f.others ? <Check className="w-4 h-4 text-muted-foreground mx-auto" /> : <X className="w-4 h-4 text-muted-foreground/40 mx-auto" />}
                             </div>
                         </div>
                     ))}

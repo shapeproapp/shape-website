@@ -3,75 +3,26 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-import { Camera, Zap, PieChart } from "lucide-react";
+import { Camera, Zap } from "lucide-react";
 
 export function ScanDemo() {
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: true });
 
     return (
-        <section className="py-16 sm:py-24">
-            <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6">
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <section className="py-12 sm:py-16 px-4 sm:px-6">
+            <div ref={ref} className="max-w-4xl mx-auto">
+                <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
 
-                    {/* Text Content */}
-                    <div className="text-center lg:text-left order-2 lg:order-1">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4"
-                        >
-                            <Camera className="w-4 h-4" />
-                            Food AI
-                        </motion.div>
-
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.1 }}
-                            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4"
-                        >
-                            Scannez. Analysez. Mangez.
-                        </motion.h2>
-
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.2 }}
-                            className="text-muted-foreground text-base sm:text-lg mb-6 max-w-md mx-auto lg:mx-0"
-                        >
-                            Prenez en photo votre repas et obtenez instantanément les calories et macros.
-                        </motion.p>
-
-                        {/* Benefits */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.3 }}
-                            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-                        >
-                            <div className="flex items-center gap-2">
-                                <Zap className="w-5 h-5 text-accent" />
-                                <span className="text-sm font-medium">Analyse en 2 secondes</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <PieChart className="w-5 h-5 text-accent" />
-                                <span className="text-sm font-medium">Macros détaillées</span>
-                            </div>
-                        </motion.div>
-                    </div>
-
-                    {/* Phone Preview */}
+                    {/* Phone - First on mobile */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ delay: 0.2, duration: 0.6 }}
-                        className="flex justify-center order-1 lg:order-2"
+                        className="flex justify-center order-1"
                     >
-                        <div className="relative w-48 sm:w-56 lg:w-64">
-                            <div className="relative bg-foreground rounded-[36px] p-2 shadow-2xl">
-                                <div className="relative aspect-[9/19.5] bg-card rounded-[32px] overflow-hidden">
-                                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-5 bg-foreground rounded-full z-10" />
+                        <div className="relative w-40 sm:w-48 lg:w-56">
+                            <div className="relative bg-foreground rounded-[28px] sm:rounded-[36px] p-1.5 shadow-xl">
+                                <div className="relative aspect-[9/19.5] bg-card rounded-[24px] sm:rounded-[32px] overflow-hidden">
                                     <Image
                                         src="/assets/app-screens/food-detail-dark.png"
                                         alt="Food Scanner"
@@ -80,10 +31,48 @@ export function ScanDemo() {
                                     />
                                 </div>
                             </div>
-                            {/* Glow */}
-                            <div className="absolute -inset-4 bg-accent/10 rounded-[50px] blur-2xl -z-10" />
                         </div>
                     </motion.div>
+
+                    {/* Text */}
+                    <div className="text-center lg:text-left order-2">
+                        <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold mb-3"
+                        >
+                            <Camera className="w-3 h-3" />
+                            Food AI
+                        </motion.div>
+
+                        <motion.h2
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: 0.1 }}
+                            className="text-2xl sm:text-3xl font-black tracking-tight mb-3"
+                        >
+                            Scannez vos repas
+                        </motion.h2>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: 0.2 }}
+                            className="text-muted-foreground text-sm mb-4"
+                        >
+                            Prenez en photo et obtenez les calories et macros instantanément.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={isInView ? { opacity: 1 } : {}}
+                            transition={{ delay: 0.3 }}
+                            className="flex items-center justify-center lg:justify-start gap-1.5 text-xs font-medium"
+                        >
+                            <Zap className="w-4 h-4 text-accent" />
+                            Analyse en 2 secondes
+                        </motion.div>
+                    </div>
 
                 </div>
             </div>
