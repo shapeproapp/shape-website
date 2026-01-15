@@ -27,37 +27,27 @@ export function FAQ() {
     const [open, setOpen] = useState<number | null>(null);
 
     return (
-        <section id="faq" className="py-14 sm:py-20 bg-gradient-to-b from-secondary/30 to-background px-4 sm:px-6">
+        <section id="faq" className="py-14 sm:py-20 bg-secondary/30 px-4 sm:px-6">
             <div className="max-w-lg mx-auto">
-                <motion.div
+                <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-8"
+                    className="text-2xl sm:text-3xl font-black tracking-tight text-center mb-8"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-secondary rounded-full text-xs font-medium text-muted-foreground mb-3">
-                        <HelpCircle className="w-3 h-3" />
-                        FAQ
-                    </div>
-                    <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-                        Questions fréquentes
-                    </h2>
-                </motion.div>
+                    Questions fréquentes
+                </motion.h2>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="bg-card rounded-2xl border border-border shadow-premium overflow-hidden"
+                    className="bg-card rounded-2xl border border-border overflow-hidden"
                 >
                     {faqs.map((faq, i) => (
-                        <motion.div
+                        <div
                             key={i}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 + i * 0.05 }}
                             className={i !== faqs.length - 1 ? "border-b border-border" : ""}
                         >
                             <motion.button
@@ -80,7 +70,7 @@ export function FAQ() {
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: "auto", opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                                        transition={{ duration: 0.3 }}
                                         className="overflow-hidden"
                                     >
                                         <p className="px-4 pb-4 text-sm text-muted-foreground leading-relaxed">
@@ -89,7 +79,7 @@ export function FAQ() {
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </motion.div>
+                        </div>
                     ))}
                 </motion.div>
 
@@ -101,7 +91,7 @@ export function FAQ() {
                     className="text-center text-sm text-muted-foreground mt-6"
                 >
                     D'autres questions ?{" "}
-                    <a href="mailto:hello@shapefitness.app" className="text-accent hover:underline font-medium">
+                    <a href="mailto:hello@shapefitness.app" className="text-foreground hover:underline font-medium">
                         Contactez-nous
                     </a>
                 </motion.p>

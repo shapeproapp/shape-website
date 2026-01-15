@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
+  /* Colors - Pure Black & White */
   --color-background: lightdark(#FAFAFA, #0A0A0A);
   --color-foreground: lightdark(#0A0A0A, #FAFAFA);
   --color-card: lightdark(#FFFFFF, #111111);
@@ -12,13 +12,14 @@
   --color-secondary-foreground: lightdark(#0A0A0A, #FAFAFA);
   --color-muted: lightdark(#F4F4F5, #27272A);
   --color-muted-foreground: lightdark(#71717A, #A1A1AA);
-  --color-accent: #FF6B35;
-  --color-accent-foreground: #FFFFFF;
+  --color-accent: #0A0A0A;
+  /* Changed to black */
+  --color-accent-foreground: #FAFAFA;
   --color-border: lightdark(#E4E4E7, #27272A);
 
   --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
 
-  /* Rounded corners - more premium */
+  /* Rounded corners */
   --radius-xl: 28px;
   --radius-lg: 20px;
   --radius-md: 14px;
@@ -54,59 +55,7 @@
   }
 }
 
-/* Premium utilities */
-@layer utilities {
-
-  /* Gradient text */
-  .text-gradient {
-    background: linear-gradient(135deg, var(--color-foreground) 0%, var(--color-muted-foreground) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .text-gradient-accent {
-    background: linear-gradient(135deg, #FF6B35 0%, #FF8F6B 50%, #FFB59A 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Premium card shadows */
-  .shadow-premium {
-    box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.04),
-      0 4px 8px rgba(0, 0, 0, 0.04),
-      0 8px 16px rgba(0, 0, 0, 0.04);
-  }
-
-  .shadow-premium-lg {
-    box-shadow:
-      0 2px 4px rgba(0, 0, 0, 0.04),
-      0 8px 16px rgba(0, 0, 0, 0.06),
-      0 16px 32px rgba(0, 0, 0, 0.08);
-  }
-
-  /* Glow effect for accent elements */
-  .glow-accent {
-    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
-  }
-
-  /* Glass effect */
-  .glass {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .glass {
-      background: rgba(10, 10, 10, 0.8);
-    }
-  }
-}
-
-/* Smooth scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -121,8 +70,8 @@
   border-radius: 10px;
 }
 
-/* Selection color */
+/* Selection */
 ::selection {
-  background: rgba(255, 107, 53, 0.2);
+  background: rgba(10, 10, 10, 0.1);
   color: var(--color-foreground);
 }
