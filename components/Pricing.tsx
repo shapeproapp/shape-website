@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Crown, Sparkles } from "lucide-react";
+import { Check, Crown } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -30,51 +30,35 @@ export function Pricing() {
     return (
         <section id="pricing" className="py-14 sm:py-20 px-4 sm:px-6">
             <div ref={ref} className="max-w-lg mx-auto">
-                <motion.div
+                <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    className="text-center mb-8"
+                    className="text-2xl sm:text-3xl font-black tracking-tight text-center mb-8"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-secondary rounded-full text-xs font-medium text-muted-foreground mb-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                        Tarification
-                    </div>
-                    <h2 className="text-2xl sm:text-3xl font-black tracking-tight">
-                        Tarifs simples
-                    </h2>
-                </motion.div>
+                    Tarifs simples
+                </motion.h2>
 
                 <div className="space-y-4">
                     {plans.map((plan, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                            transition={{
-                                delay: 0.1 + index * 0.15,
-                                duration: 0.6,
-                                ease: [0.16, 1, 0.3, 1]
-                            }}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: 0.1 + index * 0.15, duration: 0.6 }}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className={`relative rounded-2xl p-5 cursor-pointer transition-shadow ${plan.popular
-                                    ? "bg-gradient-to-br from-foreground to-foreground/90 text-background shadow-premium-lg"
-                                    : "bg-card border border-border shadow-premium"
+                            className={`relative rounded-2xl p-5 cursor-pointer ${plan.popular
+                                    ? "bg-foreground text-background"
+                                    : "bg-card border border-border"
                                 }`}
                         >
-                            {/* Popular Badge */}
                             {plan.popular && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                    transition={{ delay: 0.4 }}
-                                    className="absolute -top-3 left-4"
-                                >
-                                    <div className="flex items-center gap-1 px-2.5 py-1 bg-gradient-to-r from-accent to-orange-500 text-white text-[10px] font-bold rounded-full shadow-lg">
+                                <div className="absolute -top-3 left-4">
+                                    <div className="flex items-center gap-1 px-2.5 py-1 bg-background text-foreground text-[10px] font-bold rounded-full">
                                         <Crown className="w-2.5 h-2.5" />
                                         POPULAIRE
                                     </div>
-                                </motion.div>
+                                </div>
                             )}
 
                             <div className="flex items-start justify-between mb-4">
@@ -88,7 +72,7 @@ export function Pricing() {
                                             {plan.period}
                                         </span>
                                         {plan.savings && (
-                                            <span className="ml-2 px-2 py-0.5 bg-green-500 text-white text-[10px] font-bold rounded-md">
+                                            <span className="ml-2 px-2 py-0.5 bg-background text-foreground text-[10px] font-bold rounded-md">
                                                 {plan.savings}
                                             </span>
                                         )}
@@ -103,8 +87,8 @@ export function Pricing() {
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${plan.popular
-                                            ? "bg-gradient-to-r from-accent to-orange-500 text-white shadow-lg"
+                                    className={`px-4 py-2.5 rounded-xl text-xs font-bold ${plan.popular
+                                            ? "bg-background text-foreground"
                                             : "bg-foreground text-background"
                                         }`}
                                 >
@@ -112,36 +96,27 @@ export function Pricing() {
                                 </motion.button>
                             </div>
 
-                            {/* Features */}
                             <div className="flex flex-wrap gap-2">
                                 {plan.features.map((f, i) => (
-                                    <motion.div
+                                    <div
                                         key={i}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                        transition={{ delay: 0.3 + i * 0.05 }}
                                         className={`flex items-center gap-1.5 px-2 py-1 rounded-lg text-[10px] ${plan.popular ? "bg-background/10" : "bg-secondary"
                                             }`}
                                     >
-                                        <Check className={`w-3 h-3 ${plan.popular ? "text-accent" : "text-foreground"}`} />
+                                        <Check className={`w-3 h-3 ${plan.popular ? "text-background" : "text-foreground"}`} />
                                         <span className={plan.popular ? "text-background/80" : "text-foreground/80"}>
                                             {f}
                                         </span>
-                                    </motion.div>
+                                    </div>
                                 ))}
                             </div>
                         </motion.div>
                     ))}
                 </div>
 
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : {}}
-                    transition={{ delay: 0.5 }}
-                    className="text-center text-[10px] text-muted-foreground mt-6"
-                >
-                    🔒 Paiement sécurisé via App Store • Annulation facile à tout moment
-                </motion.p>
+                <p className="text-center text-[10px] text-muted-foreground mt-6">
+                    🔒 Paiement sécurisé via App Store
+                </p>
             </div>
         </section>
     );
