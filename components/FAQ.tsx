@@ -1,66 +1,47 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
-import { Plus, Minus, HelpCircle } from "lucide-react";
-import { useInView } from "framer-motion";
+import { Plus, Minus } from "lucide-react";
+import { useState } from "react";
 
 const faqs = [
     {
-        question: "Comment l'IA personnalise-t-elle mes programmes ?",
-        answer: "Notre IA analyse vos réponses lors de l'onboarding (objectifs, niveau, disponibilité, zones ciblées) pour créer un plan 100% adapté. Elle s'ajuste ensuite en fonction de vos progrès et feedback."
+        question: "Comment l'IA crée-t-elle mes programmes ?",
+        answer: "Notre IA analyse vos objectifs, équipement disponible et niveau d'expérience pour créer un programme 100% personnalisé. Elle s'adapte aussi à votre progression."
     },
     {
-        question: "Le scanner Food fonctionne-t-il avec tous les aliments ?",
-        answer: "Oui ! Notre vision IA reconnaît des milliers d'aliments, des plats faits maison aux produits emballés. Elle identifie même les ingrédients individuels dans les plats composés."
+        question: "Le scanner nutrition est-il précis ?",
+        answer: "Le Food AI analyse vos photos de repas et estime les calories et macros. C'est une estimation basée sur l'IA, parfaite pour le suivi quotidien."
     },
     {
-        question: "Puis-je créer mes propres entraînements ?",
-        answer: "Absolument ! Le Mode Créateur vous permet de construire vos séances de A à Z. Choisissez vos exercices, définissez les séries et reps, et sauvegardez vos routines personnalisées."
+        question: "Puis-je annuler à tout moment ?",
+        answer: "Oui ! Vous pouvez annuler votre abonnement à tout moment depuis les paramètres de votre compte Apple. Aucun engagement."
     },
     {
-        question: "L'application fonctionne-t-elle hors ligne ?",
-        answer: "Vos programmes et l'historique sont disponibles hors ligne. Seuls le scanner Food et la génération de nouveaux plans nécessitent une connexion pour l'analyse IA."
+        question: "L'app fonctionne-t-elle sans internet ?",
+        answer: "Vos programmes sont téléchargés localement, donc vous pouvez vous entraîner sans connexion. Le scanner food nécessite internet."
     },
-    {
-        question: "Comment annuler mon abonnement ?",
-        answer: "Simple et sans engagement ! Rendez-vous dans les paramètres de votre compte App Store pour gérer ou annuler votre abonnement à tout moment."
-    },
-    {
-        question: "Y a-t-il une garantie satisfait ou remboursé ?",
-        answer: "Oui, pour l'abonnement annuel. Si vous n'êtes pas satisfait dans les 30 premiers jours, contactez-nous pour un remboursement complet, sans questions."
-    }
 ];
 
-function FAQItem({ faq, index, isOpen, onToggle }: {
-    faq: typeof faqs[0];
-    index: number;
-    isOpen: boolean;
-    onToggle: () => void;
-}) {
+function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.05, duration: 0.5 }}
+            transition={{ delay: index * 0.1 }}
             className="border-b border-border last:border-0"
         >
             <button
-                onClick={onToggle}
-                className="w-full py-6 flex items-center justify-between gap-4 text-left group"
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full py-4 sm:py-5 flex items-center justify-between text-left"
             >
-                <span className="text-lg font-semibold group-hover:text-accent transition-colors">
-                    {faq.question}
-                </span>
-                <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isOpen ? "bg-accent text-white" : "bg-secondary text-foreground"
-                        }`}
-                >
+                <span className="font-semibold text-sm sm:text-base pr-4">{faq.question}</span>
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                </motion.div>
+                </div>
             </button>
 
             <AnimatePresence>
@@ -69,10 +50,10 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                     >
-                        <p className="pb-6 text-muted-foreground leading-relaxed pr-12">
+                        <p className="pb-4 sm:pb-5 text-sm text-muted-foreground pr-12">
                             {faq.answer}
                         </p>
                     </motion.div>
@@ -83,68 +64,30 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
 }
 
 export function FAQ() {
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
-
     return (
-        <section className="py-32 lg:py-40 relative overflow-hidden">
-            <div ref={ref} className="max-w-4xl mx-auto px-6 relative z-10">
+        <section id="faq" className="py-16 sm:py-24 bg-secondary/30">
+            <div className="max-w-2xl mx-auto px-4 sm:px-6">
                 {/* Header */}
-                <div className="text-center mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        className="pill glass text-foreground inline-flex items-center gap-2 mb-8"
-                    >
-                        <HelpCircle className="w-4 h-4 text-accent" />
-                        FAQ
-                    </motion.div>
-
-                    <motion.h2
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.1 }}
-                        className="text-5xl sm:text-6xl font-black tracking-tight mb-6"
-                    >
-                        Questions
-                        <br />
-                        <span className="text-gradient-accent">fréquentes</span>
-                    </motion.h2>
+                <div className="text-center mb-10">
+                    <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-3">
+                        Questions fréquentes
+                    </h2>
                 </div>
 
                 {/* FAQ List */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                    className="rounded-3xl bg-card border border-border p-6 sm:p-8"
-                >
+                <div className="bg-background rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-border">
                     {faqs.map((faq, index) => (
-                        <FAQItem
-                            key={index}
-                            faq={faq}
-                            index={index}
-                            isOpen={openIndex === index}
-                            onToggle={() => setOpenIndex(openIndex === index ? null : index)}
-                        />
+                        <FAQItem key={index} faq={faq} index={index} />
                     ))}
-                </motion.div>
+                </div>
 
-                {/* Contact CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.5 }}
-                    className="text-center mt-12"
-                >
-                    <p className="text-muted-foreground">
-                        Vous avez d'autres questions ?{" "}
-                        <a href="mailto:support@shapefitness.app" className="text-accent font-semibold hover:underline">
-                            Contactez-nous →
-                        </a>
-                    </p>
-                </motion.div>
+                {/* Contact */}
+                <p className="text-center text-sm text-muted-foreground mt-6">
+                    D'autres questions ?{" "}
+                    <a href="mailto:hello@shapefitness.app" className="text-accent hover:underline">
+                        Contactez-nous
+                    </a>
+                </p>
             </div>
         </section>
     );
