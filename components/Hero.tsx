@@ -104,8 +104,11 @@ export function Hero() {
                                 rel="noopener noreferrer"
                                 className="group flex items-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-bold text-base hover:opacity-90 transition-all"
                             >
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.109-.402V2.216c.02-.138.056-.273.109-.402zm10.89 9.479l2.5-2.5 4.5 2.6c.75.43.75 1.46 0 1.89l-4.5 2.6-2.5-2.5L12.5 12l1.999-1.707zM4.954.768L14.5 12l-9.546 11.232L3.5 22.5V1.5l1.454-.732z" />
+                                <svg className="w-5 h-5" viewBox="0 0 512 512">
+                                    <path fill="#4DB6AC" d="M270.1 255.9L46.2 478.6c-3.6-6.8-5.7-14.5-5.7-22.5V55.9c0-8 2.1-15.7 5.7-22.5l223.9 222.5z" />
+                                    <path fill="#DCE775" d="M306.8 292.4l-36.7-36.5L46.2 33.4c9.1-14.6 25-24.4 43.1-24.4c8.8 0 17.3 2.4 24.8 6.8l192.7 276.6z" />
+                                    <path fill="#D32F2F" d="M306.8 219.5L114.1 496.1c-7.5 4.5-16 6.8-24.8 6.8c-18.1 0-34-9.7-43.1-24.4L270.1 255.9l36.7-36.4z" />
+                                    <path fill="#FBC02D" d="M466.5 255.9c0 18.7-10.1 35.3-26 44.6L354 351.3l-47.2-95.4l47.2-95.4l86.5 50.8c15.9 9.3 26 25.9 26 44.6z" />
                                 </svg>
                                 {platform === "android" ? "Télécharger" : "Play Store"}
                                 {platform === "android" && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
