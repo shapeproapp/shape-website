@@ -22,6 +22,19 @@ const bricolage = Bricolage_Grotesque({
 export const metadata: Metadata = {
   title: "SHAPE - Your AI Fitness & Nutrition Coach",
   description: "Achieve your dream physique with personalized workout and nutrition plans powered by AI.",
+  openGraph: {
+    title: "SHAPE - Your AI Fitness & Nutrition Coach",
+    description: "Achieve your dream physique with personalized workout and nutrition plans powered by AI.",
+    url: "https://shape-site.vercel.app",
+    siteName: "SHAPE",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SHAPE - Your AI Fitness & Nutrition Coach",
+    description: "Achieve your dream physique with personalized workout and nutrition plans powered by AI.",
+  },
 };
 
 export default async function RootLayout({
