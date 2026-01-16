@@ -23,13 +23,14 @@ export function middleware(request: NextRequest) {
         const locale = englishSpeakingCountries.includes(country) ? 'en' : 'fr';
 
         // e.g. incoming request is /products
-        // The new URL is now /en/products
-        const response = NextResponse.redirect(
-            new URL(
-                `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
-                request.url
-            )
+        // The new URL is now /en/products?debug_country=US
+        const url = new URL(
+            `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
+            request.url
         );
+        url.searchParams.set('debug_country', country);
+
+        const response = NextResponse.redirect(url);
 
         // Add debug headers
         response.headers.set('X-Debug-Country', country);
