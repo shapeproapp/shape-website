@@ -15,10 +15,10 @@ export function middleware(request: NextRequest) {
 
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
-        // Try getting country from Vercel header first (more reliable), then geo property, then fallback
-        const country = request.headers.get('x-vercel-ip-country') ||
+        const rawCountry = request.headers.get('x-vercel-ip-country') ||
             request.geo?.country ||
             'FR';
+        const country = rawCountry.toUpperCase();
 
         const locale = englishSpeakingCountries.includes(country) ? 'en' : 'fr';
 
