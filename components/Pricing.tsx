@@ -7,18 +7,27 @@ import { useRef } from "react";
 const plans = [
     {
         name: "Mensuel",
-        price: "14.99€",
+        price: "14,99€",
         period: "/mois",
         features: ["Programmes IA illimités", "Scanner nutrition", "Coach IA 24/7"],
         popular: false,
     },
     {
-        name: "Annuel",
-        price: "6.99€",
+        name: "6 mois",
+        price: "11,99€",
         period: "/mois",
-        billing: "83.88€ facturé annuellement",
-        savings: "-50%",
-        features: ["Tout le mensuel", "Accès prioritaire", "Badge fondateur"],
+        billing: "71,94€ facturé tous les 6 mois",
+        savings: "-20%",
+        features: ["Tout le mensuel", "Économisez 18€", "Accès prioritaire"],
+        popular: false,
+    },
+    {
+        name: "Annuel",
+        price: "8,99€",
+        period: "/mois",
+        billing: "107,88€ facturé annuellement",
+        savings: "-40%",
+        features: ["Tout le mensuel", "Économisez 72€", "Badge fondateur"],
         popular: true,
     },
 ];
@@ -29,7 +38,7 @@ export function Pricing() {
 
     return (
         <section id="pricing" className="py-14 sm:py-20 px-4 sm:px-6">
-            <div ref={ref} className="max-w-lg mx-auto">
+            <div ref={ref} className="max-w-2xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -44,7 +53,7 @@ export function Pricing() {
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.1 + index * 0.15, duration: 0.6 }}
+                            transition={{ delay: 0.1 + index * 0.1, duration: 0.6 }}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             className={`relative rounded-2xl p-5 cursor-pointer ${plan.popular
@@ -56,7 +65,7 @@ export function Pricing() {
                                 <div className="absolute -top-3 left-4">
                                     <div className="flex items-center gap-1 px-2.5 py-1 bg-background text-foreground text-[10px] font-bold rounded-full">
                                         <Crown className="w-2.5 h-2.5" />
-                                        POPULAIRE
+                                        RECOMMANDÉ
                                     </div>
                                 </div>
                             )}
