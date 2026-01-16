@@ -15,7 +15,11 @@ export function middleware(request: NextRequest) {
 
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
-        const rawCountry = request.headers.get('x-vercel-ip-country') ||
+        // Allow overriding country for testing purposes via ?test_country=US
+        const testCountry = request.nextUrl.searchParams.get('test_country');
+
+        const rawCountry = testCountry ||
+            request.headers.get('x-vercel-ip-country') ||
             request.geo?.country ||
             'FR';
         const country = rawCountry.toUpperCase();
@@ -23,12 +27,16 @@ export function middleware(request: NextRequest) {
         const locale = englishSpeakingCountries.includes(country) ? 'en' : 'fr';
 
         // e.g. incoming request is /products
-        // The new URL is now /en/products?debug_country=US
+        // The new URL is now /en/products
         const url = new URL(
             `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
             request.url
         );
-        url.searchParams.set('debug_country', country);
+
+        // Preserve other search params but remove test_country to clean up URL
+        request.nextUrl.searchParams.forEach((value, key) => {
+            if (key !== 'test_country') url.searchParams.set(key, value);
+        });
 
         const response = NextResponse.redirect(url);
 
