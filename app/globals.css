@@ -1,39 +1,21 @@
 @import "tailwindcss";
 
-/* Light theme (default) */
+/* Dark theme only - forced on all devices */
 :root {
-  --color-background: #FAFAFA;
-  --color-foreground: #0A0A0A;
-  --color-card: #FFFFFF;
-  --color-card-foreground: #0A0A0A;
-  --color-primary: #0A0A0A;
-  --color-primary-foreground: #FAFAFA;
-  --color-secondary: #F4F4F5;
-  --color-secondary-foreground: #0A0A0A;
-  --color-muted: #F4F4F5;
-  --color-muted-foreground: #71717A;
-  --color-accent: #0A0A0A;
-  --color-accent-foreground: #FAFAFA;
-  --color-border: #E4E4E7;
-}
-
-/* Dark theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #000000;
-    --color-foreground: #FFFFFF;
-    --color-card: #0A0A0A;
-    --color-card-foreground: #FFFFFF;
-    --color-primary: #FFFFFF;
-    --color-primary-foreground: #000000;
-    --color-secondary: #111111;
-    --color-secondary-foreground: #FFFFFF;
-    --color-muted: #1A1A1A;
-    --color-muted-foreground: #888888;
-    --color-accent: #FFFFFF;
-    --color-accent-foreground: #000000;
-    --color-border: #222222;
-  }
+  --color-background: #000000;
+  --color-foreground: #FFFFFF;
+  --color-card: #0A0A0A;
+  --color-card-foreground: #FFFFFF;
+  --color-primary: #FFFFFF;
+  --color-primary-foreground: #000000;
+  --color-secondary: #111111;
+  --color-secondary-foreground: #FFFFFF;
+  --color-muted: #1A1A1A;
+  --color-muted-foreground: #888888;
+  --color-accent: #FFFFFF;
+  --color-accent-foreground: #000000;
+  --color-border: #222222;
+  color-scheme: dark;
 }
 
 @theme {
@@ -94,19 +76,12 @@
 /* Premium utilities */
 @layer utilities {
   .text-gradient {
-    color: var(--color-muted-foreground);
-    /* Fallback for browsers that don't support gradient text */
-    background: linear-gradient(135deg, var(--color-foreground) 0%, var(--color-muted-foreground) 100%);
+    /* Explicit colors for cross-browser Android compatibility */
+    color: #888888;
+    background: linear-gradient(135deg, #FFFFFF 0%, #666666 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-
-  /* Force gradient visibility on all browsers */
-  @supports (background-clip: text) or (-webkit-background-clip: text) {
-    .text-gradient {
-      color: transparent;
-    }
   }
 
   .glass {
