@@ -19,8 +19,8 @@ export function Navbar() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                    ? "bg-background/80 backdrop-blur-xl border-b border-border"
-                    : "bg-transparent"
+                ? "bg-background/80 backdrop-blur-xl border-b border-border"
+                : "bg-transparent"
                 }`}
         >
             <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
@@ -47,6 +47,8 @@ export function Navbar() {
                 {/* CTA Button */}
                 <Link
                     href="https://apps.apple.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-bold hover:opacity-90 transition-all"
                 >
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">

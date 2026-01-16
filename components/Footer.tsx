@@ -25,6 +25,8 @@ export function Footer() {
                     </p>
                     <motion.a
                         href="https://apps.apple.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-bold text-lg"
@@ -61,10 +63,10 @@ export function Footer() {
                             <Link href="/terms" className="hover:text-foreground transition-colors">Conditions</Link>
                         </div>
                         <div className="flex items-center gap-3">
-                            <a href="https://twitter.com" className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center hover:bg-muted transition-colors">
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center hover:bg-muted transition-colors">
                                 <Twitter className="w-3.5 h-3.5 text-muted-foreground" />
                             </a>
-                            <a href="https://instagram.com" className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center hover:bg-muted transition-colors">
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center hover:bg-muted transition-colors">
                                 <Instagram className="w-3.5 h-3.5 text-muted-foreground" />
                             </a>
                         </div>

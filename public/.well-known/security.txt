@@ -1,0 +1,7 @@
+# Security Contact for SHAPE
+# https://securitytxt.org/
+
+Contact: mailto:security@shapefitness.app
+Preferred-Languages: fr, en
+Canonical: https://shapefitness.app/.well-known/security.txt
+Expires: 2027-01-16T00:00:00.000Z

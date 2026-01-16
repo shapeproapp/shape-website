@@ -1,0 +1,12 @@
+# robots.txt for SHAPE Website
+# https://www.robotstxt.org/
+
+User-agent: *
+Allow: /
+
+# Sitemap (à ajouter quand le site sera en production)
+# Sitemap: https://shapefitness.app/sitemap.xml
+
+# Désactiver l'indexation des assets internes
+Disallow: /_next/
+Disallow: /api/

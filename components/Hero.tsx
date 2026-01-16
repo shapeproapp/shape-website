@@ -4,8 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
+import { useState, useEffect } from "react";
+
+type Platform = "ios" | "android" | "desktop";
+
+function detectPlatform(): Platform {
+    if (typeof window === "undefined") return "desktop";
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (/iphone|ipad|ipod/.test(userAgent)) return "ios";
+    if (/android/.test(userAgent)) return "android";
+    return "desktop";
+}
 
 export function Hero() {
+    const [platform, setPlatform] = useState<Platform>("desktop");
+
+    useEffect(() => {
+        setPlatform(detectPlatform());
+    }, []);
     return (
         <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
             {/* Background gradient - adapts to theme */}
@@ -65,6 +81,8 @@ export function Hero() {
                         {/* App Store */}
                         <Link
                             href="https://apps.apple.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="group flex items-center gap-3 px-6 py-3 bg-foreground text-background rounded-full font-bold text-base hover:opacity-90 transition-all"
                         >
                             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -76,6 +94,8 @@ export function Hero() {
                         {/* Play Store */}
                         <Link
                             href="https://play.google.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="group flex items-center gap-3 px-6 py-3 bg-foreground text-background rounded-full font-bold text-base hover:opacity-90 transition-all"
                         >
                             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
