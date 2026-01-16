@@ -15,18 +15,27 @@ export function middleware(request: NextRequest) {
 
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
-        // @ts-ignore
-        const country = request.geo?.country || 'FR';
+        // Try getting country from Vercel header first (more reliable), then geo property, then fallback
+        const country = request.headers.get('x-vercel-ip-country') ||
+            request.geo?.country ||
+            'FR';
+
         const locale = englishSpeakingCountries.includes(country) ? 'en' : 'fr';
 
         // e.g. incoming request is /products
         // The new URL is now /en/products
-        return NextResponse.redirect(
+        const response = NextResponse.redirect(
             new URL(
                 `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
                 request.url
             )
         );
+
+        // Add debug headers
+        response.headers.set('X-Debug-Country', country);
+        response.headers.set('X-Debug-Locale', locale);
+
+        return response;
     }
 }
 
