@@ -3,31 +3,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { Dictionary } from "@/lib/dictionary";
 
-const faqs = [
-    {
-        q: "Comment l'IA crée mes programmes ?",
-        a: "Notre IA analyse vos objectifs, équipement disponible et niveau d'expérience pour générer un programme 100% personnalisé. Elle s'adapte continuellement à votre progression."
-    },
-    {
-        q: "Le scanner nutrition est-il précis ?",
-        a: "Le Food AI utilise une technologie de vision par ordinateur avancée pour identifier les aliments et estimer calories et macros avec une précision optimale."
-    },
-    {
-        q: "Puis-je annuler mon abonnement ?",
-        a: "Oui ! Vous pouvez annuler à tout moment depuis les paramètres de votre compte Apple. L'accès reste actif jusqu'à la fin de votre période payée."
-    },
-    {
-        q: "L'app fonctionne-t-elle hors ligne ?",
-        a: "Vos programmes sont téléchargés localement pour vous permettre de vous entraîner sans connexion. Le scanner food nécessite internet pour l'analyse IA."
-    },
-    {
-        q: "Comment contacter le support ?",
-        a: "Vous pouvez nous contacter à tout moment via l'email hello@shapefitness.app. Nous répondons généralement sous 24h."
-    },
-];
+interface FAQProps {
+    dict: Dictionary['faq'];
+}
 
-export function FAQ() {
+export function FAQ({ dict }: FAQProps) {
     const [open, setOpen] = useState<number | null>(null);
 
     return (
@@ -40,15 +22,15 @@ export function FAQ() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">FAQ</p>
+                    <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">{dict.header.subtitle}</p>
                     <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
-                        Questions fréquentes
+                        {dict.header.title}
                     </h2>
                 </motion.div>
 
                 {/* Questions */}
                 <div className="space-y-2">
-                    {faqs.map((faq, i) => (
+                    {dict.items.map((faq, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 20 }}

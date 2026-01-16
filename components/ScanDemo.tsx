@@ -4,8 +4,13 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 import { Camera, Zap, Target } from "lucide-react";
+import { Dictionary } from "@/lib/dictionary";
 
-export function ScanDemo() {
+interface ScanDemoProps {
+    dict: Dictionary['scanDemo'];
+}
+
+export function ScanDemo({ dict }: ScanDemoProps) {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -34,7 +39,7 @@ export function ScanDemo() {
                                         <span className="text-green-500 text-xs font-bold">P</span>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-muted-foreground">Protéines</p>
+                                        <p className="text-xs text-muted-foreground">{dict.cards.protein}</p>
                                         <p className="text-sm font-bold">32g</p>
                                     </div>
                                 </div>
@@ -51,7 +56,7 @@ export function ScanDemo() {
                                         <span className="text-orange-500 text-xs font-bold">C</span>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-muted-foreground">Glucides</p>
+                                        <p className="text-xs text-muted-foreground">{dict.cards.carbs}</p>
                                         <p className="text-sm font-bold">45g</p>
                                     </div>
                                 </div>
@@ -83,37 +88,34 @@ export function ScanDemo() {
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-border bg-secondary/50">
                             <Camera className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-sm text-muted-foreground">Food AI</span>
+                            <span className="text-sm text-muted-foreground">{dict.badge}</span>
                         </div>
 
                         <h2 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">
-                            Scannez vos repas
+                            {dict.title}
                         </h2>
 
                         <p className="text-lg text-muted-foreground mb-8 max-w-md">
-                            Prenez simplement en photo votre repas et obtenez instantanément les calories et macronutriments.
+                            {dict.description}
                         </p>
 
                         {/* Features list */}
                         <div className="space-y-4">
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-secondary border border-border flex items-center justify-center">
-                                    <Zap className="w-4 h-4 text-muted-foreground" />
-                                </div>
-                                <div>
-                                    <p className="font-semibold">Analyse en 2 secondes</p>
-                                    <p className="text-sm text-muted-foreground">IA de reconnaissance visuelle</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-secondary border border-border flex items-center justify-center">
-                                    <Target className="w-4 h-4 text-muted-foreground" />
-                                </div>
-                                <div>
-                                    <p className="font-semibold">Précision optimale</p>
-                                    <p className="text-sm text-muted-foreground">Macros détaillées automatiquement</p>
-                                </div>
-                            </div>
+                            {dict.features.map((feature, index) => {
+                                const icons = [Zap, Target];
+                                const Icon = icons[index];
+                                return (
+                                    <div key={index} className="flex items-center gap-4">
+                                        <div className="w-10 h-10 rounded-xl bg-secondary border border-border flex items-center justify-center">
+                                            <Icon className="w-4 h-4 text-muted-foreground" />
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold">{feature.title}</p>
+                                            <p className="text-sm text-muted-foreground">{feature.desc}</p>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </motion.div>
 

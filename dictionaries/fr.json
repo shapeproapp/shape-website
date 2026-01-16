@@ -1,0 +1,240 @@
+{
+    "navbar": {
+        "features": "Fonctionnalités",
+        "pricing": "Tarifs",
+        "faq": "FAQ",
+        "download": "Télécharger",
+        "downloadApp": "App"
+    },
+    "hero": {
+        "badge": {
+            "android": "Disponible sur Android",
+            "ios": "Disponible sur iOS"
+        },
+        "title": {
+            "prefix": "Votre coach",
+            "gradient": "fitness IA"
+        },
+        "subtitle": "Programmes personnalisés. Suivi nutrition intelligent. Résultats garantis.",
+        "buttons": {
+            "download": "Télécharger",
+            "appStore": "App Store",
+            "playStore": "Play Store",
+            "features": "Voir les fonctionnalités"
+        }
+    },
+    "stats": [
+        {
+            "value": "100%",
+            "label": "Personnalisé",
+            "desc": "Adapté à vos objectifs"
+        },
+        {
+            "value": "24/7",
+            "label": "Coach IA",
+            "desc": "Toujours disponible"
+        },
+        {
+            "value": "∞",
+            "label": "Exercices",
+            "desc": "Bibliothèque complète"
+        }
+    ],
+    "features": {
+        "header": {
+            "subtitle": "Fonctionnalités",
+            "title": {
+                "prefix": "Tout ce dont vous",
+                "gradient": "avez besoin"
+            }
+        },
+        "items": [
+            {
+                "title": "Entraînement IA",
+                "description": "Des programmes créés sur mesure par notre intelligence artificielle, adaptés à votre niveau et objectifs."
+            },
+            {
+                "title": "Nutrition AI",
+                "description": "Scannez vos repas et obtenez instantanément les calories et macros grâce à notre technologie de pointe."
+            },
+            {
+                "title": "Coach Personnel",
+                "description": "Un assistant intelligent disponible 24/7 pour répondre à toutes vos questions fitness et nutrition."
+            },
+            {
+                "title": "Mode Créateur",
+                "description": "Créez et partagez vos propres programmes d'entraînement avec la communauté SHAPE."
+            }
+        ]
+    },
+    "howItWorks": {
+        "header": {
+            "subtitle": "Comment ça marche",
+            "title": "3 étapes simples"
+        },
+        "steps": [
+            {
+                "num": "01",
+                "title": "Répondez à quelques questions",
+                "desc": "Objectifs, équipement, disponibilité"
+            },
+            {
+                "num": "02",
+                "title": "L'IA génère votre plan",
+                "desc": "Programme personnalisé en 10 secondes"
+            },
+            {
+                "num": "03",
+                "title": "Suivez vos progrès",
+                "desc": "Dashboard complet et motivation"
+            }
+        ]
+    },
+    "scanDemo": {
+        "badge": "Food AI",
+        "title": "Scannez vos repas",
+        "description": "Prenez simplement en photo votre repas et obtenez instantanément les calories et macronutriments.",
+        "cards": {
+            "protein": "Protéines",
+            "carbs": "Glucides"
+        },
+        "features": [
+            {
+                "title": "Analyse en 2 secondes",
+                "desc": "IA de reconnaissance visuelle"
+            },
+            {
+                "title": "Précision optimale",
+                "desc": "Macros détaillées automatiquement"
+            }
+        ]
+    },
+    "appShowcase": {
+        "header": {
+            "subtitle": "Design",
+            "title": "Interface premium"
+        },
+        "labels": {
+            "dashboard": "Dashboard",
+            "workout": "Workout",
+            "nutrition": "Nutrition"
+        }
+    },
+    "comparison": {
+        "header": {
+            "subtitle": "Comparaison",
+            "title": "Pourquoi SHAPE ?"
+        },
+        "headers": {
+            "shape": "SHAPE",
+            "others": "Autres"
+        },
+        "features": [
+            "Programmes IA personnalisés",
+            "Scanner nutrition IA",
+            "Coach IA 24/7",
+            "Suivi de progression",
+            "Mode hors ligne"
+        ]
+    },
+    "pricing": {
+        "header": {
+            "subtitle": "Tarification",
+            "title": "Prix transparents",
+            "desc": "Moins cher qu'un café par semaine"
+        },
+        "plans": [
+            {
+                "name": "Mensuel",
+                "price": "14,99€",
+                "period": "/mois",
+                "features": [
+                    "Programmes IA illimités",
+                    "Scanner nutrition",
+                    "Coach IA 24/7"
+                ]
+            },
+            {
+                "name": "6 mois",
+                "price": "11,99€",
+                "period": "/mois",
+                "billing": "71,94€ facturé tous les 6 mois",
+                "savings": "-20%",
+                "features": [
+                    "Tout le mensuel",
+                    "Économisez 18€",
+                    "Accès prioritaire"
+                ]
+            },
+            {
+                "name": "Annuel",
+                "price": "8,99€",
+                "period": "/mois",
+                "billing": "107,88€ facturé annuellement",
+                "savings": "-40%",
+                "features": [
+                    "Tout le mensuel",
+                    "Économisez 72€",
+                    "Badge fondateur"
+                ],
+                "popular": true,
+                "recommended": "RECOMMANDÉ"
+            }
+        ],
+        "button": "Choisir ce plan",
+        "footer": "🔒 Paiement sécurisé via App Store • Annulation facile à tout moment"
+    },
+    "faq": {
+        "header": {
+            "subtitle": "FAQ",
+            "title": "Questions fréquentes"
+        },
+        "items": [
+            {
+                "q": "Comment l'IA crée mes programmes ?",
+                "a": "Notre IA analyse vos objectifs, équipement disponible et niveau d'expérience pour générer un programme 100% personnalisé. Elle s'adapte continuellement à votre progression."
+            },
+            {
+                "q": "Le scanner nutrition est-il précis ?",
+                "a": "Le Food AI utilise une technologie de vision par ordinateur avancée pour identifier les aliments et estimer calories et macros avec une précision optimale."
+            },
+            {
+                "q": "Puis-je annuler mon abonnement ?",
+                "a": "Oui ! Vous pouvez annuler à tout moment depuis les paramètres de votre compte Apple. L'accès reste actif jusqu'à la fin de votre période payée."
+            },
+            {
+                "q": "L'app fonctionne-t-elle hors ligne ?",
+                "a": "Vos programmes sont téléchargés localement pour vous permettre de vous entraîner sans connexion. Le scanner food nécessite internet pour l'analyse IA."
+            },
+            {
+                "q": "Comment contacter le support ?",
+                "a": "Vous pouvez nous contacter à tout moment via l'email hello@shapefitness.app. Nous répondons généralement sous 24h."
+            }
+        ]
+    },
+    "footer": {
+        "cta": {
+            "title": {
+                "prefix": "Prêt à transformer",
+                "gradient": "votre corps ?"
+            },
+            "subtitle": "Rejoignez des milliers d'utilisateurs qui ont déjà adopté SHAPE.",
+            "button": "Télécharger gratuitement"
+        },
+        "links": {
+            "features": "Fonctionnalités",
+            "pricing": "Tarifs",
+            "faq": "FAQ",
+            "privacy": "Confidentialité",
+            "terms": "Conditions"
+        },
+        "posts": {
+            "features": "#features",
+            "pricing": "#pricing",
+            "faq": "#faq",
+            "privacy": "/privacy",
+            "terms": "/terms"
+        },
+        "copyright": "© 2025"
+    }
+}

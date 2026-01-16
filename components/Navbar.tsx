@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Dictionary } from "@/lib/dictionary";
 
 type Platform = "ios" | "android" | "desktop";
 
@@ -14,7 +15,11 @@ function detectPlatform(): Platform {
     return "desktop";
 }
 
-export function Navbar() {
+interface NavbarProps {
+    dict: Dictionary['navbar'];
+}
+
+export function Navbar({ dict }: NavbarProps) {
     const [scrolled, setScrolled] = useState(false);
     const [platform, setPlatform] = useState<Platform>("desktop");
 
@@ -66,13 +71,13 @@ export function Navbar() {
                 {/* Nav Links - Desktop */}
                 <div className="hidden md:flex items-center gap-8">
                     <Link href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                        Fonctionnalités
+                        {dict.features}
                     </Link>
                     <Link href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                        Tarifs
+                        {dict.pricing}
                     </Link>
                     <Link href="#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                        FAQ
+                        {dict.faq}
                     </Link>
                 </div>
 
@@ -84,8 +89,8 @@ export function Navbar() {
                     className="flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-sm font-bold hover:opacity-90 transition-all"
                 >
                     {storeIcon}
-                    <span className="hidden sm:inline">Télécharger</span>
-                    <span className="sm:hidden">App</span>
+                    <span className="hidden sm:inline">{dict.download}</span>
+                    <span className="sm:hidden">{dict.downloadApp}</span>
                 </Link>
             </div>
         </motion.nav>

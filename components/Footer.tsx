@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Twitter, Instagram } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Dictionary } from "@/lib/dictionary";
 
 type Platform = "ios" | "android" | "desktop";
 
@@ -15,7 +16,11 @@ function detectPlatform(): Platform {
     return "desktop";
 }
 
-export function Footer() {
+interface FooterProps {
+    dict: Dictionary['footer'];
+}
+
+export function Footer({ dict }: FooterProps) {
     const [platform, setPlatform] = useState<Platform>("desktop");
 
     useEffect(() => {
@@ -50,12 +55,12 @@ export function Footer() {
                     className="max-w-3xl mx-auto text-center"
                 >
                     <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6">
-                        Prêt à transformer
+                        {dict.cta.title.prefix}
                         <br />
-                        <span className="text-gradient">votre corps ?</span>
+                        <span className="text-gradient">{dict.cta.title.gradient}</span>
                     </h2>
                     <p className="text-lg text-muted-foreground mb-10 max-w-md mx-auto">
-                        Rejoignez des milliers d'utilisateurs qui ont déjà adopté SHAPE.
+                        {dict.cta.subtitle}
                     </p>
                     <motion.a
                         href={storeUrl}
@@ -66,7 +71,7 @@ export function Footer() {
                         className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold text-lg"
                     >
                         {storeIcon}
-                        Télécharger gratuitement
+                        {dict.cta.button}
                         <ArrowRight className="w-5 h-5" />
                     </motion.a>
                 </motion.div>
@@ -78,21 +83,21 @@ export function Footer() {
                     {/* Logo & Copyright */}
                     <div className="flex items-center gap-6">
                         <span className="text-xl font-black">SHAPE</span>
-                        <span className="text-sm text-muted-foreground">© 2025</span>
+                        <span className="text-sm text-muted-foreground">{dict.copyright}</span>
                     </div>
 
                     {/* Links */}
                     <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                        <Link href="#features" className="hover:text-foreground transition-colors">Fonctionnalités</Link>
-                        <Link href="#pricing" className="hover:text-foreground transition-colors">Tarifs</Link>
-                        <Link href="#faq" className="hover:text-foreground transition-colors">FAQ</Link>
+                        <Link href={dict.posts.features} className="hover:text-foreground transition-colors">{dict.links.features}</Link>
+                        <Link href={dict.posts.pricing} className="hover:text-foreground transition-colors">{dict.links.pricing}</Link>
+                        <Link href={dict.posts.faq} className="hover:text-foreground transition-colors">{dict.links.faq}</Link>
                     </div>
 
                     {/* Legal & Social */}
                     <div className="flex items-center gap-6">
                         <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                            <Link href="/privacy" className="hover:text-foreground transition-colors">Confidentialité</Link>
-                            <Link href="/terms" className="hover:text-foreground transition-colors">Conditions</Link>
+                            <Link href={dict.posts.privacy} className="hover:text-foreground transition-colors">{dict.links.privacy}</Link>
+                            <Link href={dict.posts.terms} className="hover:text-foreground transition-colors">{dict.links.terms}</Link>
                         </div>
                         <div className="flex items-center gap-3">
                             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center hover:bg-muted transition-colors">
@@ -108,4 +113,3 @@ export function Footer() {
         </footer>
     );
 }
-

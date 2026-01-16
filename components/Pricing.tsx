@@ -3,38 +3,19 @@
 import { Check, Crown } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Dictionary } from "@/lib/dictionary";
 
-const plans = [
-    {
-        name: "Mensuel",
-        price: "14,99€",
-        period: "/mois",
-        features: ["Programmes IA illimités", "Scanner nutrition", "Coach IA 24/7"],
-        popular: false,
-    },
-    {
-        name: "6 mois",
-        price: "11,99€",
-        period: "/mois",
-        billing: "71,94€ facturé tous les 6 mois",
-        savings: "-20%",
-        features: ["Tout le mensuel", "Économisez 18€", "Accès prioritaire"],
-        popular: false,
-    },
-    {
-        name: "Annuel",
-        price: "8,99€",
-        period: "/mois",
-        billing: "107,88€ facturé annuellement",
-        savings: "-40%",
-        features: ["Tout le mensuel", "Économisez 72€", "Badge fondateur"],
-        popular: true,
-    },
-];
+interface PricingProps {
+    dict: Dictionary['pricing'];
+}
 
-export function Pricing() {
+export function Pricing({ dict }: PricingProps) {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+    // We use the dict plans, but we need to map the popularity/logic
+    // The dict structure matches the original structure
+    // We can iterate dict.plans
 
     return (
         <section id="pricing" className="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
@@ -45,33 +26,33 @@ export function Pricing() {
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     className="text-center mb-16"
                 >
-                    <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">Tarification</p>
+                    <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">{dict.header.subtitle}</p>
                     <h2 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">
-                        Prix transparents
+                        {dict.header.title}
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                        Moins cher qu'un café par semaine
+                        {dict.header.desc}
                     </p>
                 </motion.div>
 
                 {/* Cards */}
                 <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
-                    {plans.map((plan, index) => (
+                    {dict.plans.map((plan, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 50 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.1 + index * 0.1, duration: 0.8 }}
                             className={`relative rounded-3xl p-6 sm:p-8 border transition-all ${plan.popular
-                                    ? "bg-foreground text-background border-foreground"
-                                    : "bg-card border-border hover:border-muted-foreground/50"
+                                ? "bg-foreground text-background border-foreground"
+                                : "bg-card border-border hover:border-muted-foreground/50"
                                 }`}
                         >
                             {plan.popular && (
                                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                                     <div className="flex items-center gap-1.5 px-3 py-1 bg-background text-foreground text-xs font-bold rounded-full">
                                         <Crown className="w-3 h-3" />
-                                        RECOMMANDÉ
+                                        {plan.recommended}
                                     </div>
                                 </div>
                             )}
@@ -109,10 +90,10 @@ export function Pricing() {
                             </ul>
 
                             <button className={`w-full py-4 rounded-xl font-bold transition-all ${plan.popular
-                                    ? "bg-background text-foreground hover:opacity-90"
-                                    : "bg-foreground text-background hover:opacity-90"
+                                ? "bg-background text-foreground hover:opacity-90"
+                                : "bg-foreground text-background hover:opacity-90"
                                 }`}>
-                                Choisir ce plan
+                                {dict.button}
                             </button>
                         </motion.div>
                     ))}
@@ -124,7 +105,7 @@ export function Pricing() {
                     transition={{ delay: 0.6 }}
                     className="text-center text-sm text-muted-foreground mt-8"
                 >
-                    🔒 Paiement sécurisé via App Store • Annulation facile à tout moment
+                    {dict.footer}
                 </motion.p>
             </div>
         </section>

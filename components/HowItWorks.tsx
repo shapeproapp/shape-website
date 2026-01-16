@@ -3,31 +3,21 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
+import { Dictionary } from "@/lib/dictionary";
 
-const steps = [
-    {
-        num: "01",
-        title: "Répondez à quelques questions",
-        desc: "Objectifs, équipement, disponibilité",
-        image: "/assets/app-screens/nutrition-light.png"
-    },
-    {
-        num: "02",
-        title: "L'IA génère votre plan",
-        desc: "Programme personnalisé en 10 secondes",
-        image: "/assets/app-screens/weekly-plan-light.png"
-    },
-    {
-        num: "03",
-        title: "Suivez vos progrès",
-        desc: "Dashboard complet et motivation",
-        image: "/assets/app-screens/home-light.png"
-    },
-];
+interface HowItWorksProps {
+    dict: Dictionary['howItWorks'];
+}
 
-export function HowItWorks() {
+export function HowItWorks({ dict }: HowItWorksProps) {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+    const images = [
+        "/assets/app-screens/nutrition-light.png",
+        "/assets/app-screens/weekly-plan-light.png",
+        "/assets/app-screens/home-light.png"
+    ];
 
     return (
         <section className="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
@@ -38,15 +28,15 @@ export function HowItWorks() {
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     className="text-center mb-16 sm:mb-20"
                 >
-                    <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">Comment ça marche</p>
+                    <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">{dict.header.subtitle}</p>
                     <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
-                        3 étapes simples
+                        {dict.header.title}
                     </h2>
                 </motion.div>
 
                 {/* Steps */}
                 <div className="space-y-16 sm:space-y-24">
-                    {steps.map((step, index) => (
+                    {dict.steps.map((step, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 60 }}
@@ -66,7 +56,7 @@ export function HowItWorks() {
                                 <div className="relative w-48 sm:w-56">
                                     <div className="relative glass rounded-[36px] p-1.5 border border-border">
                                         <div className="relative aspect-[9/19.5] bg-card rounded-[30px] overflow-hidden">
-                                            <Image src={step.image} alt={step.title} fill className="object-cover" />
+                                            <Image src={images[index]} alt={step.title} fill className="object-cover" />
                                         </div>
                                     </div>
                                     {/* Glow */}

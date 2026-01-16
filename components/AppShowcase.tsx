@@ -3,18 +3,23 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
+import { Dictionary } from "@/lib/dictionary";
 
-const screens = [
-    { src: "/assets/app-screens/home-light.png", label: "Dashboard" },
-    { src: "/assets/app-screens/workout-detail-dark.png", label: "Workout" },
-    { src: "/assets/app-screens/food-detail-dark.png", label: "Nutrition" },
-];
+interface AppShowcaseProps {
+    dict: Dictionary['appShowcase'];
+}
 
-export function AppShowcase() {
+export function AppShowcase({ dict }: AppShowcaseProps) {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
     const [activeIndex, setActiveIndex] = useState(1);
     const [isMobile, setIsMobile] = useState(false);
+
+    const screens = [
+        { src: "/assets/app-screens/home-light.png", label: dict.labels.dashboard },
+        { src: "/assets/app-screens/workout-detail-dark.png", label: dict.labels.workout },
+        { src: "/assets/app-screens/food-detail-dark.png", label: dict.labels.nutrition },
+    ];
 
     // Detect mobile screen
     useEffect(() => {
@@ -33,7 +38,7 @@ export function AppShowcase() {
         }, 4000);
 
         return () => clearInterval(interval);
-    }, [isInView]);
+    }, [isInView, screens.length]);
 
     // Get positions for carousel
     const getPositions = () => {
@@ -91,9 +96,9 @@ export function AppShowcase() {
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     className="text-center mb-10 sm:mb-20"
                 >
-                    <p className="text-xs sm:text-sm uppercase tracking-widest text-muted-foreground mb-3 sm:mb-4">Design</p>
+                    <p className="text-xs sm:text-sm uppercase tracking-widest text-muted-foreground mb-3 sm:mb-4">{dict.header.subtitle}</p>
                     <h2 className="text-3xl sm:text-5xl font-black tracking-tight">
-                        Interface premium
+                        {dict.header.title}
                     </h2>
                 </motion.div>
 
@@ -161,8 +166,8 @@ export function AppShowcase() {
                             key={index}
                             onClick={() => setActiveIndex(index)}
                             className={`h-1.5 rounded-full transition-all duration-500 ${index === activeIndex
-                                    ? 'w-6 sm:w-8 bg-foreground'
-                                    : 'w-2 bg-foreground/20 hover:bg-foreground/40'
+                                ? 'w-6 sm:w-8 bg-foreground'
+                                : 'w-2 bg-foreground/20 hover:bg-foreground/40'
                                 }`}
                         />
                     ))}

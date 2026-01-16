@@ -1,0 +1,240 @@
+{
+    "navbar": {
+        "features": "Features",
+        "pricing": "Pricing",
+        "faq": "FAQ",
+        "download": "Download",
+        "downloadApp": "App"
+    },
+    "hero": {
+        "badge": {
+            "android": "Available on Android",
+            "ios": "Available on iOS"
+        },
+        "title": {
+            "prefix": "Your",
+            "gradient": "AI Fitness Coach"
+        },
+        "subtitle": "Personalized plans. Smart nutrition tracking. Guaranteed results.",
+        "buttons": {
+            "download": "Download",
+            "appStore": "App Store",
+            "playStore": "Play Store",
+            "features": "See features"
+        }
+    },
+    "stats": [
+        {
+            "value": "100%",
+            "label": "Personalized",
+            "desc": "Tailored to your goals"
+        },
+        {
+            "value": "24/7",
+            "label": "AI Coach",
+            "desc": "Always available"
+        },
+        {
+            "value": "∞",
+            "label": "Exercises",
+            "desc": "Complete library"
+        }
+    ],
+    "features": {
+        "header": {
+            "subtitle": "Features",
+            "title": {
+                "prefix": "Everything you",
+                "gradient": "need"
+            }
+        },
+        "items": [
+            {
+                "title": "AI Training",
+                "description": "Custom plans created by our artificial intelligence, adapted to your level and goals."
+            },
+            {
+                "title": "Nutrition AI",
+                "description": "Scan your meals and instantly get calories and macros thanks to our cutting-edge technology."
+            },
+            {
+                "title": "Personal Coach",
+                "description": "An intelligent assistant available 24/7 to answer all your fitness and nutrition questions."
+            },
+            {
+                "title": "Creator Mode",
+                "description": "Create and share your own workout programs with the SHAPE community."
+            }
+        ]
+    },
+    "howItWorks": {
+        "header": {
+            "subtitle": "How it works",
+            "title": "3 simple steps"
+        },
+        "steps": [
+            {
+                "num": "01",
+                "title": "Answer a few questions",
+                "desc": "Goals, equipment, availability"
+            },
+            {
+                "num": "02",
+                "title": "AI generates your plan",
+                "desc": "Personalized program in 10 seconds"
+            },
+            {
+                "num": "03",
+                "title": "Track your progress",
+                "desc": "Complete dashboard and motivation"
+            }
+        ]
+    },
+    "scanDemo": {
+        "badge": "Food AI",
+        "title": "Scan your meals",
+        "description": "Simply take a photo of your meal and get calories and macronutrients instantly.",
+        "cards": {
+            "protein": "Protein",
+            "carbs": "Carbs"
+        },
+        "features": [
+            {
+                "title": "Analysis in 2 seconds",
+                "desc": "Visual recognition AI"
+            },
+            {
+                "title": "Optimal precision",
+                "desc": "Detailed macros automatically"
+            }
+        ]
+    },
+    "appShowcase": {
+        "header": {
+            "subtitle": "Design",
+            "title": "Premium Interface"
+        },
+        "labels": {
+            "dashboard": "Dashboard",
+            "workout": "Workout",
+            "nutrition": "Nutrition"
+        }
+    },
+    "comparison": {
+        "header": {
+            "subtitle": "Comparison",
+            "title": "Why SHAPE?"
+        },
+        "headers": {
+            "shape": "SHAPE",
+            "others": "Others"
+        },
+        "features": [
+            "Custom AI Programs",
+            "AI Nutrition Scanner",
+            "24/7 AI Coach",
+            "Progress Tracking",
+            "Offline Mode"
+        ]
+    },
+    "pricing": {
+        "header": {
+            "subtitle": "Pricing",
+            "title": "Transparent pricing",
+            "desc": "Cheaper than a coffee per week"
+        },
+        "plans": [
+            {
+                "name": "Monthly",
+                "price": "€14.99",
+                "period": "/month",
+                "features": [
+                    "Unlimited AI Programs",
+                    "Nutrition Scanner",
+                    "24/7 AI Coach"
+                ]
+            },
+            {
+                "name": "6 Months",
+                "price": "€11.99",
+                "period": "/month",
+                "billing": "€71.94 billed every 6 months",
+                "savings": "-20%",
+                "features": [
+                    "Everything in Monthly",
+                    "Save €18",
+                    "Priority Access"
+                ]
+            },
+            {
+                "name": "Annual",
+                "price": "€8.99",
+                "period": "/month",
+                "billing": "€107.88 billed annually",
+                "savings": "-40%",
+                "features": [
+                    "Everything in Monthly",
+                    "Save €72",
+                    "Founder Badge"
+                ],
+                "popular": true,
+                "recommended": "RECOMMENDED"
+            }
+        ],
+        "button": "Choose this plan",
+        "footer": "🔒 Secure payment via App Store • Easy cancellation anytime"
+    },
+    "faq": {
+        "header": {
+            "subtitle": "FAQ",
+            "title": "Frequently Asked Questions"
+        },
+        "items": [
+            {
+                "q": "How does AI create my plans?",
+                "a": "Our AI analyzes your goals, available equipment, and experience level to generate a 100% personalized plan. It continuously adapts to your progress."
+            },
+            {
+                "q": "Is the nutrition scanner accurate?",
+                "a": "Food AI uses advanced computer vision technology to identify foods and estimate calories and macros with optimal precision."
+            },
+            {
+                "q": "Can I cancel my subscription?",
+                "a": "Yes! You can cancel anytime from your Apple account settings. Access remains active until the end of your paid period."
+            },
+            {
+                "q": "Does the app work offline?",
+                "a": "Your programs are downloaded locally to allow you to train without connection. The food scanner requires internet for AI analysis."
+            },
+            {
+                "q": "How to contact support?",
+                "a": "You can contact us anytime via email at hello@shapefitness.app. We usually reply within 24h."
+            }
+        ]
+    },
+    "footer": {
+        "cta": {
+            "title": {
+                "prefix": "Ready to transform",
+                "gradient": "your body?"
+            },
+            "subtitle": "Join thousands of users who have already adopted SHAPE.",
+            "button": "Download for free"
+        },
+        "links": {
+            "features": "Features",
+            "pricing": "Pricing",
+            "faq": "FAQ",
+            "privacy": "Privacy",
+            "terms": "Terms"
+        },
+        "posts": {
+            "features": "#features",
+            "pricing": "#pricing",
+            "faq": "#faq",
+            "privacy": "/privacy",
+            "terms": "/terms"
+        },
+        "copyright": "© 2025"
+    }
+}
