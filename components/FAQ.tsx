@@ -1,25 +1,29 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, HelpCircle } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
 
 const faqs = [
     {
         q: "Comment l'IA crée mes programmes ?",
-        a: "Notre IA analyse vos objectifs, équipement disponible et niveau d'expérience pour générer un programme 100% personnalisé. Elle s'adapte à votre progression."
+        a: "Notre IA analyse vos objectifs, équipement disponible et niveau d'expérience pour générer un programme 100% personnalisé. Elle s'adapte continuellement à votre progression."
     },
     {
         q: "Le scanner nutrition est-il précis ?",
-        a: "Le Food AI utilise la vision par ordinateur pour identifier les aliments et estimer calories et macros. C'est une estimation fiable, parfaite pour le suivi quotidien."
+        a: "Le Food AI utilise une technologie de vision par ordinateur avancée pour identifier les aliments et estimer calories et macros avec une précision optimale."
     },
     {
         q: "Puis-je annuler mon abonnement ?",
-        a: "Oui ! Annulez à tout moment depuis les paramètres de votre compte Apple. L'accès reste actif jusqu'à la fin de la période payée."
+        a: "Oui ! Vous pouvez annuler à tout moment depuis les paramètres de votre compte Apple. L'accès reste actif jusqu'à la fin de votre période payée."
     },
     {
         q: "L'app fonctionne-t-elle hors ligne ?",
-        a: "Vos programmes sont téléchargés localement pour vous entraîner sans connexion. Le scanner food nécessite internet pour l'analyse IA."
+        a: "Vos programmes sont téléchargés localement pour vous permettre de vous entraîner sans connexion. Le scanner food nécessite internet pour l'analyse IA."
+    },
+    {
+        q: "Comment contacter le support ?",
+        a: "Vous pouvez nous contacter à tout moment via l'email hello@shapefitness.app. Nous répondons généralement sous 24h."
     },
 ];
 
@@ -27,43 +31,44 @@ export function FAQ() {
     const [open, setOpen] = useState<number | null>(null);
 
     return (
-        <section id="faq" className="py-14 sm:py-20 bg-secondary/30 px-4 sm:px-6">
-            <div className="max-w-lg mx-auto">
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-2xl sm:text-3xl font-black tracking-tight text-center mb-8"
-                >
-                    Questions fréquentes
-                </motion.h2>
-
+        <section id="faq" className="py-24 sm:py-32 px-4 sm:px-6 border-t border-white/10">
+            <div className="max-w-2xl mx-auto">
+                {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                    className="bg-card rounded-2xl border border-border overflow-hidden"
+                    className="text-center mb-16"
                 >
+                    <p className="text-sm uppercase tracking-widest text-white/40 mb-4">FAQ</p>
+                    <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
+                        Questions fréquentes
+                    </h2>
+                </motion.div>
+
+                {/* Questions */}
+                <div className="space-y-2">
                     {faqs.map((faq, i) => (
-                        <div
+                        <motion.div
                             key={i}
-                            className={i !== faqs.length - 1 ? "border-b border-border" : ""}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.05 }}
+                            className="border border-white/10 rounded-2xl overflow-hidden"
                         >
-                            <motion.button
+                            <button
                                 onClick={() => setOpen(open === i ? null : i)}
-                                whileTap={{ scale: 0.99 }}
-                                className="w-full p-4 flex items-center justify-between text-left hover:bg-secondary/50 transition-colors"
+                                className="w-full p-5 sm:p-6 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors"
                             >
-                                <span className="text-sm font-medium pr-4">{faq.q}</span>
+                                <span className="font-medium pr-4">{faq.q}</span>
                                 <motion.div
-                                    animate={{ rotate: open === i ? 180 : 0 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="flex-shrink-0 w-7 h-7 rounded-full bg-secondary flex items-center justify-center"
+                                    animate={{ rotate: open === i ? 45 : 0 }}
+                                    className="flex-shrink-0 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"
                                 >
-                                    {open === i ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+                                    <Plus className="w-4 h-4 text-white/70" />
                                 </motion.div>
-                            </motion.button>
+                            </button>
                             <AnimatePresence>
                                 {open === i && (
                                     <motion.div
@@ -73,28 +78,15 @@ export function FAQ() {
                                         transition={{ duration: 0.3 }}
                                         className="overflow-hidden"
                                     >
-                                        <p className="px-4 pb-4 text-sm text-muted-foreground leading-relaxed">
+                                        <p className="px-5 sm:px-6 pb-5 sm:pb-6 text-white/50 leading-relaxed">
                                             {faq.a}
                                         </p>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </div>
+                        </motion.div>
                     ))}
-                </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="text-center text-sm text-muted-foreground mt-6"
-                >
-                    D'autres questions ?{" "}
-                    <a href="mailto:hello@shapefitness.app" className="text-foreground hover:underline font-medium">
-                        Contactez-nous
-                    </a>
-                </motion.p>
+                </div>
             </div>
         </section>
     );

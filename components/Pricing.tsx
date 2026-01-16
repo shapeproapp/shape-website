@@ -34,98 +34,98 @@ const plans = [
 
 export function Pricing() {
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section id="pricing" className="py-14 sm:py-20 px-4 sm:px-6">
-            <div ref={ref} className="max-w-2xl mx-auto">
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
+        <section id="pricing" className="py-24 sm:py-32 px-4 sm:px-6 border-t border-white/10">
+            <div ref={ref} className="max-w-4xl mx-auto">
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    className="text-2xl sm:text-3xl font-black tracking-tight text-center mb-8"
+                    className="text-center mb-16"
                 >
-                    Tarifs simples
-                </motion.h2>
+                    <p className="text-sm uppercase tracking-widest text-white/40 mb-4">Tarification</p>
+                    <h2 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">
+                        Prix transparents
+                    </h2>
+                    <p className="text-lg text-white/50">
+                        Moins cher qu'un café par semaine
+                    </p>
+                </motion.div>
 
-                <div className="space-y-4">
+                {/* Cards */}
+                <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
                     {plans.map((plan, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 50 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.1 + index * 0.1, duration: 0.6 }}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className={`relative rounded-2xl p-5 cursor-pointer ${plan.popular
-                                    ? "bg-foreground text-background"
-                                    : "bg-card border border-border"
+                            transition={{ delay: 0.1 + index * 0.1, duration: 0.8 }}
+                            className={`relative rounded-3xl p-6 sm:p-8 border transition-all ${plan.popular
+                                    ? "bg-white text-black border-white"
+                                    : "bg-white/[0.02] border-white/10 hover:border-white/20"
                                 }`}
                         >
                             {plan.popular && (
-                                <div className="absolute -top-3 left-4">
-                                    <div className="flex items-center gap-1 px-2.5 py-1 bg-background text-foreground text-[10px] font-bold rounded-full">
-                                        <Crown className="w-2.5 h-2.5" />
+                                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                                    <div className="flex items-center gap-1.5 px-3 py-1 bg-black text-white text-xs font-bold rounded-full">
+                                        <Crown className="w-3 h-3" />
                                         RECOMMANDÉ
                                     </div>
                                 </div>
                             )}
 
-                            <div className="flex items-start justify-between mb-4">
-                                <div>
-                                    <p className={`text-xs mb-1 ${plan.popular ? "text-background/60" : "text-muted-foreground"}`}>
-                                        {plan.name}
-                                    </p>
-                                    <div className="flex items-baseline gap-1">
-                                        <span className="text-3xl font-black">{plan.price}</span>
-                                        <span className={`text-sm ${plan.popular ? "text-background/60" : "text-muted-foreground"}`}>
-                                            {plan.period}
-                                        </span>
-                                        {plan.savings && (
-                                            <span className="ml-2 px-2 py-0.5 bg-background text-foreground text-[10px] font-bold rounded-md">
-                                                {plan.savings}
-                                            </span>
-                                        )}
-                                    </div>
-                                    {plan.billing && (
-                                        <p className={`text-[10px] mt-1 ${plan.popular ? "text-background/50" : "text-muted-foreground"}`}>
-                                            {plan.billing}
-                                        </p>
-                                    )}
+                            <div className="mb-6">
+                                <p className={`text-sm mb-2 ${plan.popular ? "text-black/60" : "text-white/40"}`}>
+                                    {plan.name}
+                                </p>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-4xl sm:text-5xl font-black">{plan.price}</span>
+                                    <span className={`text-sm ${plan.popular ? "text-black/60" : "text-white/40"}`}>
+                                        {plan.period}
+                                    </span>
                                 </div>
-
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className={`px-4 py-2.5 rounded-xl text-xs font-bold ${plan.popular
-                                            ? "bg-background text-foreground"
-                                            : "bg-foreground text-background"
-                                        }`}
-                                >
-                                    Choisir
-                                </motion.button>
+                                {plan.billing && (
+                                    <p className={`text-xs mt-1 ${plan.popular ? "text-black/50" : "text-white/30"}`}>
+                                        {plan.billing}
+                                    </p>
+                                )}
+                                {plan.savings && (
+                                    <span className={`inline-block mt-2 px-2 py-0.5 text-xs font-bold rounded ${plan.popular ? "bg-black text-white" : "bg-white/10 text-white"
+                                        }`}>
+                                        {plan.savings}
+                                    </span>
+                                )}
                             </div>
 
-                            <div className="flex flex-wrap gap-2">
+                            <ul className="space-y-3 mb-8">
                                 {plan.features.map((f, i) => (
-                                    <div
-                                        key={i}
-                                        className={`flex items-center gap-1.5 px-2 py-1 rounded-lg text-[10px] ${plan.popular ? "bg-background/10" : "bg-secondary"
-                                            }`}
-                                    >
-                                        <Check className={`w-3 h-3 ${plan.popular ? "text-background" : "text-foreground"}`} />
-                                        <span className={plan.popular ? "text-background/80" : "text-foreground/80"}>
-                                            {f}
-                                        </span>
-                                    </div>
+                                    <li key={i} className="flex items-center gap-3 text-sm">
+                                        <Check className={`w-4 h-4 ${plan.popular ? "text-black" : "text-white/70"}`} />
+                                        <span className={plan.popular ? "text-black/70" : "text-white/70"}>{f}</span>
+                                    </li>
                                 ))}
-                            </div>
+                            </ul>
+
+                            <button className={`w-full py-4 rounded-xl font-bold transition-all ${plan.popular
+                                    ? "bg-black text-white hover:bg-black/90"
+                                    : "bg-white text-black hover:bg-white/90"
+                                }`}>
+                                Choisir ce plan
+                            </button>
                         </motion.div>
                     ))}
                 </div>
 
-                <p className="text-center text-[10px] text-muted-foreground mt-6">
-                    🔒 Paiement sécurisé via App Store
-                </p>
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ delay: 0.6 }}
+                    className="text-center text-sm text-white/30 mt-8"
+                >
+                    🔒 Paiement sécurisé via App Store • Annulation facile à tout moment
+                </motion.p>
             </div>
         </section>
     );

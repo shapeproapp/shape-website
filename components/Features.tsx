@@ -3,30 +3,30 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-import { Dumbbell, Salad, Brain, Pencil } from "lucide-react";
+import { Dumbbell, Utensils, Brain, Pencil, ArrowUpRight } from "lucide-react";
 
 const features = [
     {
         title: "Entraînement IA",
-        description: "Programmes selon vos objectifs",
+        description: "Des programmes créés sur mesure par notre intelligence artificielle, adaptés à votre niveau et objectifs.",
         image: "/assets/app-screens/workout-detail-dark.png",
         icon: Dumbbell,
     },
     {
-        title: "Food AI",
-        description: "Scannez vos repas facilement",
+        title: "Nutrition AI",
+        description: "Scannez vos repas et obtenez instantanément les calories et macros grâce à notre technologie de pointe.",
         image: "/assets/app-screens/food-detail-dark.png",
-        icon: Salad,
+        icon: Utensils,
     },
     {
         title: "Coach Personnel",
-        description: "Assistant disponible 24/7",
+        description: "Un assistant intelligent disponible 24/7 pour répondre à toutes vos questions fitness et nutrition.",
         image: "/assets/app-screens/home-light.png",
         icon: Brain,
     },
     {
         title: "Mode Créateur",
-        description: "Créez vos propres programmes",
+        description: "Créez et partagez vos propres programmes d'entraînement avec la communauté SHAPE.",
         image: "/assets/app-screens/library-dark.png",
         icon: Pencil,
     },
@@ -34,56 +34,61 @@ const features = [
 
 export function Features() {
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section id="features" className="py-14 sm:py-20 px-4 sm:px-6">
-            <div ref={ref} className="max-w-5xl mx-auto">
-                <div className="text-center mb-10">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.1, duration: 0.6 }}
-                        className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight"
-                    >
-                        Tout ce qu'il vous faut
-                    </motion.h2>
-                </div>
+        <section id="features" className="py-24 sm:py-32 px-4 sm:px-6">
+            <div ref={ref} className="max-w-6xl mx-auto">
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    className="text-center mb-16 sm:mb-20"
+                >
+                    <p className="text-sm uppercase tracking-widest text-white/40 mb-4">Fonctionnalités</p>
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight">
+                        Tout ce dont vous
+                        <br />
+                        <span className="text-gradient">avez besoin</span>
+                    </h2>
+                </motion.div>
 
-                <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {/* Features grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {features.map((feature, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 50 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.15 + index * 0.1, duration: 0.6 }}
-                            whileHover={{ y: -4 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="bg-secondary rounded-2xl sm:rounded-3xl p-3 sm:p-4 overflow-hidden border border-border/50"
+                            transition={{ delay: 0.1 + index * 0.1, duration: 0.8 }}
+                            className="group relative bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 rounded-3xl p-6 sm:p-8 transition-all duration-500 overflow-hidden"
                         >
-                            {/* Icon - BLACK bg, WHITE icon */}
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-foreground text-background flex items-center justify-center">
-                                    <feature.icon className="w-4 h-4" />
+                            {/* Icon & Title row */}
+                            <div className="flex items-start justify-between mb-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                                        <feature.icon className="w-5 h-5 text-white/70" />
+                                    </div>
+                                    <h3 className="text-xl sm:text-2xl font-bold">{feature.title}</h3>
                                 </div>
-                                <h3 className="text-xs sm:text-sm font-bold">{feature.title}</h3>
+                                <ArrowUpRight className="w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                             </div>
 
-                            <p className="text-[10px] sm:text-xs text-muted-foreground mb-3">
+                            {/* Description */}
+                            <p className="text-white/50 text-sm sm:text-base leading-relaxed mb-6">
                                 {feature.description}
                             </p>
 
-                            <motion.div
-                                className="relative h-28 sm:h-36 rounded-xl overflow-hidden bg-card"
-                                whileHover={{ scale: 1.02 }}
-                            >
+                            {/* Image */}
+                            <div className="relative h-48 sm:h-56 rounded-2xl overflow-hidden bg-black/50">
                                 <Image
                                     src={feature.image}
                                     alt={feature.title}
                                     fill
-                                    className="object-cover object-top"
+                                    className="object-cover object-top opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                                 />
-                            </motion.div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                            </div>
                         </motion.div>
                     ))}
                 </div>

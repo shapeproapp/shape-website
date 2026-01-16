@@ -12,74 +12,60 @@ const screens = [
 
 export function AppShowcase() {
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section className="py-14 sm:py-20 bg-foreground text-background overflow-hidden">
-            <div ref={ref} className="max-w-4xl mx-auto px-4 sm:px-6">
+        <section className="py-24 sm:py-32 border-t border-white/10 overflow-hidden">
+            <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6">
                 {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    className="text-center mb-10"
+                    className="text-center mb-16 sm:mb-20"
                 >
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight mb-2">
-                        Design premium
+                    <p className="text-sm uppercase tracking-widest text-white/40 mb-4">Design</p>
+                    <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
+                        Interface premium
                     </h2>
-                    <p className="text-background/60 text-sm">
-                        Une interface pensée pour vous
-                    </p>
                 </motion.div>
 
-                {/* Phones with staggered animation */}
-                <div className="flex justify-center items-end gap-3 sm:gap-5" style={{ perspective: "1000px" }}>
+                {/* Phones */}
+                <div className="flex justify-center items-end gap-4 sm:gap-8" style={{ perspective: "1000px" }}>
                     {screens.map((screen, index) => {
                         const isCenter = index === 1;
+                        const rotation = index === 0 ? 15 : index === 2 ? -15 : 0;
+
                         return (
                             <motion.div
                                 key={index}
-                                initial={{
-                                    opacity: 0,
-                                    y: 60,
-                                    rotateY: index === 0 ? 15 : index === 2 ? -15 : 0
-                                }}
-                                animate={isInView ? {
-                                    opacity: 1,
-                                    y: 0,
-                                    rotateY: index === 0 ? 8 : index === 2 ? -8 : 0
-                                } : {}}
-                                transition={{
-                                    delay: 0.2 + index * 0.1,
-                                    duration: 0.8,
-                                    ease: [0.16, 1, 0.3, 1]
-                                }}
-                                whileHover={{
-                                    y: -10,
-                                    rotateY: 0,
-                                    scale: 1.05,
-                                    zIndex: 20
-                                }}
-                                className={`relative ${isCenter ? "z-10" : "z-0"}`}
+                                initial={{ opacity: 0, y: 80, rotateY: rotation }}
+                                animate={isInView ? { opacity: 1, y: 0, rotateY: rotation * 0.5 } : {}}
+                                transition={{ delay: 0.2 + index * 0.15, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                                className={`relative ${isCenter ? 'z-10' : 'z-0'}`}
+                                style={{ transformStyle: 'preserve-3d' }}
                             >
                                 <div className={`
-                                    relative bg-background/10 rounded-2xl sm:rounded-3xl p-0.5 sm:p-1 backdrop-blur-sm
-                                    ${isCenter
-                                        ? "w-28 sm:w-40 lg:w-48 shadow-2xl"
-                                        : "w-20 sm:w-32 lg:w-36 opacity-70"
-                                    }
+                                    relative bg-white/10 backdrop-blur-xl rounded-[32px] sm:rounded-[40px] p-1 sm:p-1.5 border border-white/20
+                                    ${isCenter ? 'w-48 sm:w-64 lg:w-72' : 'w-32 sm:w-44 lg:w-52 opacity-60'}
                                 `}>
-                                    <div className="relative aspect-[9/19.5] bg-card rounded-xl sm:rounded-2xl overflow-hidden">
+                                    <div className="relative aspect-[9/19.5] bg-black rounded-[28px] sm:rounded-[36px] overflow-hidden">
                                         <Image src={screen.src} alt={screen.label} fill className="object-cover" />
                                     </div>
                                 </div>
+
                                 <motion.p
                                     initial={{ opacity: 0 }}
                                     animate={isInView ? { opacity: 1 } : {}}
-                                    transition={{ delay: 0.6 + index * 0.1 }}
-                                    className={`text-center mt-3 text-xs sm:text-sm font-medium ${isCenter ? "" : "text-background/50"}`}
+                                    transition={{ delay: 0.8 }}
+                                    className={`text-center mt-4 text-sm ${isCenter ? 'text-white/80' : 'text-white/30'}`}
                                 >
                                     {screen.label}
                                 </motion.p>
+
+                                {/* Glow for center */}
+                                {isCenter && (
+                                    <div className="absolute -inset-16 bg-white/5 rounded-full blur-3xl -z-10" />
+                                )}
                             </motion.div>
                         );
                     })}

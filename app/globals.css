@@ -1,29 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors - Pure Black & White */
-  --color-background: lightdark(#FAFAFA, #0A0A0A);
-  --color-foreground: lightdark(#0A0A0A, #FAFAFA);
-  --color-card: lightdark(#FFFFFF, #111111);
-  --color-card-foreground: lightdark(#0A0A0A, #FAFAFA);
-  --color-primary: lightdark(#0A0A0A, #FAFAFA);
-  --color-primary-foreground: lightdark(#FAFAFA, #0A0A0A);
-  --color-secondary: lightdark(#F4F4F5, #18181B);
-  --color-secondary-foreground: lightdark(#0A0A0A, #FAFAFA);
-  --color-muted: lightdark(#F4F4F5, #27272A);
-  --color-muted-foreground: lightdark(#71717A, #A1A1AA);
-  --color-accent: #0A0A0A;
-  /* Changed to black */
-  --color-accent-foreground: #FAFAFA;
-  --color-border: lightdark(#E4E4E7, #27272A);
+  /* Premium Dark Theme */
+  --color-background: #000000;
+  --color-foreground: #FFFFFF;
+  --color-card: #0A0A0A;
+  --color-card-foreground: #FFFFFF;
+  --color-primary: #FFFFFF;
+  --color-primary-foreground: #000000;
+  --color-secondary: #111111;
+  --color-secondary-foreground: #FFFFFF;
+  --color-muted: #1A1A1A;
+  --color-muted-foreground: #888888;
+  --color-accent: #FFFFFF;
+  --color-accent-foreground: #000000;
+  --color-border: #222222;
 
   --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
 
   /* Rounded corners */
-  --radius-xl: 28px;
-  --radius-lg: 20px;
-  --radius-md: 14px;
-  --radius-sm: 10px;
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
 }
 
 /* Base styles */
@@ -51,14 +50,31 @@
   h5,
   h6 {
     font-family: var(--font-heading), system-ui, sans-serif;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
   }
 }
 
-/* Custom scrollbar */
+/* Premium utilities */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow {
+    box-shadow: 0 0 60px 20px rgba(255, 255, 255, 0.1);
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -66,12 +82,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: #333;
   border-radius: 10px;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(10, 10, 10, 0.1);
-  color: var(--color-foreground);
+  background: rgba(255, 255, 255, 0.2);
 }

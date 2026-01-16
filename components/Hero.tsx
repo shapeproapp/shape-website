@@ -3,132 +3,130 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 export function Hero() {
     return (
-        <section className="relative min-h-screen flex flex-col justify-center pt-16 pb-8 px-4 sm:px-6 overflow-hidden">
-            <div className="max-w-6xl mx-auto w-full relative z-10">
-                <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-12 items-center">
-
-                    {/* Text Content */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-center lg:text-left mb-10 lg:mb-0"
-                    >
-                        {/* Badge - BLACK bg, WHITE text */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.2, duration: 0.5 }}
-                            className="inline-flex items-center gap-2 px-3 py-1.5 bg-foreground text-background rounded-full text-xs font-semibold mb-5"
-                        >
-                            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                            </svg>
-                            Disponible sur iOS
-                        </motion.div>
-
-                        {/* Title */}
-                        <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3, duration: 0.8 }}
-                            className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] mb-4"
-                        >
-                            Sculptez Votre Corps
-                        </motion.h1>
-
-                        {/* Subtitle */}
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4, duration: 0.8 }}
-                            className="text-sm sm:text-base text-muted-foreground mb-6 max-w-sm mx-auto lg:mx-0"
-                        >
-                            Le coach IA qui crée vos programmes d'entraînement et suit votre nutrition.
-                        </motion.p>
-
-                        {/* CTA Button - BLACK bg, WHITE text */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5, duration: 0.8 }}
-                        >
-                            <Link
-                                href="https://apps.apple.com"
-                                className="group inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-4 bg-foreground text-background rounded-2xl font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all duration-300 mb-6"
-                            >
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                                </svg>
-                                Télécharger Gratuitement
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Link>
-                        </motion.div>
-
-                        {/* Social Proof */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.7, duration: 0.5 }}
-                            className="flex items-center justify-center lg:justify-start gap-4"
-                        >
-                            <div className="flex -space-x-2">
-                                {["M", "E", "D"].map((letter, i) => (
-                                    <motion.div
-                                        key={i}
-                                        initial={{ opacity: 0, scale: 0 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ delay: 0.8 + i * 0.1 }}
-                                        className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center text-xs font-bold border-2 border-background"
-                                    >
-                                        {letter}
-                                    </motion.div>
-                                ))}
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div className="flex">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className="w-3.5 h-3.5 fill-foreground text-foreground" />
-                                    ))}
-                                </div>
-                                <span className="text-sm font-bold">4.9</span>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-
-                    {/* Phone Mockup */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative flex justify-center"
-                    >
-                        <motion.div
-                            className="relative w-[220px] sm:w-[260px] lg:w-[300px]"
-                            whileHover={{ y: -5 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        >
-                            <div className="relative bg-foreground rounded-[36px] sm:rounded-[44px] p-1.5 sm:p-2 shadow-2xl">
-                                <div className="relative aspect-[9/19.5] bg-card rounded-[32px] sm:rounded-[40px] overflow-hidden">
-                                    <div className="absolute top-2 sm:top-3 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-6 sm:h-7 bg-foreground rounded-full z-10" />
-                                    <Image
-                                        src="/assets/app-screens/home-light.png"
-                                        alt="SHAPE App"
-                                        fill
-                                        className="object-cover"
-                                        priority
-                                    />
-                                </div>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-
-                </div>
+        <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
+            {/* Background gradient */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-radial from-white/5 to-transparent rounded-full blur-3xl" />
             </div>
+
+            {/* Content */}
+            <div className="relative z-10 max-w-4xl mx-auto text-center">
+                {/* Badge */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm"
+                >
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span className="text-sm text-white/70">Disponible sur iOS</span>
+                </motion.div>
+
+                {/* Main headline */}
+                <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.1 }}
+                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9] mb-6"
+                >
+                    Votre coach
+                    <br />
+                    <span className="text-gradient">fitness IA</span>
+                </motion.h1>
+
+                {/* Subtitle */}
+                <motion.p
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-lg sm:text-xl text-white/50 max-w-xl mx-auto mb-10"
+                >
+                    Programmes personnalisés. Suivi nutrition intelligent.
+                    <br className="hidden sm:block" />
+                    Résultats garantis.
+                </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                >
+                    <Link
+                        href="https://apps.apple.com"
+                        className="group flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold text-base hover:bg-white/90 transition-all"
+                    >
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                        </svg>
+                        Télécharger gratuitement
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+
+                    <Link
+                        href="#features"
+                        className="flex items-center gap-2 px-6 py-4 text-white/70 hover:text-white transition-colors"
+                    >
+                        <Play className="w-4 h-4" />
+                        Voir les fonctionnalités
+                    </Link>
+                </motion.div>
+            </div>
+
+            {/* Phone Mockup */}
+            <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="relative mt-16 sm:mt-20"
+            >
+                <div className="relative">
+                    {/* Glow behind phone */}
+                    <div className="absolute -inset-20 bg-gradient-radial from-white/10 to-transparent rounded-full blur-3xl" />
+
+                    {/* Phone */}
+                    <div className="relative w-[280px] sm:w-[320px] md:w-[360px]">
+                        <div className="relative bg-white/10 backdrop-blur-xl rounded-[48px] p-2 border border-white/20">
+                            <div className="relative aspect-[9/19.5] bg-black rounded-[40px] overflow-hidden">
+                                {/* Dynamic Island */}
+                                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10" />
+
+                                <Image
+                                    src="/assets/app-screens/home-light.png"
+                                    alt="SHAPE App"
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* Scroll indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5 }}
+                className="absolute bottom-8 left-1/2 -translate-x-1/2"
+            >
+                <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+                    <motion.div
+                        animate={{ y: [0, 12, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="w-1 h-2 bg-white/40 rounded-full"
+                    />
+                </div>
+            </motion.div>
         </section>
     );
 }

@@ -1,37 +1,37 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Sparkles, Zap, Target } from "lucide-react";
+import { Sparkles, Zap, Infinity } from "lucide-react";
 import { useRef } from "react";
 
 const stats = [
-    { icon: Sparkles, value: "100%", label: "Personnalisé" },
-    { icon: Zap, value: "24/7", label: "Coach IA" },
-    { icon: Target, value: "∞", label: "Exercices" }
+    { icon: Sparkles, value: "100%", label: "Personnalisé", desc: "Adapté à vos objectifs" },
+    { icon: Zap, value: "24/7", label: "Coach IA", desc: "Toujours disponible" },
+    { icon: Infinity, value: "∞", label: "Exercices", desc: "Bibliothèque complète" }
 ];
 
 export function Stats() {
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section ref={ref} className="py-10 sm:py-14 border-y border-border/50">
-            <div className="max-w-lg mx-auto px-4">
-                <div className="grid grid-cols-3 gap-2">
+        <section ref={ref} className="py-24 sm:py-32 border-t border-white/10">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4">
                     {stats.map((stat, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 40 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: index * 0.1, duration: 0.6 }}
-                            className="text-center py-3"
+                            transition={{ delay: index * 0.15, duration: 0.8 }}
+                            className="text-center"
                         >
-                            {/* Icon - BLACK bg, WHITE icon */}
-                            <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-foreground text-background flex items-center justify-center">
-                                <stat.icon className="w-5 h-5" />
+                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/5 border border-white/10 mb-4">
+                                <stat.icon className="w-5 h-5 text-white/70" />
                             </div>
-                            <p className="text-2xl sm:text-3xl font-black">{stat.value}</p>
-                            <p className="text-[11px] text-muted-foreground mt-0.5">{stat.label}</p>
+                            <p className="text-4xl sm:text-5xl font-black mb-1">{stat.value}</p>
+                            <p className="text-lg font-semibold text-white/80 mb-1">{stat.label}</p>
+                            <p className="text-sm text-white/40">{stat.desc}</p>
                         </motion.div>
                     ))}
                 </div>
