@@ -1,21 +1,42 @@
 @import "tailwindcss";
 
-@theme {
-  /* Adaptive Colors - Light/Dark based on system preference */
-  --color-background: lightdark(#FAFAFA, #000000);
-  --color-foreground: lightdark(#0A0A0A, #FFFFFF);
-  --color-card: lightdark(#FFFFFF, #0A0A0A);
-  --color-card-foreground: lightdark(#0A0A0A, #FFFFFF);
-  --color-primary: lightdark(#0A0A0A, #FFFFFF);
-  --color-primary-foreground: lightdark(#FAFAFA, #000000);
-  --color-secondary: lightdark(#F4F4F5, #111111);
-  --color-secondary-foreground: lightdark(#0A0A0A, #FFFFFF);
-  --color-muted: lightdark(#F4F4F5, #1A1A1A);
-  --color-muted-foreground: lightdark(#71717A, #888888);
-  --color-accent: lightdark(#0A0A0A, #FFFFFF);
-  --color-accent-foreground: lightdark(#FAFAFA, #000000);
-  --color-border: lightdark(#E4E4E7, #222222);
+/* Light theme (default) */
+:root {
+  --color-background: #FAFAFA;
+  --color-foreground: #0A0A0A;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #0A0A0A;
+  --color-primary: #0A0A0A;
+  --color-primary-foreground: #FAFAFA;
+  --color-secondary: #F4F4F5;
+  --color-secondary-foreground: #0A0A0A;
+  --color-muted: #F4F4F5;
+  --color-muted-foreground: #71717A;
+  --color-accent: #0A0A0A;
+  --color-accent-foreground: #FAFAFA;
+  --color-border: #E4E4E7;
+}
 
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #000000;
+    --color-foreground: #FFFFFF;
+    --color-card: #0A0A0A;
+    --color-card-foreground: #FFFFFF;
+    --color-primary: #FFFFFF;
+    --color-primary-foreground: #000000;
+    --color-secondary: #111111;
+    --color-secondary-foreground: #FFFFFF;
+    --color-muted: #1A1A1A;
+    --color-muted-foreground: #888888;
+    --color-accent: #FFFFFF;
+    --color-accent-foreground: #000000;
+    --color-border: #222222;
+  }
+}
+
+@theme {
   --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
 
   /* Rounded corners */
@@ -23,12 +44,27 @@
   --radius-lg: 16px;
   --radius-md: 12px;
   --radius-sm: 8px;
+
+  /* Colors from CSS variables */
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-foreground);
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-foreground: var(--color-secondary-foreground);
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+  --color-border: var(--color-border);
 }
 
 /* Base styles */
 @layer base {
   * {
-    @apply border-border;
+    border-color: var(--color-border);
   }
 
   html {
@@ -37,7 +73,8 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
     font-family: var(--font-geist-sans), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -56,26 +93,18 @@
 
 /* Premium utilities */
 @layer utilities {
-
-  /* Adaptive gradient text */
   .text-gradient {
-    background: linear-gradient(to right, currentColor, var(--color-muted-foreground));
+    background: linear-gradient(to right, var(--color-foreground), var(--color-muted-foreground));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Adaptive glow */
-  .glow {
-    box-shadow: 0 0 60px 20px lightdark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.1));
-  }
-
-  /* Adaptive glass effect */
   .glass {
-    background: lightdark(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid lightdark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.2));
+    border: 1px solid var(--color-border);
   }
 }
 
@@ -95,5 +124,5 @@
 
 /* Selection */
 ::selection {
-  background: lightdark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.2));
+  background: rgba(128, 128, 128, 0.2);
 }
