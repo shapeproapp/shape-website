@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useState } from "react";
 
 const faqs = [
@@ -31,7 +31,7 @@ export function FAQ() {
     const [open, setOpen] = useState<number | null>(null);
 
     return (
-        <section id="faq" className="py-24 sm:py-32 px-4 sm:px-6 border-t border-white/10">
+        <section id="faq" className="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
             <div className="max-w-2xl mx-auto">
                 {/* Header */}
                 <motion.div
@@ -40,7 +40,7 @@ export function FAQ() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <p className="text-sm uppercase tracking-widest text-white/40 mb-4">FAQ</p>
+                    <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">FAQ</p>
                     <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
                         Questions fréquentes
                     </h2>
@@ -55,18 +55,18 @@ export function FAQ() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.05 }}
-                            className="border border-white/10 rounded-2xl overflow-hidden"
+                            className="border border-border rounded-2xl overflow-hidden"
                         >
                             <button
                                 onClick={() => setOpen(open === i ? null : i)}
-                                className="w-full p-5 sm:p-6 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors"
+                                className="w-full p-5 sm:p-6 flex items-center justify-between text-left hover:bg-secondary/50 transition-colors"
                             >
                                 <span className="font-medium pr-4">{faq.q}</span>
                                 <motion.div
                                     animate={{ rotate: open === i ? 45 : 0 }}
-                                    className="flex-shrink-0 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"
+                                    className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary border border-border flex items-center justify-center"
                                 >
-                                    <Plus className="w-4 h-4 text-white/70" />
+                                    <Plus className="w-4 h-4 text-muted-foreground" />
                                 </motion.div>
                             </button>
                             <AnimatePresence>
@@ -78,7 +78,7 @@ export function FAQ() {
                                         transition={{ duration: 0.3 }}
                                         className="overflow-hidden"
                                     >
-                                        <p className="px-5 sm:px-6 pb-5 sm:pb-6 text-white/50 leading-relaxed">
+                                        <p className="px-5 sm:px-6 pb-5 sm:pb-6 text-muted-foreground leading-relaxed">
                                             {faq.a}
                                         </p>
                                     </motion.div>

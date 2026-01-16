@@ -15,7 +15,7 @@ export function AppShowcase() {
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section className="py-24 sm:py-32 border-t border-white/10 overflow-hidden">
+        <section className="py-24 sm:py-32 border-t border-border overflow-hidden">
             <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6">
                 {/* Header */}
                 <motion.div
@@ -23,7 +23,7 @@ export function AppShowcase() {
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     className="text-center mb-16 sm:mb-20"
                 >
-                    <p className="text-sm uppercase tracking-widest text-white/40 mb-4">Design</p>
+                    <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">Design</p>
                     <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
                         Interface premium
                     </h2>
@@ -45,10 +45,10 @@ export function AppShowcase() {
                                 style={{ transformStyle: 'preserve-3d' }}
                             >
                                 <div className={`
-                                    relative bg-white/10 backdrop-blur-xl rounded-[32px] sm:rounded-[40px] p-1 sm:p-1.5 border border-white/20
+                                    relative glass rounded-[32px] sm:rounded-[40px] p-1 sm:p-1.5
                                     ${isCenter ? 'w-48 sm:w-64 lg:w-72' : 'w-32 sm:w-44 lg:w-52 opacity-60'}
                                 `}>
-                                    <div className="relative aspect-[9/19.5] bg-black rounded-[28px] sm:rounded-[36px] overflow-hidden">
+                                    <div className="relative aspect-[9/19.5] bg-card rounded-[28px] sm:rounded-[36px] overflow-hidden">
                                         <Image src={screen.src} alt={screen.label} fill className="object-cover" />
                                     </div>
                                 </div>
@@ -57,14 +57,13 @@ export function AppShowcase() {
                                     initial={{ opacity: 0 }}
                                     animate={isInView ? { opacity: 1 } : {}}
                                     transition={{ delay: 0.8 }}
-                                    className={`text-center mt-4 text-sm ${isCenter ? 'text-white/80' : 'text-white/30'}`}
+                                    className={`text-center mt-4 text-sm ${isCenter ? '' : 'text-muted-foreground'}`}
                                 >
                                     {screen.label}
                                 </motion.p>
 
-                                {/* Glow for center */}
                                 {isCenter && (
-                                    <div className="absolute -inset-16 bg-white/5 rounded-full blur-3xl -z-10" />
+                                    <div className="absolute -inset-16 bg-foreground/5 rounded-full blur-3xl -z-10" />
                                 )}
                             </motion.div>
                         );

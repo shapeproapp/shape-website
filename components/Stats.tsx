@@ -15,7 +15,7 @@ export function Stats() {
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section ref={ref} className="py-24 sm:py-32 border-t border-white/10">
+        <section ref={ref} className="py-24 sm:py-32 border-t border-border">
             <div className="max-w-5xl mx-auto px-4 sm:px-6">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4">
                     {stats.map((stat, index) => (
@@ -26,12 +26,12 @@ export function Stats() {
                             transition={{ delay: index * 0.15, duration: 0.8 }}
                             className="text-center"
                         >
-                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/5 border border-white/10 mb-4">
-                                <stat.icon className="w-5 h-5 text-white/70" />
+                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-secondary border border-border mb-4">
+                                <stat.icon className="w-5 h-5 text-muted-foreground" />
                             </div>
                             <p className="text-4xl sm:text-5xl font-black mb-1">{stat.value}</p>
-                            <p className="text-lg font-semibold text-white/80 mb-1">{stat.label}</p>
-                            <p className="text-sm text-white/40">{stat.desc}</p>
+                            <p className="text-lg font-semibold mb-1">{stat.label}</p>
+                            <p className="text-sm text-muted-foreground">{stat.desc}</p>
                         </motion.div>
                     ))}
                 </div>

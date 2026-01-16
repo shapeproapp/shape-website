@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* Premium Dark Theme */
-  --color-background: #000000;
-  --color-foreground: #FFFFFF;
-  --color-card: #0A0A0A;
-  --color-card-foreground: #FFFFFF;
-  --color-primary: #FFFFFF;
-  --color-primary-foreground: #000000;
-  --color-secondary: #111111;
-  --color-secondary-foreground: #FFFFFF;
-  --color-muted: #1A1A1A;
-  --color-muted-foreground: #888888;
-  --color-accent: #FFFFFF;
-  --color-accent-foreground: #000000;
-  --color-border: #222222;
+  /* Adaptive Colors - Light/Dark based on system preference */
+  --color-background: lightdark(#FAFAFA, #000000);
+  --color-foreground: lightdark(#0A0A0A, #FFFFFF);
+  --color-card: lightdark(#FFFFFF, #0A0A0A);
+  --color-card-foreground: lightdark(#0A0A0A, #FFFFFF);
+  --color-primary: lightdark(#0A0A0A, #FFFFFF);
+  --color-primary-foreground: lightdark(#FAFAFA, #000000);
+  --color-secondary: lightdark(#F4F4F5, #111111);
+  --color-secondary-foreground: lightdark(#0A0A0A, #FFFFFF);
+  --color-muted: lightdark(#F4F4F5, #1A1A1A);
+  --color-muted-foreground: lightdark(#71717A, #888888);
+  --color-accent: lightdark(#0A0A0A, #FFFFFF);
+  --color-accent-foreground: lightdark(#FAFAFA, #000000);
+  --color-border: lightdark(#E4E4E7, #222222);
 
   --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
 
@@ -56,19 +56,26 @@
 
 /* Premium utilities */
 @layer utilities {
+
+  /* Adaptive gradient text */
   .text-gradient {
-    background: linear-gradient(to right, #fff, #888);
+    background: linear-gradient(to right, currentColor, var(--color-muted-foreground));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* Adaptive glow */
   .glow {
-    box-shadow: 0 0 60px 20px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 60px 20px lightdark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.1));
   }
 
-  .glow-sm {
-    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.05);
+  /* Adaptive glass effect */
+  .glass {
+    background: lightdark(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid lightdark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.2));
   }
 }
 
@@ -82,11 +89,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--color-border);
   border-radius: 10px;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(255, 255, 255, 0.2);
+  background: lightdark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.2));
 }
