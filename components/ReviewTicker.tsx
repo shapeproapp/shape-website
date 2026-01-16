@@ -2,47 +2,13 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { Dictionary } from "@/lib/dictionary";
 
-const reviews = [
-    {
-        text: "Enfin une app qui comprend mon style d'entraînement. Les programmes générés sont brutaux mais efficaces.",
-        author: "Mike T.",
-        handle: "@mike_lifts",
-        avatar: "M"
-    },
-    {
-        text: "J'adore le design et la facilité d'utilisation. Suivre mes macros n'est plus une corvée, c'est amusant.",
-        author: "Emma R.",
-        handle: "@emma_runs",
-        avatar: "E"
-    },
-    {
-        text: "La visualisation des progrès est top. Voir ma force augmenter chaque semaine me garde motivé.",
-        author: "David K.",
-        handle: "@david_gym",
-        avatar: "D"
-    },
-    {
-        text: "Le scanner food est magique. Je prends une photo et boom, toutes les infos nutritionnelles.",
-        author: "Sophie L.",
-        handle: "@sophie_fit",
-        avatar: "S"
-    },
-    {
-        text: "Meilleure app de fitness que j'ai utilisée. L'IA comprend vraiment mes objectifs.",
-        author: "Lucas M.",
-        handle: "@lucas_muscle",
-        avatar: "L"
-    },
-    {
-        text: "Simple, efficace, beau. Exactement ce que je cherchais pour structurer mes entraînements.",
-        author: "Julie P.",
-        handle: "@julie_power",
-        avatar: "J"
-    }
-];
+interface ReviewTickerProps {
+    dict: Dictionary['reviewTicker'];
+}
 
-function ReviewCard({ review, index }: { review: typeof reviews[0]; index: number }) {
+function ReviewCard({ review, index }: { review: Dictionary['reviewTicker']['reviews'][0]; index: number }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,7 +35,7 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
             {/* Author */}
             <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white font-bold text-sm">
-                    {review.avatar}
+                    {review.author.charAt(0)}
                 </div>
                 <div>
                     <p className="font-semibold text-sm">{review.author}</p>
@@ -80,7 +46,7 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
     );
 }
 
-export function ReviewTicker() {
+export function ReviewTicker({ dict }: ReviewTickerProps) {
     return (
         <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
             {/* Subtle gradient */}
@@ -100,7 +66,7 @@ export function ReviewTicker() {
                                 <Star key={i} className="w-6 h-6 fill-accent text-accent" />
                             ))}
                         </div>
-                        <span className="text-2xl font-bold">4.9/5</span>
+                        <span className="text-2xl font-bold">{dict.rating}</span>
                     </motion.div>
 
                     <motion.h2
@@ -110,7 +76,7 @@ export function ReviewTicker() {
                         transition={{ delay: 0.1 }}
                         className="text-4xl sm:text-5xl font-black tracking-tight mb-4"
                     >
-                        Ce qu'ils en pensent
+                        {dict.title}
                     </motion.h2>
 
                     <motion.p
@@ -120,13 +86,13 @@ export function ReviewTicker() {
                         transition={{ delay: 0.2 }}
                         className="text-muted-foreground text-lg"
                     >
-                        Des milliers d'utilisateurs transforment leur corps avec SHAPE
+                        {dict.subtitle}
                     </motion.p>
                 </div>
 
                 {/* Reviews Grid */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {reviews.map((review, index) => (
+                    {dict.reviews.map((review, index) => (
                         <ReviewCard key={index} review={review} index={index} />
                     ))}
                 </div>

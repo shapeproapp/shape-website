@@ -10,6 +10,8 @@ import { Comparison } from "@/components/Comparison";
 import { Pricing } from "@/components/Pricing";
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
+import { StickyScroll } from "@/components/StickyScroll";
+import { ReviewTicker } from "@/components/ReviewTicker";
 import { getDictionary } from "@/lib/dictionary";
 
 export default async function Home({
@@ -26,10 +28,12 @@ export default async function Home({
       <Hero dict={dict.hero} />
       <Stats dict={dict.stats} />
       <Features dict={dict.features} />
+      <StickyScroll dict={dict.stickyScroll} />
       <HowItWorks dict={dict.howItWorks} />
       <ScanDemo dict={dict.scanDemo} />
       <AppShowcase dict={dict.appShowcase} />
       <Comparison dict={dict.comparison} />
+      <ReviewTicker dict={dict.reviewTicker} />
       <Pricing dict={dict.pricing} />
       <FAQ dict={dict.faq} />
       <Footer dict={dict.footer} />

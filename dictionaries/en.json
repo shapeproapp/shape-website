@@ -6,6 +6,63 @@
         "download": "Download",
         "downloadApp": "App"
     },
+    "reviewTicker": {
+        "rating": "4.9/5",
+        "title": "What they say",
+        "subtitle": "Thousands of users are transforming their bodies with SHAPE",
+        "reviews": [
+            {
+                "text": "Finally an app that understands my training style. The generated programs are brutal but effective.",
+                "author": "Mike T.",
+                "handle": "@mike_lifts"
+            },
+            {
+                "text": "I love the design and ease of use. Tracking my macros is no longer a chore, it's fun.",
+                "author": "Emma R.",
+                "handle": "@emma_runs"
+            },
+            {
+                "text": "The progress visualization is top notch. Seeing my strength increase every week keeps me motivated.",
+                "author": "David K.",
+                "handle": "@david_gym"
+            },
+            {
+                "text": "The food scanner is magic. I take a photo and boom, all the nutritional info.",
+                "author": "Sophie L.",
+                "handle": "@sophie_fit"
+            },
+            {
+                "text": "Best fitness app I've used. The AI really understands my goals.",
+                "author": "Lucas M.",
+                "handle": "@lucas_muscle"
+            },
+            {
+                "text": "Simple, effective, beautiful. Exactly what I was looking for to structure my workouts.",
+                "author": "Julie P.",
+                "handle": "@julie_power"
+            }
+        ]
+    },
+    "stickyScroll": {
+        "title": {
+            "prefix": "The future of",
+            "suffix": "fitness is here"
+        },
+        "features": [
+            {
+                "title": "Personalized AI Programs",
+                "description": "No more guessing at the gym. Our AI analyzes your experience, equipment, and goals to create the perfect workout plan for you, week after week."
+            },
+            {
+                "title": "Smart Nutrition",
+                "description": "Nutrition simplified. Simply take a photo of your meal, and our AI instantly calculates calories and macros. No more headache."
+            },
+            {
+                "title": "Progress Tracking",
+                "description": "Visualize your transformation with detailed analytics. Track your strength gains, weight, and consistency streaks at a glance."
+            }
+        ]
+    },
     "hero": {
         "badge": {
             "android": "Available on Android",
