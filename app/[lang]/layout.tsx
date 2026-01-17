@@ -20,6 +20,7 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shape-site.vercel.app"),
   title: "SHAPE - Your AI Fitness & Nutrition Coach",
   description: "Achieve your dream physique with personalized workout and nutrition plans powered by AI.",
   openGraph: {
