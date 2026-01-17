@@ -8,6 +8,11 @@ const englishSpeakingCountries = ['US', 'GB', 'CA', 'AU', 'NZ', 'IE'];
 export function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
+    // Skip Open Graph image file explicitly
+    if (pathname.includes('opengraph-image')) {
+        return NextResponse.next();
+    }
+
     // Check if there is any supported locale in the pathname
     const pathnameIsMissingLocale = locales.every(
         (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
