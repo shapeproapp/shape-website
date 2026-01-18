@@ -2,7 +2,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
-import { Features } from "@/components/Features";
+
 import { HowItWorks } from "@/components/HowItWorks";
 import { ScanDemo } from "@/components/ScanDemo";
 import { AppShowcase } from "@/components/AppShowcase";
@@ -27,7 +27,7 @@ export default async function Home({
       <Navbar dict={dict.navbar} />
       <Hero dict={dict.hero} />
       <Stats dict={dict.stats} />
-      <Features dict={dict.features} />
+
       <StickyScroll dict={dict.stickyScroll} />
       <HowItWorks dict={dict.howItWorks} />
       <ScanDemo dict={dict.scanDemo} />
