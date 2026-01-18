@@ -19,9 +19,9 @@ export function StickyScroll({ dict }: StickyScrollProps) {
     });
 
     const images = [
-        "/assets/screenshots/workout.png",
-        "/assets/screenshots/profile.png",
-        "/assets/screenshots/dashboard.png",
+        "/assets/app-screens/weekly-plan-light.png",
+        "/assets/app-screens/food-search-light.png",
+        "/assets/app-screens/home-dark.png",
     ];
 
     const cardLength = dict.features.length;
@@ -42,34 +42,41 @@ export function StickyScroll({ dict }: StickyScrollProps) {
     });
 
     return (
-        <div className="py-12 sm:py-20 lg:py-32 bg-[#050505]" id="features" ref={ref}>
-            <div className="flex justify-center mb-10 sm:mb-16 px-4">
-                <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight text-center max-w-2xl font-[family-name:var(--font-heading)] text-white">
-                    {dict.title.prefix} <br className="hidden md:block" />
-                    <span className="text-gray-500">{dict.title.suffix}</span>
-                </h2>
-            </div>
+        <div className="py-16 sm:py-24 lg:py-32 bg-[#050505] overflow-hidden" id="features" ref={ref}>
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Header */}
+                <div className="flex justify-center mb-16 sm:mb-24">
+                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-center max-w-3xl font-[family-name:var(--font-heading)] text-white loading-none">
+                        {dict.title.prefix} <br className="hidden md:block" />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-500 to-neutral-800">
+                            {dict.title.suffix}
+                        </span>
+                    </h2>
+                </div>
 
-            <motion.div
-                className="lg:h-[300vh] flex flex-col justify-start relative space-y-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-            >
-                <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 h-full">
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start">
 
-                    {/* Left Stick Portion (Phone) - Desktop Only */}
-                    <div className="hidden lg:block h-screen sticky top-0 flex items-center justify-center">
-                        <div className="relative w-[300px] sm:w-[320px] mx-auto aspect-[9/19.5] transition-transform duration-700 ease-out">
-                            <div className="absolute inset-0 bg-black rounded-[48px] shadow-2xl border-[6px] border-zinc-900 overflow-hidden transform-gpu">
+                    {/* Desktop Sticky Phone */}
+                    <div className="hidden lg:block h-screen sticky top-0 flex items-center justify-center py-10">
+                        <div className="relative w-[340px] aspect-[9/19.5] transition-all duration-700 ease-out">
+                            {/* Glow */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] -z-10" />
+
+                            {/* Phone Frame */}
+                            <div className="relative w-full h-full bg-black rounded-[50px] shadow-2xl border-[8px] border-neutral-900 overflow-hidden ring-1 ring-white/10">
                                 {/* Dynamic Island */}
-                                <div className="absolute top-0 w-full h-7 bg-black z-20 flex justify-center">
-                                    <div className="w-20 h-5 bg-black rounded-b-2xl" />
-                                </div>
+                                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-8 bg-black rounded-full z-20" />
+
                                 {images.map((imgSrc, index) => (
                                     <motion.div
                                         key={index}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: activeCard === index ? 1 : 0 }}
-                                        transition={{ duration: 0.5 }}
-                                        className="absolute inset-0 h-full w-full"
+                                        initial={{ opacity: 0, scale: 1.1 }}
+                                        animate={{
+                                            opacity: activeCard === index ? 1 : 0,
+                                            scale: activeCard === index ? 1 : 1.1
+                                        }}
+                                        transition={{ duration: 0.6, ease: "easeInOut" }}
+                                        className="absolute inset-0 h-full w-full bg-black"
                                     >
                                         <Image
                                             src={imgSrc}
@@ -78,59 +85,68 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                                             className="object-cover"
                                             priority={index === 0}
                                         />
+                                        {/* Overlay gradient for depth */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                                     </motion.div>
                                 ))}
                             </div>
-                            {/* Glow behind phone */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[500px] bg-blue-500/10 rounded-full blur-[80px] -z-10" />
                         </div>
                     </div>
 
-                    {/* Right Scroll Portion (Text) */}
-                    <div className="flex flex-col justify-start relative pt-4 lg:pt-[20vh]">
+                    {/* Content Section */}
+                    <div className="flex flex-col gap-16 lg:gap-0 lg:pt-[20vh]">
                         {dict.features.map((item, index) => (
-                            <div key={index} className="lg:min-h-[80vh] flex flex-col justify-center my-6 lg:my-0 group">
+                            <div key={index} className="lg:min-h-[80vh] flex flex-col justify-center">
+                                {/* Desktop Text */}
                                 <motion.div
-                                    initial={{ opacity: 0, x: 50 }}
+                                    initial={{ opacity: 0, x: 20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ margin: "-50px", once: true }}
-                                    transition={{ duration: 0.5, delay: 0.2 }}
+                                    viewport={{ margin: "-20% 0px -20% 0px" }}
+                                    transition={{ duration: 0.5 }}
                                     className={cn(
-                                        "p-6 sm:p-10 rounded-3xl border backdrop-blur-sm transition-all duration-300",
-                                        // Mobile: always active style using standard classes
-                                        "opacity-100 grayscale-0 blur-0 scale-100 bg-white/5 border-white/10 shadow-xl lg:shadow-none",
-                                        // Desktop base style
-                                        "lg:opacity-20 lg:grayscale lg:blur-[1px] lg:scale-95 lg:border-transparent lg:bg-transparent",
-                                        // Active state overrides for desktop
-                                        activeCard === index && "lg:!opacity-100 lg:!grayscale-0 lg:!blur-0 lg:!scale-105 lg:!bg-white/5 lg:!border-white/10 lg:!shadow-xl"
+                                        "hidden lg:block p-8 rounded-3xl transition-all duration-500",
+                                        activeCard === index ? "opacity-100" : "opacity-30 blur-[2px]"
                                     )}
                                 >
-                                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 font-[family-name:var(--font-heading)]">
+                                    <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">
                                         {item.title}
-                                    </h2>
-                                    <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-medium">
+                                    </h3>
+                                    <p className="text-xl text-neutral-400 leading-relaxed font-medium">
                                         {item.description}
                                     </p>
+                                </motion.div>
 
-                                    {/* Mobile Only Image */}
-                                    <div className="lg:hidden mt-6 relative w-full aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 shadow-sm">
+                                {/* Mobile Card Design */}
+                                <div className="lg:hidden relative group overflow-hidden rounded-[40px] bg-neutral-900/50 border border-white/5 mx-auto w-full max-w-sm">
+                                    {/* Image Top Half */}
+                                    <div className="relative h-[280px] w-full bg-neutral-950 overflow-hidden">
+                                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900/90 z-10" />
                                         <Image
                                             src={images[index]}
                                             alt={item.title}
                                             fill
-                                            className="object-cover"
+                                            className="object-cover object-top opacity-90 group-hover:scale-105 transition-transform duration-700 ease-out"
                                         />
                                     </div>
-                                </motion.div>
+
+                                    {/* Content Bottom Half */}
+                                    <div className="relative p-8 -mt-20 z-20">
+                                        <div className="w-12 h-1 bg-white/20 rounded-full mb-6" />
+                                        <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-base text-neutral-400 leading-relaxed">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         ))}
-                        {/* Extra spacer at bottom to allow last item to be scrolled past properly if needed, but min-h should cover it. 
-                             Adding a small buffer just in case. */}
-                        <div className="hidden lg:block h-[20vh]" />
+                        {/* Spacer for desktop scrolling */}
+                        <div className="hidden lg:block h-[10vh]" />
                     </div>
-
                 </div>
-            </motion.div>
+            </div>
         </div>
     );
 }
