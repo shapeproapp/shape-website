@@ -119,29 +119,34 @@ export function Hero({ dict }: HeroProps) {
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="relative mt-12 sm:mt-16"
+                className="relative mt-8 sm:mt-12 pb-8"
             >
                 <div className="relative">
                     {/* Simplified Glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-foreground/5 blur-[100px] rounded-full" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-foreground/8 blur-[120px] rounded-full" />
 
                     {/* Phone */}
-                    <div className="relative w-[280px] sm:w-[320px] md:w-[360px]">
-                        {/* Removed glass border for cleaner look */}
-                        <div className="relative aspect-[9/19.5] bg-card rounded-[40px] overflow-hidden shadow-2xl ring-1 ring-white/10">
-                            {/* Dynamic Island */}
-                            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10" />
+                    <div className="relative w-[260px] sm:w-[300px] md:w-[340px]">
+                        <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[44px] overflow-hidden shadow-2xl ring-1 ring-white/10 p-2">
+                            {/* Inner screen with rounded corners */}
+                            <div className="relative w-full h-full rounded-[36px] overflow-hidden bg-white">
+                                {/* Dynamic Island */}
+                                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-7 bg-black rounded-full z-10" />
 
-                            <Image
-                                src="/assets/app-screens/home-light.png"
-                                alt="SHAPE App"
-                                fill
-                                className="object-cover"
-                                priority
-                            />
+                                <Image
+                                    src="/assets/app-screens/home-light.png"
+                                    alt="SHAPE App"
+                                    fill
+                                    className="object-cover object-top"
+                                    priority
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                {/* Fade to background at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
             </motion.div>
 
             {/* Scroll indicator - Removed for cleaner look */}

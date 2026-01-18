@@ -68,18 +68,7 @@ export function Navbar({ dict }: NavbarProps) {
                     </span>
                 </Link>
 
-                {/* Nav Links - Desktop */}
-                <div className="hidden md:flex items-center gap-8">
-                    <Link href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                        {dict.features}
-                    </Link>
-                    <Link href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                        {dict.pricing}
-                    </Link>
-                    <Link href="#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                        {dict.faq}
-                    </Link>
-                </div>
+
 
                 {/* CTA Button */}
                 <Link
