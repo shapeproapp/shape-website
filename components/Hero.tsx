@@ -230,16 +230,16 @@ export function Hero({ dict }: HeroProps) {
                 </motion.div>
             </div>
 
-            {/* Mobile: Mini phone preview at bottom */}
+            {/* Mobile: Mini phone preview at bottom - Pushed down further */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="lg:hidden w-full flex justify-center mt-12"
+                className="lg:hidden w-full flex justify-center mt-20 relative z-10"
             >
-                <div className="relative w-[220px] rotate-[-3deg]">
-                    {/* Mini Glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[340px] bg-foreground/[0.08] blur-[50px] rounded-full" />
+                <div className="relative w-[220px] rotate-[-6deg]">
+                    {/* Enhanced Bottom Glow to fill the void */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-indigo-500/[0.1] blur-[80px] rounded-full" />
 
                     {/* Mini Phone */}
                     <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[32px] overflow-hidden shadow-2xl ring-1 ring-foreground/[0.1] p-2">
