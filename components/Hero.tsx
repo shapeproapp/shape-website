@@ -36,7 +36,7 @@ export function Hero({ dict }: HeroProps) {
     ];
 
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden pt-28 pb-16 lg:pt-0 lg:pb-0">
+        <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden pt-24 pb-12 lg:pt-0 lg:pb-0">
 
             {/* Animated Background Orbs */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -78,7 +78,7 @@ export function Hero({ dict }: HeroProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="mb-10 py-2 px-2 pr-5 bg-foreground/[0.03] backdrop-blur-xl border border-foreground/[0.08] rounded-full inline-flex items-center gap-4 hover:bg-foreground/[0.05] hover:border-foreground/[0.12] transition-all duration-300"
+                        className="mb-8 mobile:mb-6 py-2 px-2 pr-5 bg-foreground/[0.03] backdrop-blur-xl border border-foreground/[0.08] rounded-full inline-flex items-center gap-4 hover:bg-foreground/[0.05] hover:border-foreground/[0.12] transition-all duration-300 transform scale-90 sm:scale-100 origin-center lg:origin-left"
                     >
                         <div className="flex -space-x-2.5">
                             {avatars.map((src, i) => (
@@ -112,7 +112,7 @@ export function Hero({ dict }: HeroProps) {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-[2.75rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black tracking-[-0.04em] leading-[1.05] mb-6"
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black tracking-[-0.04em] leading-[1.1] sm:leading-[1.05] mb-6"
                     >
                         <span className="text-foreground">{dict.title.prefix}</span>
                         <br />
@@ -128,7 +128,7 @@ export function Hero({ dict }: HeroProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
-                        className="text-base sm:text-lg text-foreground/50 max-w-md mb-10 font-medium leading-relaxed tracking-wide"
+                        className="text-base sm:text-lg text-foreground/50 max-w-md mb-8 sm:mb-10 font-medium leading-relaxed tracking-wide"
                         dangerouslySetInnerHTML={{ __html: dict.subtitle }}
                     />
 
@@ -237,14 +237,14 @@ export function Hero({ dict }: HeroProps) {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="lg:hidden mt-12 flex justify-center"
             >
-                <div className="relative w-[140px] rotate-[-3deg]">
+                <div className="relative w-[200px] rotate-[-3deg]">
                     {/* Mini Glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[200px] bg-foreground/[0.05] blur-[40px] rounded-full" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[300px] bg-foreground/[0.08] blur-[50px] rounded-full" />
 
                     {/* Mini Phone */}
-                    <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[24px] overflow-hidden shadow-xl ring-1 ring-foreground/[0.1] p-1.5">
-                        <div className="relative w-full h-full rounded-[20px] overflow-hidden bg-white">
-                            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-12 h-4 bg-black rounded-full z-10" />
+                    <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[32px] overflow-hidden shadow-2xl ring-1 ring-foreground/[0.1] p-2">
+                        <div className="relative w-full h-full rounded-[26px] overflow-hidden bg-white">
+                            <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-full z-10" />
                             <Image
                                 src="/assets/app-screens/home-light.png"
                                 alt="SHAPE App"

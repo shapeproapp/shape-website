@@ -16,9 +16,9 @@ export function Stats({ dict }: StatsProps) {
     const icons = [Sparkles, Zap, Infinity];
 
     return (
-        <section ref={ref} className="py-24 sm:py-32 border-t border-border">
+        <section ref={ref} className="py-12 sm:py-32 border-t border-border">
             <div className="max-w-5xl mx-auto px-4 sm:px-6">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4">
                     {dict.map((stat, index) => {
                         const Icon = icons[index];
                         return (
@@ -29,12 +29,12 @@ export function Stats({ dict }: StatsProps) {
                                 transition={{ delay: index * 0.15, duration: 0.8 }}
                                 className="text-center"
                             >
-                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-secondary border border-border mb-4">
-                                    <Icon className="w-5 h-5 text-muted-foreground" />
+                                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-secondary border border-border mb-2 sm:mb-4">
+                                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
                                 </div>
-                                <p className="text-4xl sm:text-5xl font-black mb-1">{stat.value}</p>
-                                <p className="text-lg font-semibold mb-1">{stat.label}</p>
-                                <p className="text-sm text-muted-foreground">{stat.desc}</p>
+                                <p className="text-2xl sm:text-5xl font-black mb-1 text-foreground">{stat.value}</p>
+                                <p className="text-sm sm:text-lg font-semibold mb-1 text-foreground">{stat.label}</p>
+                                <p className="text-[10px] sm:text-sm text-muted-foreground leading-tight px-1">{stat.desc}</p>
                             </motion.div>
                         )
                     })}
