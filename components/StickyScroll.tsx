@@ -126,67 +126,65 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                         </div>
                     </div>
 
-
-                    {/* Mobile: Premium Tabbed Interface */}
-                    <div className="lg:hidden flex flex-col gap-8">
-
-                        {/* 1. Tab Selector (Pills) */}
-                        <div className="flex gap-2 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide snap-x">
+                    {/* Mobile: Premium Swipeable Slider */}
+                    <div className="lg:hidden relative">
+                        {/* Scrollable Container */}
+                        <div
+                            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-6 gap-4"
+                            onScroll={(e) => {
+                                const scrollLeft = e.currentTarget.scrollLeft;
+                                const width = e.currentTarget.offsetWidth;
+                                const newIndex = Math.round(scrollLeft / width);
+                                setActiveCard(newIndex);
+                            }}
+                        >
                             {dict.features.map((item, index) => (
-                                <button
+                                <div
                                     key={index}
-                                    onClick={() => handleCardClick(index)}
-                                    className={cn(
-                                        "snap-center shrink-0 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 border whitespace-nowrap",
-                                        activeCard === index
-                                            ? "bg-zinc-900 dark:bg-white text-white dark:text-black border-zinc-900 dark:border-white shadow-md transform scale-105"
-                                            : "bg-transparent border-zinc-200 dark:border-white/10 text-zinc-500 dark:text-neutral-400 hover:bg-zinc-100 dark:hover:bg-white/5"
-                                    )}
+                                    className="snap-center shrink-0 w-full"
                                 >
-                                    {item.title}
-                                </button>
+                                    <div className="flex flex-col gap-6">
+                                        {/* Image Container - Prominent & Full Visibility */}
+                                        <div className="relative w-full aspect-[9/16] rounded-[32px] overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 shadow-2xl">
+                                            <Image
+                                                src={images[index]}
+                                                alt={item.title}
+                                                fill
+                                                className="object-contain p-2"
+                                                sizes="(max-width: 768px) 100vw, 350px"
+                                                priority={index === 0}
+                                            />
+                                            {/* Inner Shine */}
+                                            <div className="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/10 pointer-events-none rounded-[32px]" />
+                                        </div>
+
+                                        {/* Text Content */}
+                                        <div className="px-2">
+                                            <h3 className="text-3xl font-bold mb-3 text-zinc-900 dark:text-white">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-lg text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             ))}
                         </div>
 
-                        {/* 2. Active Content Area */}
-                        <div className="relative min-h-[600px]">
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={activeCard}
-                                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                                    transition={{ duration: 0.3, ease: "easeOut" }}
-                                    className="flex flex-col gap-6"
-                                >
-                                    {/* Text Content */}
-                                    <div className="px-1">
-                                        <h3 className="text-3xl font-bold mb-3 text-zinc-900 dark:text-white">
-                                            {dict.features[activeCard].title}
-                                        </h3>
-                                        <p className="text-lg text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
-                                            {dict.features[activeCard].description}
-                                        </p>
-                                    </div>
-
-                                    {/* Image Container - Full Focus */}
-                                    <div className="relative w-full aspect-[9/16] rounded-[32px] overflow-hidden bg-black border-[4px] border-zinc-200 dark:border-zinc-800 shadow-2xl">
-                                        {/* Glow Effect */}
-                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/20 dark:bg-white/10 blur-3xl -z-10" />
-
-                                        <Image
-                                            src={images[activeCard]}
-                                            alt={dict.features[activeCard].title}
-                                            fill
-                                            className="object-cover"
-                                            priority
-                                        />
-
-                                        {/* Inner Shine */}
-                                        <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none rounded-[32px]" />
-                                    </div>
-                                </motion.div>
-                            </AnimatePresence>
+                        {/* Pagination Dots */}
+                        <div className="flex justify-center gap-2 mt-4 pb-8">
+                            {dict.features.map((_, index) => (
+                                <div
+                                    key={index}
+                                    className={cn(
+                                        "h-2 rounded-full transition-all duration-300",
+                                        activeCard === index
+                                            ? "w-8 bg-zinc-900 dark:bg-white"
+                                            : "w-2 bg-zinc-300 dark:bg-white/20"
+                                    )}
+                                />
+                            ))}
                         </div>
                     </div>
 
