@@ -137,20 +137,20 @@ export function Hero({ dict }: HeroProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+                        className="flex flex-col sm:flex-row items-center gap-4 w-auto"
                     >
                         {/* App Store */}
                         {(platform === "ios" || platform === "desktop") && (
                             <motion.div
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto"
+                                className="w-auto"
                             >
                                 <Link
                                     href="https://apps.apple.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background rounded-2xl font-bold text-base overflow-hidden w-full sm:w-auto min-w-[200px] shadow-[0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] transition-shadow duration-500"
+                                    className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background rounded-2xl font-bold text-base overflow-hidden w-auto min-w-[200px] shadow-[0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] transition-shadow duration-500"
                                 >
                                     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
@@ -165,13 +165,13 @@ export function Hero({ dict }: HeroProps) {
                             <motion.div
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto"
+                                className="w-auto"
                             >
                                 <Link
                                     href="https://play.google.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-foreground/[0.08] backdrop-blur-sm border border-foreground/[0.1] text-foreground rounded-2xl font-bold text-base overflow-hidden w-full sm:w-auto min-w-[200px] hover:bg-foreground/[0.12] hover:border-foreground/[0.2] transition-all duration-300"
+                                    className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-foreground/[0.08] backdrop-blur-sm border border-foreground/[0.1] text-foreground rounded-2xl font-bold text-base overflow-hidden w-auto min-w-[200px] hover:bg-foreground/[0.12] hover:border-foreground/[0.2] transition-all duration-300"
                                 >
                                     <svg className="w-5 h-5" viewBox="0 0 24 24">
                                         <path fill="currentColor" d="M3.22 2.62c-.23.24-.38.58-.38 1v16.76c0 .42.15.76.38 1l.05.05 9.4-9.4v-.06L3.27 2.57l-.05.05z" />
@@ -235,11 +235,11 @@ export function Hero({ dict }: HeroProps) {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="lg:hidden w-full flex justify-center mt-8"
+                className="lg:hidden w-full flex justify-center mt-10"
             >
-                <div className="relative w-[220px] rotate-[-3deg]">
+                <div className="relative w-[180px] rotate-[-3deg]">
                     {/* Mini Glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[340px] bg-foreground/[0.08] blur-[50px] rounded-full" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[280px] bg-foreground/[0.08] blur-[50px] rounded-full" />
 
                     {/* Mini Phone */}
                     <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[32px] overflow-hidden shadow-2xl ring-1 ring-foreground/[0.1] p-2">
