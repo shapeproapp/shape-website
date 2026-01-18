@@ -43,7 +43,7 @@ export function Hero({ dict }: HeroProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
-                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] sm:leading-[0.9] mb-8"
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.05] sm:leading-[0.9] mb-6"
                 >
                     {dict.title.prefix}
                     <br />
@@ -57,7 +57,7 @@ export function Hero({ dict }: HeroProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-base sm:text-xl text-muted-foreground/80 max-w-lg mx-auto mb-12 font-medium leading-relaxed"
+                    className="text-base sm:text-xl text-muted-foreground/80 max-w-lg mx-auto mb-8 font-medium leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: dict.subtitle }}
                 />
 
@@ -66,10 +66,10 @@ export function Hero({ dict }: HeroProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="flex flex-col items-center gap-6"
+                    className="flex flex-col items-center gap-5"
                 >
                     {/* Store buttons */}
-                    <div className="flex flex-col sm:flex-row items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center gap-3">
                         {/* App Store - visible sur iOS ou desktop */}
                         {(platform === "ios" || platform === "desktop") && (
                             <Link
@@ -119,7 +119,7 @@ export function Hero({ dict }: HeroProps) {
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="relative mt-20 sm:mt-24"
+                className="relative mt-12 sm:mt-16"
             >
                 <div className="relative">
                     {/* Simplified Glow */}
