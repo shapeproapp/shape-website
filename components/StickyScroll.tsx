@@ -12,15 +12,23 @@ interface StickyScrollProps {
 
 export function StickyScroll({ dict }: StickyScrollProps) {
     const [activeCard, setActiveCard] = useState(0);
+    const [hasInteracted, setHasInteracted] = useState(false);
     const ref = useRef<any>(null);
 
     // Auto-rotate on desktop if not interacting
     useEffect(() => {
+        if (hasInteracted) return;
+
         const interval = setInterval(() => {
             setActiveCard((prev) => (prev + 1) % dict.features.length);
         }, 5000);
         return () => clearInterval(interval);
-    }, [dict.features.length]);
+    }, [dict.features.length, hasInteracted]);
+
+    const handleCardClick = (index: number) => {
+        setActiveCard(index);
+        setHasInteracted(true);
+    };
 
     const images = [
         "/assets/app-screens/weekly-plan-light.png",
@@ -48,7 +56,7 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                         {dict.features.map((item, index) => (
                             <div
                                 key={index}
-                                onClick={() => setActiveCard(index)}
+                                onClick={() => handleCardClick(index)}
                                 className={cn(
                                     "group cursor-pointer p-8 rounded-3xl transition-all duration-300 border",
                                     activeCard === index
@@ -119,82 +127,64 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                     </div>
 
 
-                    {/* Mobile: Redesigned Layout */}
-                    <div className="lg:hidden flex flex-col gap-12">
-                        {/* Phone Preview (Top) */}
-                        <div className="flex items-center justify-center relative py-8">
-                            {/* Centered Phone Container */}
-                            <div className="relative w-[240px] aspect-[9/19.5] transition-all duration-700 ease-out">
-                                {/* Glow */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-blue-500/20 dark:bg-white/5 rounded-full blur-[80px] -z-10" />
-
-                                {/* Phone Frame */}
-                                <div className="relative w-full h-full bg-black rounded-[40px] shadow-2xl border-[6px] border-zinc-800 dark:border-neutral-900 overflow-hidden ring-1 ring-black/5 dark:ring-white/10">
-                                    {/* Dynamic Island */}
-                                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-full z-20" />
-
-                                    <AnimatePresence mode="wait">
-                                        <motion.div
-                                            key={activeCard}
-                                            initial={{ opacity: 0, scale: 1.1 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.95 }}
-                                            transition={{ duration: 0.5, ease: "circOut" }}
-                                            className="absolute inset-0 h-full w-full bg-white dark:bg-black"
-                                        >
-                                            <Image
-                                                src={images[activeCard]}
-                                                alt="App Screen"
-                                                fill
-                                                className="object-cover"
-                                                priority
-                                            />
-                                            {/* Overlay gradient for depth */}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
-                                        </motion.div>
-                                    </AnimatePresence>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Feature List (Bottom) */}
-                        <div className="flex flex-col gap-4 px-2">
-                            {dict.features.map((item, index) => (
-                                <div
-                                    key={index}
-                                    onClick={() => setActiveCard(index)}
-                                    className={cn(
-                                        "group cursor-pointer p-6 rounded-2xl transition-all duration-300 border",
-                                        activeCard === index
-                                            ? "bg-zinc-100 border-zinc-200 dark:bg-white/5 dark:border-white/10 shadow-lg"
-                                            : "bg-transparent border-transparent opacity-70 active:opacity-100"
-                                    )}
-                                >
+                    {/* Mobile: Feature List with Inline Images */}
+                    <div className="lg:hidden flex flex-col gap-4 px-2">
+                        {dict.features.map((item, index) => (
+                            <div
+                                key={index}
+                                onClick={() => handleCardClick(index)}
+                                className={cn(
+                                    "group cursor-pointer p-6 rounded-3xl transition-all duration-300 border overflow-hidden",
+                                    activeCard === index
+                                        ? "bg-zinc-100 border-zinc-200 dark:bg-white/5 dark:border-white/10 shadow-lg"
+                                        : "bg-transparent border-transparent opacity-80"
+                                )}
+                            >
+                                <div className="flex justify-between items-center mb-2">
                                     <h3 className={cn(
-                                        "text-xl font-bold mb-2 transition-colors",
+                                        "text-xl font-bold transition-colors",
                                         activeCard === index ? "text-zinc-900 dark:text-white" : "text-zinc-500 dark:text-neutral-400"
                                     )}>
                                         {item.title}
                                     </h3>
                                     <div className={cn(
-                                        "overflow-hidden transition-all duration-500",
-                                        activeCard === index ? "max-h-32 opacity-100" : "max-h-0 opacity-0"
+                                        "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+                                        activeCard === index ? "bg-zinc-900 dark:bg-white text-white dark:text-black" : "bg-zinc-200 dark:bg-white/10 text-zinc-500 dark:text-neutral-400"
                                     )}>
-                                        <p className="text-base text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
-                                            {item.description}
-                                        </p>
+                                        {/* Simple Icon or Chevron */}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={activeCard === index ? "rotate-90 transition-transform" : "transition-transform"}>
+                                            <path d="m9 18 6-6-6-6" />
+                                        </svg>
                                     </div>
-                                    {/* Progress bar for active state */}
+                                </div>
+
+                                <AnimatePresence>
                                     {activeCard === index && (
                                         <motion.div
-                                            layoutId="mobile-active-highlight"
-                                            className="h-1 w-16 bg-zinc-900 dark:bg-white rounded-full mt-4"
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
                                             transition={{ duration: 0.3 }}
-                                        />
+                                            className="overflow-hidden"
+                                        >
+                                            <p className="text-base text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium mb-6">
+                                                {item.description}
+                                            </p>
+
+                                            {/* Inline Phone Preview for Mobile */}
+                                            <div className="relative w-full aspect-[4/3] sm:aspect-video rounded-2xl overflow-hidden bg-black border border-zinc-800 dark:border-neutral-800 shadow-inner">
+                                                <Image
+                                                    src={images[index]}
+                                                    alt="App Screen"
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                        </motion.div>
                                     )}
-                                </div>
-                            ))}
-                        </div>
+                                </AnimatePresence>
+                            </div>
+                        ))}
                     </div>
 
                 </div>
