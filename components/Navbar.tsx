@@ -76,7 +76,7 @@ export function Navbar({ dict }: NavbarProps) {
                     href={storeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-sm font-bold hover:opacity-90 transition-all"
+                    className="flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-bold hover:opacity-90 transition-all"
                 >
                     {storeIcon}
                     <span className="hidden sm:inline">{dict.download}</span>
