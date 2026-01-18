@@ -127,26 +127,26 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                     </div>
 
 
-                    {/* Mobile: Vertical Stack Layout (Simple & Static) */}
-                    <div className="lg:hidden flex flex-col gap-12">
+                    {/* Mobile: Horizontal Snap Carousel */}
+                    <div className="lg:hidden w-full overflow-x-auto snap-x snap-mandatory flex gap-4 px-4 pb-8 -mx-4 scrollbar-hide">
                         {dict.features.map((item, index) => (
                             <div
                                 key={index}
-                                className="group p-6 rounded-3xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/10"
+                                className="snap-center shrink-0 w-[85vw] sm:w-[350px] first:ml-0 last:mr-0"
                             >
-                                <div className="flex flex-col gap-6">
+                                <div className="h-full group p-6 rounded-3xl bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/10 flex flex-col">
                                     {/* Text Content */}
-                                    <div>
+                                    <div className="mb-6">
                                         <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">
                                             {item.title}
                                         </h3>
-                                        <p className="text-lg text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
+                                        <p className="text-base text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium line-clamp-3">
                                             {item.description}
                                         </p>
                                     </div>
 
-                                    {/* Image Container - Always Visible */}
-                                    <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] rounded-2xl overflow-hidden bg-black border border-zinc-200 dark:border-zinc-800 shadow-xl">
+                                    {/* Image Container - Fully visible, no cropping */}
+                                    <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-black border border-zinc-200 dark:border-zinc-800 shadow-xl mt-auto">
                                         {/* Glow Effect behind image */}
                                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/10 dark:bg-white/5 blur-3xl -z-10" />
 
@@ -154,15 +154,12 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                                             src={images[index]}
                                             alt={item.title}
                                             fill
-                                            className="object-cover"
-                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                            className="object-contain p-2"
+                                            sizes="(max-width: 768px) 85vw, 350px"
                                         />
 
-                                        {/* Inner Frame Border/Shine */}
+                                        {/* Inner Frame Border */}
                                         <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none rounded-2xl" />
-
-                                        {/* Gradient Overlay for depth */}
-                                        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                                     </div>
                                 </div>
                             </div>
