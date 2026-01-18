@@ -21,7 +21,7 @@ export function StickyScroll({ dict }: StickyScrollProps) {
 
         const interval = setInterval(() => {
             setActiveCard((prev) => (prev + 1) % dict.features.length);
-        }, 5000);
+        }, 4000); // Set to 4 seconds as requested
         return () => clearInterval(interval);
     }, [dict.features.length, hasInteracted]);
 
@@ -143,7 +143,7 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                                     key={index}
                                     className="snap-center shrink-0 w-full"
                                 >
-                                    <div className="flex flex-col gap-6">
+                                    <div className="flex flex-col gap-5">
                                         {/* Image Container - Prominent & Full Visibility */}
                                         <div className="relative w-full aspect-[9/16] rounded-[32px] overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 shadow-2xl">
                                             <Image
@@ -160,7 +160,7 @@ export function StickyScroll({ dict }: StickyScrollProps) {
 
                                         {/* Text Content */}
                                         <div className="px-2">
-                                            <h3 className="text-3xl font-bold mb-3 text-zinc-900 dark:text-white">
+                                            <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-zinc-900 dark:text-white">
                                                 {item.title}
                                             </h3>
                                             <p className="text-lg text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
