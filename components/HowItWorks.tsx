@@ -35,14 +35,15 @@ export function HowItWorks({ dict }: HowItWorksProps) {
                 </motion.div>
 
                 {/* Steps */}
-                <div className="space-y-12 sm:space-y-24">
+                <div className="flex overflow-x-auto snap-x snap-mandatory pb-12 gap-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:pb-0 sm:block sm:space-y-24 hide-scrollbar">
                     {dict.steps.map((step, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 60 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
                             transition={{ delay: 0.2 + index * 0.2, duration: 0.8 }}
-                            className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 sm:gap-16`}
+                            className={`flex-none w-[85vw] sm:w-auto snap-center flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 sm:gap-16`}
                         >
                             {/* Text */}
                             <div className="flex-1 text-center md:text-left">

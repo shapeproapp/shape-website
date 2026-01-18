@@ -230,18 +230,35 @@ export function Hero({ dict }: HeroProps) {
                 </motion.div>
             </div>
 
-            {/* Mobile: Mini phone preview at bottom - Pushed down further */}
+            {/* Mobile: Scroll Indicator & Phone Teaser */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.8 }}
+                className="lg:hidden absolute bottom-10 left-0 right-0 flex flex-col items-center z-20 pointer-events-none"
+            >
+                {/* Scroll Indicator */}
+                <div className="flex flex-col items-center gap-2 mb-4">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-foreground/40 font-medium">Explorer</span>
+                    <div className="w-[1px] h-12 bg-gradient-to-b from-foreground/0 via-foreground/20 to-foreground/0 overflow-hidden">
+                        <motion.div
+                            animate={{ y: [-20, 20] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            className="w-full h-1/2 bg-foreground/30 blur-[1px]"
+                        />
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* Mobile: Hidden Phone (Pushed way down) */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="lg:hidden w-full flex justify-center mt-48 relative z-10"
+                className="lg:hidden w-full flex justify-center mt-32 relative z-10 opacity-60"
             >
                 <div className="relative w-[220px] rotate-[-6deg]">
-                    {/* Enhanced Bottom Glow to fill the void */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[450px] bg-indigo-500/[0.15] blur-[100px] rounded-full" />
-
-                    {/* Mini Phone */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[450px] bg-indigo-500/[0.1] blur-[100px] rounded-full" />
                     <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[32px] overflow-hidden shadow-2xl ring-1 ring-foreground/[0.1] p-2">
                         <div className="relative w-full h-full rounded-[26px] overflow-hidden bg-white">
                             <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-full z-10" />
