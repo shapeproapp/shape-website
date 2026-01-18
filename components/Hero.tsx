@@ -43,11 +43,13 @@ export function Hero({ dict }: HeroProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
-                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9] mb-6"
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] sm:leading-[0.9] mb-8"
                 >
                     {dict.title.prefix}
                     <br />
-                    <span className="text-gradient">{dict.title.gradient}</span>
+                    <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground/80 to-foreground/50">
+                        {dict.title.gradient}
+                    </span>
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -55,7 +57,7 @@ export function Hero({ dict }: HeroProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto mb-10"
+                    className="text-base sm:text-xl text-muted-foreground/80 max-w-lg mx-auto mb-12 font-medium leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: dict.subtitle }}
                 />
 
@@ -64,23 +66,22 @@ export function Hero({ dict }: HeroProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="flex flex-col items-center gap-4"
+                    className="flex flex-col items-center gap-6"
                 >
                     {/* Store buttons */}
-                    <div className="flex flex-col sm:flex-row items-center gap-3">
+                    <div className="flex flex-col sm:flex-row items-center gap-4">
                         {/* App Store - visible sur iOS ou desktop */}
                         {(platform === "ios" || platform === "desktop") && (
                             <Link
                                 href="https://apps.apple.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold text-base hover:opacity-90 transition-all"
+                                className="group flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-bold text-base hover:opacity-90 transition-all min-w-[200px]"
                             >
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                                 </svg>
                                 {platform === "ios" ? dict.buttons.download : dict.buttons.appStore}
-                                {platform === "ios" && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
                             </Link>
                         )}
 
@@ -90,26 +91,25 @@ export function Hero({ dict }: HeroProps) {
                                 href="https://play.google.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold text-base hover:opacity-90 transition-all"
+                                className="group flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-bold text-base hover:opacity-90 transition-all min-w-[200px]"
                             >
-                                <svg className="w-5 h-5" viewBox="0 0 24 24">
-                                    <path fill="#EA4335" d="M3.22 2.62c-.23.24-.38.58-.38 1v16.76c0 .42.15.76.38 1l.05.05 9.4-9.4v-.06L3.27 2.57l-.05.05z" />
-                                    <path fill="#FBBC04" d="M16.41 15.31l-3.14-3.14v-.06l3.14-3.14.07.04 3.73 2.12c1.06.6 1.06 1.59 0 2.2l-3.73 2.12-.07-.04z" />
-                                    <path fill="#34A853" d="M16.48 15.35L13.27 12.14 3.22 22.19c.35.37.93.39 1.59.02l11.67-6.86z" />
-                                    <path fill="#4285F4" d="M16.48 8.97L4.81 2.11c-.66-.37-1.24-.35-1.59.02l9.4 9.41 3.86-3.57z" />
+                                <svg className="w-6 h-6" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M3.22 2.62c-.23.24-.38.58-.38 1v16.76c0 .42.15.76.38 1l.05.05 9.4-9.4v-.06L3.27 2.57l-.05.05z" />
+                                    <path fill="currentColor" d="M16.41 15.31l-3.14-3.14v-.06l3.14-3.14.07.04 3.73 2.12c1.06.6 1.06 1.59 0 2.2l-3.73 2.12-.07-.04z" />
+                                    <path fill="currentColor" d="M16.48 15.35L13.27 12.14 3.22 22.19c.35.37.93.39 1.59.02l11.67-6.86z" />
+                                    <path fill="currentColor" d="M16.48 8.97L4.81 2.11c-.66-.37-1.24-.35-1.59.02l9.4 9.41 3.86-3.57z" />
                                 </svg>
                                 {platform === "android" ? dict.buttons.download : dict.buttons.playStore}
-                                {platform === "android" && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
                             </Link>
                         )}
                     </div>
 
                     <Link
                         href="#features"
-                        className="flex items-center gap-2 px-6 py-4 text-muted-foreground hover:text-foreground transition-colors"
+                        className="flex items-center gap-2 px-6 py-4 text-muted-foreground/60 hover:text-foreground transition-colors text-sm font-medium tracking-wide uppercase"
                     >
-                        <Play className="w-4 h-4" />
                         {dict.buttons.features}
+                        <ArrowRight className="w-4 h-4" />
                     </Link>
                 </motion.div>
             </div>
@@ -118,48 +118,33 @@ export function Hero({ dict }: HeroProps) {
             <motion.div
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="relative mt-16 sm:mt-20"
+                transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="relative mt-20 sm:mt-24"
             >
                 <div className="relative">
-                    {/* Glow behind phone */}
-                    <div className="absolute -inset-20 bg-gradient-radial from-foreground/10 to-transparent rounded-full blur-3xl" />
+                    {/* Simplified Glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-foreground/5 blur-[100px] rounded-full" />
 
                     {/* Phone */}
                     <div className="relative w-[280px] sm:w-[320px] md:w-[360px]">
-                        <div className="relative glass rounded-[48px] p-2 border border-border">
-                            <div className="relative aspect-[9/19.5] bg-card rounded-[40px] overflow-hidden">
-                                {/* Dynamic Island */}
-                                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-8 bg-foreground rounded-full z-10" />
+                        {/* Removed glass border for cleaner look */}
+                        <div className="relative aspect-[9/19.5] bg-card rounded-[40px] overflow-hidden shadow-2xl ring-1 ring-white/10">
+                            {/* Dynamic Island */}
+                            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10" />
 
-                                <Image
-                                    src="/assets/app-screens/home-light.png"
-                                    alt="SHAPE App"
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
-                            </div>
+                            <Image
+                                src="/assets/app-screens/home-light.png"
+                                alt="SHAPE App"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
                         </div>
                     </div>
                 </div>
             </motion.div>
 
-            {/* Scroll indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2"
-            >
-                <div className="w-6 h-10 rounded-full border-2 border-border flex justify-center pt-2">
-                    <motion.div
-                        animate={{ y: [0, 12, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="w-1 h-2 bg-muted-foreground rounded-full"
-                    />
-                </div>
-            </motion.div>
+            {/* Scroll indicator - Removed for cleaner look */}
         </section>
     );
 }
