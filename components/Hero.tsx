@@ -235,11 +235,11 @@ export function Hero({ dict }: HeroProps) {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="lg:hidden w-full flex justify-center mt-20 relative z-10"
+                className="lg:hidden w-full flex justify-center mt-48 relative z-10"
             >
                 <div className="relative w-[220px] rotate-[-6deg]">
                     {/* Enhanced Bottom Glow to fill the void */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-indigo-500/[0.1] blur-[80px] rounded-full" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[450px] bg-indigo-500/[0.15] blur-[100px] rounded-full" />
 
                     {/* Mini Phone */}
                     <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[32px] overflow-hidden shadow-2xl ring-1 ring-foreground/[0.1] p-2">
