@@ -68,10 +68,10 @@ export function Hero({ dict }: HeroProps) {
             />
 
             {/* Content Container */}
-            <div className="relative z-10 w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+            <div className="relative z-10 w-full max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-16 items-center">
 
                 {/* Left Column: Text & CTA */}
-                <div className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
+                <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
 
                     {/* Social Proof Badge - Refined */}
                     <motion.div
@@ -186,33 +186,32 @@ export function Hero({ dict }: HeroProps) {
                     </motion.div>
                 </div>
 
-                {/* Right Column: Phone Mockup - Premium Floating Effect */}
+                {/* Right Column: Phone Mockup - SMALLER on desktop, hidden on mobile */}
                 <motion.div
-                    initial={{ opacity: 0, y: 60 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative order-1 lg:order-2 flex justify-center lg:justify-end"
+                    transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative hidden lg:flex justify-center"
                 >
                     <motion.div
-                        animate={{ y: [0, -20, 0] }}
+                        animate={{ y: [0, -15, 0] }}
                         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                         className="relative"
                     >
-                        {/* Multi-layer Glow Effect */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[600px] bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-transparent blur-[80px] rounded-full" />
-                        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-white/[0.05] blur-[60px] rounded-full" />
+                        {/* Multi-layer Glow Effect - Smaller */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[400px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent blur-[60px] rounded-full" />
 
-                        {/* Phone Container */}
+                        {/* Phone Container - SMALLER */}
                         <motion.div
-                            whileHover={{ rotate: 0, scale: 1.02 }}
-                            className="relative w-[260px] sm:w-[300px] md:w-[340px] lg:w-[380px] rotate-[-6deg] transition-all duration-700 ease-out"
+                            whileHover={{ rotate: 0, scale: 1.03 }}
+                            className="relative w-[220px] xl:w-[260px] rotate-[-6deg] transition-all duration-700 ease-out"
                         >
                             {/* Phone Frame */}
-                            <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[44px] sm:rounded-[52px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] ring-1 ring-white/[0.1] p-2.5 sm:p-3">
+                            <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[36px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] ring-1 ring-white/[0.1] p-2">
                                 {/* Inner Screen */}
-                                <div className="relative w-full h-full rounded-[36px] sm:rounded-[44px] overflow-hidden bg-white">
+                                <div className="relative w-full h-full rounded-[30px] overflow-hidden bg-white">
                                     {/* Dynamic Island */}
-                                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 sm:w-28 h-7 sm:h-8 bg-black rounded-full z-10" />
+                                    <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-full z-10" />
 
                                     <Image
                                         src="/assets/app-screens/home-light.png"
@@ -225,11 +224,38 @@ export function Hero({ dict }: HeroProps) {
                             </div>
 
                             {/* Reflection Effect */}
-                            <div className="absolute inset-0 rounded-[44px] sm:rounded-[52px] bg-gradient-to-tr from-transparent via-white/[0.05] to-transparent pointer-events-none" />
+                            <div className="absolute inset-0 rounded-[36px] bg-gradient-to-tr from-transparent via-white/[0.05] to-transparent pointer-events-none" />
                         </motion.div>
                     </motion.div>
                 </motion.div>
             </div>
+
+            {/* Mobile: Mini phone preview at bottom */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="lg:hidden mt-12 flex justify-center"
+            >
+                <div className="relative w-[140px] rotate-[-3deg]">
+                    {/* Mini Glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[200px] bg-white/[0.05] blur-[40px] rounded-full" />
+
+                    {/* Mini Phone */}
+                    <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[24px] overflow-hidden shadow-xl ring-1 ring-white/[0.1] p-1.5">
+                        <div className="relative w-full h-full rounded-[20px] overflow-hidden bg-white">
+                            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-12 h-4 bg-black rounded-full z-10" />
+                            <Image
+                                src="/assets/app-screens/home-light.png"
+                                alt="SHAPE App"
+                                fill
+                                className="object-cover object-top"
+                                priority
+                            />
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
         </section>
     );
 }

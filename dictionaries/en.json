@@ -289,8 +289,8 @@
             "features": "#features",
             "pricing": "#pricing",
             "faq": "#faq",
-            "privacy": "/privacy",
-            "terms": "/terms"
+            "privacy": "/en/privacy",
+            "terms": "/en/terms"
         },
         "copyright": "© 2025"
     }
