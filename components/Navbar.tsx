@@ -60,6 +60,7 @@ export function Navbar({ dict }: NavbarProps) {
                 : "bg-transparent"
                 }`}
         >
+            {/* Mobile optimized: Nav links removed for cleaner look */}
             <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
