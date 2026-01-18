@@ -42,20 +42,20 @@ export function StickyScroll({ dict }: StickyScrollProps) {
     });
 
     return (
-        <div className="py-20 lg:py-32 bg-[#050505]" id="features" ref={ref}>
-            <div className="flex justify-center mb-16 px-4">
-                <h2 className="text-4xl md:text-6xl font-black tracking-tight text-center max-w-2xl font-[family-name:var(--font-heading)] text-white">
+        <div className="py-12 sm:py-20 lg:py-32 bg-[#050505]" id="features" ref={ref}>
+            <div className="flex justify-center mb-10 sm:mb-16 px-4">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight text-center max-w-2xl font-[family-name:var(--font-heading)] text-white">
                     {dict.title.prefix} <br className="hidden md:block" />
                     <span className="text-gray-500">{dict.title.suffix}</span>
                 </h2>
             </div>
 
             <motion.div
-                className="h-[180vh] flex flex-col justify-center relative space-y-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+                className="lg:h-[180vh] flex flex-col justify-center relative space-y-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
             >
-                <div className="grid lg:grid-cols-2 gap-20 h-full">
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 h-full">
 
-                    {/* Left Stick Portion (Phone) */}
+                    {/* Left Stick Portion (Phone) - Desktop Only */}
                     <div className="hidden lg:block h-[600px] sticky top-32">
                         <div className="relative w-[300px] sm:w-[320px] mx-auto aspect-[9/19.5] transition-transform duration-700 ease-out">
                             <div className="absolute inset-0 bg-black rounded-[48px] shadow-2xl border-[6px] border-zinc-900 overflow-hidden transform-gpu">
@@ -87,30 +87,34 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                     </div>
 
                     {/* Right Scroll Portion (Text) */}
-                    <div className="flex flex-col justify-center relative pt-20 lg:pt-0">
+                    <div className="flex flex-col justify-center relative pt-4 lg:pt-0">
                         {dict.features.map((item, index) => (
-                            <div key={index} className="min-h-[60vh] flex flex-col justify-center my-10 group">
+                            <div key={index} className="lg:min-h-[60vh] flex flex-col justify-center my-6 lg:my-10 group">
                                 <motion.div
                                     initial={{ opacity: 0, x: 50 }}
                                     whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ margin: "-100px" }}
+                                    viewport={{ margin: "-50px", once: true }} // Changed for better mobile feel
                                     transition={{ duration: 0.5, delay: 0.2 }}
                                     className={cn(
-                                        "p-10 rounded-3xl border backdrop-blur-sm transition-all duration-300",
-                                        activeCard === index
-                                            ? "bg-white/5 border-white/10 shadow-xl scale-105"
-                                            : "opacity-20 grayscale blur-[1px] scale-95 border-transparent"
+                                        "p-6 sm:p-10 rounded-3xl border backdrop-blur-sm transition-all duration-300",
+                                        // Mobile: always active style. Desktop: controlled by activeCard
+                                        "lg:opacity-20 lg:grayscale lg:blur-[1px] lg:scale-95 lg:border-transparent",
+                                        "lg:bg-transparent lg:shadow-none",
+                                        // Active state overrides for desktop
+                                        activeCard === index && "lg:!opacity-100 lg:!grayscale-0 lg:!blur-0 lg:!scale-105 lg:!bg-white/5 lg:!border-white/10 lg:!shadow-xl",
+                                        // Mobile base style (always active-ish)
+                                        "opacity-100 grayscale-0 blur-0 scale-100 bg-white/5 border-white/10 shadow-xl lg:shadow-none"
                                     )}
                                 >
-                                    <h2 className="text-3xl font-bold text-white mb-6 font-[family-name:var(--font-heading)]">
+                                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 font-[family-name:var(--font-heading)]">
                                         {item.title}
                                     </h2>
-                                    <p className="text-lg text-gray-400 leading-relaxed font-medium">
+                                    <p className="text-base sm:text-lg text-gray-400 leading-relaxed font-medium">
                                         {item.description}
                                     </p>
 
                                     {/* Mobile Only Image */}
-                                    <div className="lg:hidden mt-8 relative w-full aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 shadow-sm">
+                                    <div className="lg:hidden mt-6 relative w-full aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 shadow-sm">
                                         <Image
                                             src={images[index]}
                                             alt={item.title}
@@ -121,8 +125,8 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                                 </motion.div>
                             </div>
                         ))}
-                        {/* Spacer for bottom */}
-                        <div className="h-[20vh]" />
+                        {/* Spacer for bottom on desktop only */}
+                        <div className="hidden lg:block h-[20vh]" />
                     </div>
 
                 </div>

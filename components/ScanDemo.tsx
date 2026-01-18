@@ -32,15 +32,15 @@ export function ScanDemo({ dict }: ScanDemoProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ delay: 0.5, duration: 0.6 }}
-                                className="absolute -right-8 top-12 glass rounded-2xl p-3 z-20"
+                                className="absolute -right-2 sm:-right-8 top-12 glass rounded-2xl p-2 sm:p-3 z-20"
                             >
-                                <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-xl bg-green-500/20 flex items-center justify-center">
+                                <div className="flex items-center gap-2 sm:gap-3">
+                                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-xl bg-green-500/20 flex items-center justify-center">
                                         <span className="text-green-500 text-xs font-bold">P</span>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-muted-foreground">{dict.cards.protein}</p>
-                                        <p className="text-sm font-bold">32g</p>
+                                        <p className="text-[10px] sm:text-xs text-muted-foreground">{dict.cards.protein}</p>
+                                        <p className="text-xs sm:text-sm font-bold">32g</p>
                                     </div>
                                 </div>
                             </motion.div>
@@ -49,15 +49,15 @@ export function ScanDemo({ dict }: ScanDemoProps) {
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ delay: 0.7, duration: 0.6 }}
-                                className="absolute -left-8 bottom-20 glass rounded-2xl p-3 z-20"
+                                className="absolute -left-2 sm:-left-8 bottom-20 glass rounded-2xl p-2 sm:p-3 z-20"
                             >
-                                <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-xl bg-orange-500/20 flex items-center justify-center">
+                                <div className="flex items-center gap-2 sm:gap-3">
+                                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-xl bg-orange-500/20 flex items-center justify-center">
                                         <span className="text-orange-500 text-xs font-bold">C</span>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-muted-foreground">{dict.cards.carbs}</p>
-                                        <p className="text-sm font-bold">45g</p>
+                                        <p className="text-[10px] sm:text-xs text-muted-foreground">{dict.cards.carbs}</p>
+                                        <p className="text-xs sm:text-sm font-bold">45g</p>
                                     </div>
                                 </div>
                             </motion.div>

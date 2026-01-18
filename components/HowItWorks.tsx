@@ -20,22 +20,22 @@ export function HowItWorks({ dict }: HowItWorksProps) {
     ];
 
     return (
-        <section className="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
+        <section className="py-16 sm:py-32 px-4 sm:px-6 border-t border-border">
             <div ref={ref} className="max-w-5xl mx-auto">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    className="text-center mb-16 sm:mb-20"
+                    className="text-center mb-12 sm:mb-20"
                 >
                     <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">{dict.header.subtitle}</p>
-                    <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
+                    <h2 className="text-3xl sm:text-5xl font-black tracking-tight">
                         {dict.header.title}
                     </h2>
                 </motion.div>
 
                 {/* Steps */}
-                <div className="space-y-16 sm:space-y-24">
+                <div className="space-y-12 sm:space-y-24">
                     {dict.steps.map((step, index) => (
                         <motion.div
                             key={index}
