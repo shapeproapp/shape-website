@@ -134,31 +134,31 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                                 key={index}
                                 className="snap-center shrink-0 w-[85vw] sm:w-[350px] first:ml-0 last:mr-0"
                             >
-                                <div className="h-full group p-6 rounded-3xl bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/10 flex flex-col">
+                                <div className="h-full group p-5 rounded-3xl bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/10 flex flex-col">
                                     {/* Text Content */}
                                     <div className="mb-6">
-                                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">
+                                        <h3 className="text-xl font-bold mb-2 text-zinc-900 dark:text-white">
                                             {item.title}
                                         </h3>
-                                        <p className="text-base text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium line-clamp-3">
+                                        <p className="text-base text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
                                             {item.description}
                                         </p>
                                     </div>
 
-                                    {/* Image Container - Fully visible, no cropping */}
-                                    <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-black border border-zinc-200 dark:border-zinc-800 shadow-xl mt-auto">
-                                        {/* Glow Effect behind image */}
+                                    {/* Image Container - Taller 9:16 Ratio for Phone Screenshots */}
+                                    <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black border border-zinc-200 dark:border-zinc-800 shadow-xl mt-auto">
+                                        {/* Glow Effect */}
                                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/10 dark:bg-white/5 blur-3xl -z-10" />
 
                                         <Image
                                             src={images[index]}
                                             alt={item.title}
                                             fill
-                                            className="object-contain p-2"
+                                            className="object-contain p-1"
                                             sizes="(max-width: 768px) 85vw, 350px"
                                         />
 
-                                        {/* Inner Frame Border */}
+                                        {/* Inner Frame */}
                                         <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none rounded-2xl" />
                                     </div>
                                 </div>
