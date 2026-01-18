@@ -127,43 +127,67 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                     </div>
 
 
-                    {/* Mobile: Horizontal Snap Carousel */}
-                    <div className="lg:hidden w-full overflow-x-auto snap-x snap-mandatory flex gap-4 px-4 pb-8 -mx-4 scrollbar-hide">
-                        {dict.features.map((item, index) => (
-                            <div
-                                key={index}
-                                className="snap-center shrink-0 w-[85vw] sm:w-[350px] first:ml-0 last:mr-0"
-                            >
-                                <div className="h-full group p-5 rounded-3xl bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/10 flex flex-col">
+                    {/* Mobile: Premium Tabbed Interface */}
+                    <div className="lg:hidden flex flex-col gap-8">
+
+                        {/* 1. Tab Selector (Pills) */}
+                        <div className="flex gap-2 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide snap-x">
+                            {dict.features.map((item, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => handleCardClick(index)}
+                                    className={cn(
+                                        "snap-center shrink-0 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 border whitespace-nowrap",
+                                        activeCard === index
+                                            ? "bg-zinc-900 dark:bg-white text-white dark:text-black border-zinc-900 dark:border-white shadow-md transform scale-105"
+                                            : "bg-transparent border-zinc-200 dark:border-white/10 text-zinc-500 dark:text-neutral-400 hover:bg-zinc-100 dark:hover:bg-white/5"
+                                    )}
+                                >
+                                    {item.title}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* 2. Active Content Area */}
+                        <div className="relative min-h-[600px]">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={activeCard}
+                                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
+                                    className="flex flex-col gap-6"
+                                >
                                     {/* Text Content */}
-                                    <div className="mb-6">
-                                        <h3 className="text-xl font-bold mb-2 text-zinc-900 dark:text-white">
-                                            {item.title}
+                                    <div className="px-1">
+                                        <h3 className="text-3xl font-bold mb-3 text-zinc-900 dark:text-white">
+                                            {dict.features[activeCard].title}
                                         </h3>
-                                        <p className="text-base text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
-                                            {item.description}
+                                        <p className="text-lg text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
+                                            {dict.features[activeCard].description}
                                         </p>
                                     </div>
 
-                                    {/* Image Container - Taller 9:16 Ratio for Phone Screenshots */}
-                                    <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black border border-zinc-200 dark:border-zinc-800 shadow-xl mt-auto">
+                                    {/* Image Container - Full Focus */}
+                                    <div className="relative w-full aspect-[9/16] rounded-[32px] overflow-hidden bg-black border-[4px] border-zinc-200 dark:border-zinc-800 shadow-2xl">
                                         {/* Glow Effect */}
-                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/10 dark:bg-white/5 blur-3xl -z-10" />
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/20 dark:bg-white/10 blur-3xl -z-10" />
 
                                         <Image
-                                            src={images[index]}
-                                            alt={item.title}
+                                            src={images[activeCard]}
+                                            alt={dict.features[activeCard].title}
                                             fill
-                                            className="object-contain p-1"
-                                            sizes="(max-width: 768px) 85vw, 350px"
+                                            className="object-cover"
+                                            priority
                                         />
 
-                                        {/* Inner Frame */}
-                                        <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none rounded-2xl" />
+                                        {/* Inner Shine */}
+                                        <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none rounded-[32px]" />
                                     </div>
-                                </div>
-                            </div>
-                        ))}
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
                     </div>
 
                 </div>
