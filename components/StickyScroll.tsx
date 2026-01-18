@@ -94,56 +94,65 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                     </div>
 
                     {/* Content Section */}
-                    <div className="flex flex-col gap-16 lg:gap-0 lg:pt-[20vh]">
-                        {dict.features.map((item, index) => (
-                            <div key={index} className="lg:min-h-[80vh] flex flex-col justify-center">
-                                {/* Desktop Text */}
-                                <motion.div
-                                    initial={{ opacity: 0, x: 20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ margin: "-20% 0px -20% 0px" }}
-                                    transition={{ duration: 0.5 }}
-                                    className={cn(
-                                        "hidden lg:block p-8 rounded-3xl transition-all duration-500",
-                                        activeCard === index ? "opacity-100" : "opacity-30 blur-[2px]"
-                                    )}
-                                >
-                                    <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-xl text-neutral-400 leading-relaxed font-medium">
-                                        {item.description}
-                                    </p>
-                                </motion.div>
+                    <div className="flex flex-col gap-16 lg:gap-0 lg:pt-[20vh] w-full">
 
-                                {/* Mobile Card Design */}
-                                <div className="lg:hidden relative group overflow-hidden rounded-[40px] bg-neutral-900/50 border border-white/5 mx-auto w-full max-w-sm">
-                                    {/* Image Top Half */}
-                                    <div className="relative h-[280px] w-full bg-neutral-950 overflow-hidden">
-                                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900/90 z-10" />
-                                        <Image
-                                            src={images[index]}
-                                            alt={item.title}
-                                            fill
-                                            className="object-cover object-top opacity-90 group-hover:scale-105 transition-transform duration-700 ease-out"
-                                        />
-                                    </div>
+                        {/* Mobile: Horizontal Snap Carousel */}
+                        <div className="lg:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 pb-8 no-scrollbar">
+                            {dict.features.map((item, index) => (
+                                <div key={index} className="flex-none w-[85vw] snap-center">
+                                    <div className="relative group overflow-hidden rounded-[32px] bg-neutral-900/50 border border-white/5 h-[420px] shadow-2xl">
+                                        {/* Image Top Half */}
+                                        <div className="relative h-[240px] w-full bg-neutral-950 overflow-hidden">
+                                            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900/90 z-10" />
+                                            <Image
+                                                src={images[index]}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover object-top opacity-90"
+                                            />
+                                        </div>
 
-                                    {/* Content Bottom Half */}
-                                    <div className="relative p-8 -mt-20 z-20">
-                                        <div className="w-12 h-1 bg-white/20 rounded-full mb-6" />
-                                        <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
-                                            {item.title}
-                                        </h3>
-                                        <p className="text-base text-neutral-400 leading-relaxed">
-                                            {item.description}
-                                        </p>
+                                        {/* Content Bottom Half */}
+                                        <div className="relative p-6 -mt-16 z-20">
+                                            <div className="w-10 h-1 bg-white/20 rounded-full mb-5" />
+                                            <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-sm text-neutral-400 leading-relaxed">
+                                                {item.description}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                        {/* Spacer for desktop scrolling */}
-                        <div className="hidden lg:block h-[10vh]" />
+                            ))}
+                        </div>
+
+                        {/* Desktop: Vertical Scroll Text */}
+                        <div className="hidden lg:block">
+                            {dict.features.map((item, index) => (
+                                <div key={index} className="lg:min-h-[80vh] flex flex-col justify-center">
+                                    <motion.div
+                                        initial={{ opacity: 0, x: 20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ margin: "-20% 0px -20% 0px" }}
+                                        transition={{ duration: 0.5 }}
+                                        className={cn(
+                                            "p-8 rounded-3xl transition-all duration-500",
+                                            activeCard === index ? "opacity-100" : "opacity-30 blur-[2px]"
+                                        )}
+                                    >
+                                        <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-xl text-neutral-400 leading-relaxed font-medium">
+                                            {item.description}
+                                        </p>
+                                    </motion.div>
+                                </div>
+                            ))}
+                            {/* Spacer for desktop scrolling */}
+                            <div className="h-[10vh]" />
+                        </div>
                     </div>
                 </div>
             </div>
