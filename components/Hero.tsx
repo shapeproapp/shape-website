@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Dictionary } from "@/lib/dictionary";
 
@@ -28,142 +27,192 @@ export function Hero({ dict }: HeroProps) {
         setPlatform(detectPlatform());
     }, []);
 
-    // Placeholder avatars - using varied IDs for "real" look
+    // High-quality avatar photos
     const avatars = [
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=faces",
-        "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&h=100&fit=crop&crop=faces",
-        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=faces"
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces",
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces",
+        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=faces"
     ];
 
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden pt-24 pb-12 lg:pt-0 lg:pb-0">
-            {/* Background gradient - adapts to theme */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-radial from-foreground/5 to-transparent rounded-full blur-3xl opacity-50" />
+        <section className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden pt-28 pb-16 lg:pt-0 lg:pb-0">
+
+            {/* Animated Background Orbs */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <motion.div
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.3, 0.5, 0.3]
+                    }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-white/[0.03] to-transparent rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1.2, 1, 1.2],
+                        opacity: [0.2, 0.4, 0.2]
+                    }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-white/[0.02] to-transparent rounded-full blur-3xl"
+                />
             </div>
 
+            {/* Subtle Grid Pattern */}
+            <div
+                className="absolute inset-0 pointer-events-none opacity-[0.015]"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                    backgroundSize: '60px 60px'
+                }}
+            />
+
             {/* Content Container */}
-            <div className="relative z-10 w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            <div className="relative z-10 w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
 
                 {/* Left Column: Text & CTA */}
                 <div className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
 
-                    {/* Loved by Users Badge */}
+                    {/* Social Proof Badge - Refined */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="mb-8 p-1 pr-4 bg-background/50 backdrop-blur-md border border-foreground/5 rounded-full inline-flex items-center gap-3 shadow-sm hover:border-foreground/10 transition-colors"
+                        className="mb-10 py-2 px-2 pr-5 bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-full inline-flex items-center gap-4 hover:bg-white/[0.05] hover:border-white/[0.12] transition-all duration-300"
                     >
-                        <div className="flex -space-x-3">
+                        <div className="flex -space-x-2.5">
                             {avatars.map((src, i) => (
-                                <div key={i} className="relative w-10 h-10 rounded-full ring-2 ring-background overflow-hidden">
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 0.2 + i * 0.1 }}
+                                    className="relative w-9 h-9 rounded-full ring-2 ring-black overflow-hidden"
+                                >
                                     <Image
                                         src={src}
                                         alt={`User ${i + 1}`}
                                         fill
                                         className="object-cover"
                                     />
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
-                        <div className="flex flex-col items-start text-xs sm:text-sm">
-                            <div className="flex items-center gap-1 font-bold text-foreground">
-                                <span>Loved by 1000+ users</span>
-                            </div>
-                            <div className="text-muted-foreground flex items-center gap-1">
+                        <div className="flex flex-col items-start">
+                            <span className="text-sm font-semibold text-white/90">1000+ utilisateurs</span>
+                            <div className="flex items-center gap-1.5 text-xs text-white/50">
                                 <span className="text-amber-400">★★★★★</span>
-                                <span>5/5 rating</span>
+                                <span>5.0</span>
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Main headline */}
+                    {/* Main Headline - Premium Typography */}
                     <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1.05] mb-6"
+                        className="text-[2.75rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black tracking-[-0.04em] leading-[1.05] mb-6"
                     >
-                        {dict.title.prefix}
+                        <span className="text-white">{dict.title.prefix}</span>
                         <br />
-                        <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground/80 to-foreground/50">
-                            {dict.title.gradient}
+                        <span className="relative">
+                            <span className="bg-gradient-to-r from-white via-white/70 to-white/40 bg-clip-text text-transparent">
+                                {dict.title.gradient}
+                            </span>
                         </span>
                     </motion.h1>
 
-                    {/* Subtitle */}
+                    {/* Subtitle - Clean & Readable */}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
-                        className="text-base sm:text-lg text-muted-foreground/80 max-w-lg mb-8 font-medium leading-relaxed"
+                        className="text-base sm:text-lg text-white/50 max-w-md mb-10 font-medium leading-relaxed tracking-wide"
                         dangerouslySetInnerHTML={{ __html: dict.subtitle }}
                     />
 
-                    {/* CTA Buttons */}
+                    {/* CTA Buttons - Premium Style */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="flex flex-col items-center lg:items-start gap-5 w-full sm:w-auto"
+                        className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
                     >
-                        {/* Store buttons */}
-                        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-                            {/* App Store */}
-                            {(platform === "ios" || platform === "desktop") && (
+                        {/* App Store */}
+                        {(platform === "ios" || platform === "desktop") && (
+                            <motion.div
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto"
+                            >
                                 <Link
                                     href="https://apps.apple.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-bold text-base hover:opacity-90 transition-all w-full sm:w-auto min-w-[200px]"
+                                    className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-white text-black rounded-2xl font-bold text-base overflow-hidden w-full sm:w-auto min-w-[200px] shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] transition-shadow duration-500"
                                 >
-                                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                                     </svg>
-                                    {platform === "ios" ? dict.buttons.download : dict.buttons.appStore}
+                                    <span>{platform === "ios" ? dict.buttons.download : dict.buttons.appStore}</span>
                                 </Link>
-                            )}
+                            </motion.div>
+                        )}
 
-                            {/* Play Store */}
-                            {(platform === "android" || platform === "desktop") && (
+                        {/* Play Store */}
+                        {(platform === "android" || platform === "desktop") && (
+                            <motion.div
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto"
+                            >
                                 <Link
                                     href="https://play.google.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-bold text-base hover:opacity-90 transition-all w-full sm:w-auto min-w-[200px]"
+                                    className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-white/[0.08] backdrop-blur-sm border border-white/[0.1] text-white rounded-2xl font-bold text-base overflow-hidden w-full sm:w-auto min-w-[200px] hover:bg-white/[0.12] hover:border-white/[0.2] transition-all duration-300"
                                 >
-                                    <svg className="w-6 h-6" viewBox="0 0 24 24">
+                                    <svg className="w-5 h-5" viewBox="0 0 24 24">
                                         <path fill="currentColor" d="M3.22 2.62c-.23.24-.38.58-.38 1v16.76c0 .42.15.76.38 1l.05.05 9.4-9.4v-.06L3.27 2.57l-.05.05z" />
                                         <path fill="currentColor" d="M16.41 15.31l-3.14-3.14v-.06l3.14-3.14.07.04 3.73 2.12c1.06.6 1.06 1.59 0 2.2l-3.73 2.12-.07-.04z" />
                                         <path fill="currentColor" d="M16.48 15.35L13.27 12.14 3.22 22.19c.35.37.93.39 1.59.02l11.67-6.86z" />
                                         <path fill="currentColor" d="M16.48 8.97L4.81 2.11c-.66-.37-1.24-.35-1.59.02l9.4 9.41 3.86-3.57z" />
                                     </svg>
-                                    {platform === "android" ? dict.buttons.download : dict.buttons.playStore}
+                                    <span>{platform === "android" ? dict.buttons.download : dict.buttons.playStore}</span>
                                 </Link>
-                            )}
-                        </div>
+                            </motion.div>
+                        )}
                     </motion.div>
                 </div>
 
-                {/* Right Column: Phone Mockup */}
+                {/* Right Column: Phone Mockup - Premium Floating Effect */}
                 <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    initial={{ opacity: 0, y: 60 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     className="relative order-1 lg:order-2 flex justify-center lg:justify-end"
                 >
-                    <div className="relative">
-                        {/* Simplified Glow - Shifted for right alignment */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-foreground/5 blur-[100px] rounded-full" />
+                    <motion.div
+                        animate={{ y: [0, -20, 0] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                        className="relative"
+                    >
+                        {/* Multi-layer Glow Effect */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[600px] bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-transparent blur-[80px] rounded-full" />
+                        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-white/[0.05] blur-[60px] rounded-full" />
 
-                        {/* Phone */}
-                        <div className="relative w-[280px] sm:w-[320px] md:w-[380px] lg:w-[420px] rotate-[-5deg] hover:rotate-0 transition-transform duration-700 ease-out">
-                            <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[48px] overflow-hidden shadow-2xl ring-1 ring-white/10 p-3">
-                                {/* Inner screen */}
-                                <div className="relative w-full h-full rounded-[40px] overflow-hidden bg-white">
+                        {/* Phone Container */}
+                        <motion.div
+                            whileHover={{ rotate: 0, scale: 1.02 }}
+                            className="relative w-[260px] sm:w-[300px] md:w-[340px] lg:w-[380px] rotate-[-6deg] transition-all duration-700 ease-out"
+                        >
+                            {/* Phone Frame */}
+                            <div className="relative aspect-[9/19.5] bg-neutral-900 rounded-[44px] sm:rounded-[52px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] ring-1 ring-white/[0.1] p-2.5 sm:p-3">
+                                {/* Inner Screen */}
+                                <div className="relative w-full h-full rounded-[36px] sm:rounded-[44px] overflow-hidden bg-white">
                                     {/* Dynamic Island */}
-                                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10" />
+                                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 sm:w-28 h-7 sm:h-8 bg-black rounded-full z-10" />
 
                                     <Image
                                         src="/assets/app-screens/home-light.png"
@@ -174,8 +223,11 @@ export function Hero({ dict }: HeroProps) {
                                     />
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
+                            {/* Reflection Effect */}
+                            <div className="absolute inset-0 rounded-[44px] sm:rounded-[52px] bg-gradient-to-tr from-transparent via-white/[0.05] to-transparent pointer-events-none" />
+                        </motion.div>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>
