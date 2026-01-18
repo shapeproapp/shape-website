@@ -127,62 +127,44 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                     </div>
 
 
-                    {/* Mobile: Feature List with Inline Images */}
-                    <div className="lg:hidden flex flex-col gap-4 px-2">
+                    {/* Mobile: Vertical Stack Layout (Simple & Static) */}
+                    <div className="lg:hidden flex flex-col gap-12">
                         {dict.features.map((item, index) => (
                             <div
                                 key={index}
-                                onClick={() => handleCardClick(index)}
-                                className={cn(
-                                    "group cursor-pointer p-6 rounded-3xl transition-all duration-300 border overflow-hidden",
-                                    activeCard === index
-                                        ? "bg-zinc-100 border-zinc-200 dark:bg-white/5 dark:border-white/10 shadow-lg"
-                                        : "bg-transparent border-transparent opacity-80"
-                                )}
+                                className="group p-6 rounded-3xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/10"
                             >
-                                <div className="flex justify-between items-center mb-2">
-                                    <h3 className={cn(
-                                        "text-xl font-bold transition-colors",
-                                        activeCard === index ? "text-zinc-900 dark:text-white" : "text-zinc-500 dark:text-neutral-400"
-                                    )}>
-                                        {item.title}
-                                    </h3>
-                                    <div className={cn(
-                                        "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
-                                        activeCard === index ? "bg-zinc-900 dark:bg-white text-white dark:text-black" : "bg-zinc-200 dark:bg-white/10 text-zinc-500 dark:text-neutral-400"
-                                    )}>
-                                        {/* Simple Icon or Chevron */}
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={activeCard === index ? "rotate-90 transition-transform" : "transition-transform"}>
-                                            <path d="m9 18 6-6-6-6" />
-                                        </svg>
+                                <div className="flex flex-col gap-6">
+                                    {/* Text Content */}
+                                    <div>
+                                        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-lg text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
+                                            {item.description}
+                                        </p>
+                                    </div>
+
+                                    {/* Image Container - Always Visible */}
+                                    <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] rounded-2xl overflow-hidden bg-black border border-zinc-200 dark:border-zinc-800 shadow-xl">
+                                        {/* Glow Effect behind image */}
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/10 dark:bg-white/5 blur-3xl -z-10" />
+
+                                        <Image
+                                            src={images[index]}
+                                            alt={item.title}
+                                            fill
+                                            className="object-cover"
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                        />
+
+                                        {/* Inner Frame Border/Shine */}
+                                        <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none rounded-2xl" />
+
+                                        {/* Gradient Overlay for depth */}
+                                        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                                     </div>
                                 </div>
-
-                                <AnimatePresence>
-                                    {activeCard === index && (
-                                        <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: "auto", opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.3 }}
-                                            className="overflow-hidden"
-                                        >
-                                            <p className="text-base text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium mb-6">
-                                                {item.description}
-                                            </p>
-
-                                            {/* Inline Phone Preview for Mobile */}
-                                            <div className="relative w-full aspect-[4/3] sm:aspect-video rounded-2xl overflow-hidden bg-black border border-zinc-800 dark:border-neutral-800 shadow-inner">
-                                                <Image
-                                                    src={images[index]}
-                                                    alt="App Screen"
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
                             </div>
                         ))}
                     </div>
