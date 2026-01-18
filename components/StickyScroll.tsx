@@ -40,8 +40,8 @@ export function StickyScroll({ dict }: StickyScrollProps) {
         <div className="py-16 sm:py-24 lg:py-32 bg-white dark:bg-[#050505] overflow-hidden transition-colors duration-300" id="features" ref={ref}>
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="flex justify-center mb-16 sm:mb-24">
-                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-center max-w-3xl font-[family-name:var(--font-heading)] text-zinc-900 dark:text-white leading-none">
+                <div className="flex justify-center mb-12 sm:mb-24">
+                    <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter text-center max-w-3xl font-[family-name:var(--font-heading)] text-zinc-900 dark:text-white leading-tight">
                         {dict.title.prefix} <br className="hidden md:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-neutral-500 dark:to-neutral-800">
                             {dict.title.suffix}
@@ -141,29 +141,29 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                             {dict.features.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="snap-center shrink-0 w-full"
+                                    className="snap-center shrink-0 w-[85vw] sm:w-[500px]"
                                 >
-                                    <div className="flex flex-col gap-5">
-                                        {/* Image Container - Prominent & Full Visibility */}
-                                        <div className="relative w-full aspect-[9/16] rounded-[32px] overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 shadow-2xl">
+                                    <div className="flex flex-col gap-4">
+                                        {/* Image Container - optimized aspect ratio */}
+                                        <div className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 shadow-lg">
                                             <Image
                                                 src={images[index]}
                                                 alt={item.title}
                                                 fill
-                                                className="object-contain p-2"
+                                                className="object-contain p-4"
                                                 sizes="(max-width: 768px) 100vw, 350px"
                                                 priority={index === 0}
                                             />
                                             {/* Inner Shine */}
-                                            <div className="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/10 pointer-events-none rounded-[32px]" />
+                                            <div className="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/10 pointer-events-none rounded-[24px]" />
                                         </div>
 
                                         {/* Text Content */}
-                                        <div className="px-2">
-                                            <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-zinc-900 dark:text-white">
+                                        <div className="px-1 text-center sm:text-left">
+                                            <h3 className="text-xl sm:text-2xl font-bold mb-2 text-zinc-900 dark:text-white">
                                                 {item.title}
                                             </h3>
-                                            <p className="text-lg text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
+                                            <p className="text-sm sm:text-base text-zinc-600 dark:text-neutral-400 leading-relaxed font-medium">
                                                 {item.description}
                                             </p>
                                         </div>
@@ -173,15 +173,15 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                         </div>
 
                         {/* Pagination Dots */}
-                        <div className="flex justify-center gap-2 mt-4 pb-8">
+                        <div className="flex justify-center gap-2 mt-2 pb-8">
                             {dict.features.map((_, index) => (
                                 <div
                                     key={index}
                                     className={cn(
-                                        "h-2 rounded-full transition-all duration-300",
+                                        "h-1.5 rounded-full transition-all duration-300",
                                         activeCard === index
-                                            ? "w-8 bg-zinc-900 dark:bg-white"
-                                            : "w-2 bg-zinc-300 dark:bg-white/20"
+                                            ? "w-6 bg-zinc-900 dark:bg-white"
+                                            : "w-1.5 bg-zinc-300 dark:bg-white/20"
                                     )}
                                 />
                             ))}
