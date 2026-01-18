@@ -5,13 +5,8 @@ const locales = ['fr', 'en'];
 const defaultLocale = 'fr';
 const englishSpeakingCountries = ['US', 'GB', 'CA', 'AU', 'NZ', 'IE'];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
-
-    // Skip Open Graph image file explicitly
-    if (pathname.includes('opengraph-image')) {
-        return NextResponse.next();
-    }
 
     // Check if there is any supported locale in the pathname
     const pathnameIsMissingLocale = locales.every(
@@ -25,7 +20,6 @@ export function middleware(request: NextRequest) {
 
         const rawCountry = testCountry ||
             request.headers.get('x-vercel-ip-country') ||
-            request.geo?.country ||
             'FR';
         const country = rawCountry.toUpperCase();
 
@@ -56,6 +50,6 @@ export function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         // Skip all internal paths (_next)
-        '/((?!_next|assets|favicon.ico|robots.txt|opengraph-image.*).*)',
+        '/((?!_next|assets|favicon.ico|robots.txt).*)',
     ],
 };
