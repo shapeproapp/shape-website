@@ -27,12 +27,12 @@ export function Hero({ dict }: HeroProps) {
         setPlatform(detectPlatform());
     }, []);
 
-    // High-quality avatar photos
+    // AI-generated avatar photos
     const avatars = [
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces",
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces",
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces",
-        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=faces"
+        "/assets/avatars/avatar-1.png",
+        "/assets/avatars/avatar-2.png",
+        "/assets/avatars/avatar-3.png",
+        "/assets/avatars/avatar-4.png"
     ];
 
     return (

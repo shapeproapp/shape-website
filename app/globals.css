@@ -1,21 +1,41 @@
 @import "tailwindcss";
 
-/* Dark theme only - forced on all devices */
+/* Light theme - default */
 :root {
-  --color-background: #000000;
-  --color-foreground: #FFFFFF;
-  --color-card: #0A0A0A;
-  --color-card-foreground: #FFFFFF;
-  --color-primary: #FFFFFF;
-  --color-primary-foreground: #000000;
-  --color-secondary: #111111;
-  --color-secondary-foreground: #FFFFFF;
-  --color-muted: #1A1A1A;
-  --color-muted-foreground: #888888;
-  --color-accent: #FFFFFF;
-  --color-accent-foreground: #000000;
-  --color-border: #222222;
-  color-scheme: dark;
+  --color-background: #FFFFFF;
+  --color-foreground: #000000;
+  --color-card: #F5F5F5;
+  --color-card-foreground: #000000;
+  --color-primary: #000000;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #F0F0F0;
+  --color-secondary-foreground: #000000;
+  --color-muted: #E5E5E5;
+  --color-muted-foreground: #666666;
+  --color-accent: #000000;
+  --color-accent-foreground: #FFFFFF;
+  --color-border: #E0E0E0;
+  color-scheme: light;
+}
+
+/* Dark theme - follows system preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #000000;
+    --color-foreground: #FFFFFF;
+    --color-card: #0A0A0A;
+    --color-card-foreground: #FFFFFF;
+    --color-primary: #FFFFFF;
+    --color-primary-foreground: #000000;
+    --color-secondary: #111111;
+    --color-secondary-foreground: #FFFFFF;
+    --color-muted: #1A1A1A;
+    --color-muted-foreground: #888888;
+    --color-accent: #FFFFFF;
+    --color-accent-foreground: #000000;
+    --color-border: #222222;
+    color-scheme: dark;
+  }
 }
 
 @theme {
@@ -76,19 +96,36 @@
 /* Premium utilities */
 @layer utilities {
   .text-gradient {
-    /* Explicit colors for cross-browser Android compatibility */
-    color: #888888;
-    background: linear-gradient(135deg, #FFFFFF 0%, #666666 100%);
+    /* Light mode gradient */
+    color: #666666;
+    background: linear-gradient(135deg, #000000 0%, #666666 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  @media (prefers-color-scheme: dark) {
+    .text-gradient {
+      /* Dark mode gradient */
+      color: #888888;
+      background: linear-gradient(135deg, #FFFFFF 0%, #666666 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
   .glass {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--color-border);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+    }
   }
 }
 

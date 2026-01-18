@@ -119,35 +119,82 @@ export function StickyScroll({ dict }: StickyScrollProps) {
                     </div>
 
 
-                    {/* Mobile: Horizontal Snap Carousel (Unchanged) */}
-                    <div className="lg:hidden col-span-1 w-full flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 -mx-4 pb-8 no-scrollbar">
-                        {dict.features.map((item, index) => (
-                            <div key={index} className="flex-none w-[85vw] snap-center">
-                                <div className="relative group overflow-hidden rounded-[32px] bg-neutral-900/50 border border-white/5 h-[420px] shadow-2xl">
-                                    {/* Image Top Half */}
-                                    <div className="relative h-[240px] w-full bg-neutral-950 overflow-hidden">
-                                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900/90 z-10" />
-                                        <Image
-                                            src={images[index]}
-                                            alt={item.title}
-                                            fill
-                                            className="object-cover object-top opacity-90"
-                                        />
-                                    </div>
+                    {/* Mobile: Same design as desktop but stacked vertically */}
+                    <div className="lg:hidden flex flex-col gap-8">
+                        {/* Phone Preview (Top) */}
+                        <div className="flex items-center justify-center h-[380px] sm:h-[450px] relative">
+                            {/* Centered Phone Container */}
+                            <div className="relative w-[220px] sm:w-[260px] aspect-[9/19.5] transition-all duration-700 ease-out">
+                                {/* Glow */}
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-white/5 rounded-full blur-[80px] -z-10" />
 
-                                    {/* Content Bottom Half */}
-                                    <div className="relative p-6 -mt-16 z-20">
-                                        <div className="w-10 h-1 bg-white/20 rounded-full mb-5" />
-                                        <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
-                                            {item.title}
-                                        </h3>
-                                        <p className="text-sm text-neutral-400 leading-relaxed">
+                                {/* Phone Frame */}
+                                <div className="relative w-full h-full bg-black rounded-[40px] sm:rounded-[45px] shadow-2xl border-[6px] sm:border-[7px] border-neutral-900 overflow-hidden ring-1 ring-white/10">
+                                    {/* Dynamic Island */}
+                                    <div className="absolute top-2 sm:top-3 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-6 sm:h-7 bg-black rounded-full z-20" />
+
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={activeCard}
+                                            initial={{ opacity: 0, scale: 1.1 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.95 }}
+                                            transition={{ duration: 0.5, ease: "circOut" }}
+                                            className="absolute inset-0 h-full w-full bg-black"
+                                        >
+                                            <Image
+                                                src={images[activeCard]}
+                                                alt="App Screen"
+                                                fill
+                                                className="object-cover"
+                                                priority
+                                            />
+                                            {/* Overlay gradient for depth */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Feature List (Bottom) */}
+                        <div className="flex flex-col gap-3 px-2">
+                            {dict.features.map((item, index) => (
+                                <div
+                                    key={index}
+                                    onClick={() => setActiveCard(index)}
+                                    className={cn(
+                                        "group cursor-pointer p-5 sm:p-6 rounded-2xl transition-all duration-300 border",
+                                        activeCard === index
+                                            ? "bg-white/5 border-white/10 shadow-lg"
+                                            : "bg-transparent border-transparent opacity-60 active:opacity-100"
+                                    )}
+                                >
+                                    <h3 className={cn(
+                                        "text-xl sm:text-2xl font-bold mb-2 transition-colors",
+                                        activeCard === index ? "text-white" : "text-neutral-400"
+                                    )}>
+                                        {item.title}
+                                    </h3>
+                                    <div className={cn(
+                                        "overflow-hidden transition-all duration-500",
+                                        activeCard === index ? "max-h-32 opacity-100" : "max-h-0 opacity-0"
+                                    )}>
+                                        <p className="text-sm sm:text-base text-neutral-400 leading-relaxed">
                                             {item.description}
                                         </p>
                                     </div>
+                                    {/* Progress bar for active state */}
+                                    {activeCard === index && (
+                                        <motion.div
+                                            layoutId="mobile-active-highlight"
+                                            className="h-1 w-16 bg-white rounded-full mt-4"
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    )}
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
 
                 </div>
